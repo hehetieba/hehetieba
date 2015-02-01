@@ -7,7 +7,7 @@ import hehetieba.dao.IUserDao;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
 
-public class UserServiceImpl implements IUserService {
+public class UserService implements IUserService {
 	
 	private IUserDao iUserDao;
 	
