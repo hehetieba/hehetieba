@@ -40,7 +40,7 @@
 		</action>
 	</package>
 
-	<include file=""></include>
+	<include file="struts2/struts-ui.xml"></include>
 
 
 </struts>
