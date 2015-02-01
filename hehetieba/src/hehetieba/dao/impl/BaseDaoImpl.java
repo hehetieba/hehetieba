@@ -84,6 +84,12 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		return (T)this.getSession().load(this.getClz(), id);
 	}
 	
+
+	@Override
+	public T get(Integer id) {
+		return (T)this.getSession().get(this.getClz(), id);
+	}
+	
 	public List<T> list(String hql) {
 		return this.list(hql,null);
 	}
@@ -164,6 +170,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		c = c.replaceAll("fetch", "");
 		return c;
 	}
+
 	
 }
 

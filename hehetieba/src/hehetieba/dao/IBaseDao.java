@@ -8,4 +8,6 @@ public interface IBaseDao<T> {
 	public void update(T t);
 	
 	public T load(Integer id);
+	
+	public T get(Integer id);
 }

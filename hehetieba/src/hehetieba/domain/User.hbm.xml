@@ -3,10 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="domain.TUser" table="t_user" catalog="hehetieba">
+    <class name="hehetieba.domain.User" table="t_user" catalog="hehetieba">
         <id name="id" type="int">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="username" type="string">
             <column name="username" length="20" not-null="true" />
@@ -14,8 +14,8 @@
         <property name="nickname" type="string">
             <column name="nickname" length="20" />
         </property>
-        <property name="password" type="string">
-            <column name="PASSWORD" length="40" />
+        <property name="pwd" type="string">
+            <column name="pwd" length="40" />
         </property>
         <property name="headImg" type="string">
             <column name="headImg" length="40" />
@@ -44,20 +44,22 @@
         <property name="allpyResultRead" type="java.lang.Byte">
             <column name="allpyResultRead" />
         </property>
-        <property name="enabled" type="java.lang.Boolean">
+        <property name="enabled" type="java.lang.Byte">
             <column name="enabled" />
         </property>
+        
         <set name="UserTiebas" table="t_user_tieba" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="userId" />
             </key>
-            <one-to-many class="domain.TUserTieba" />
+            <one-to-many class="hehetieba.domain.UserTieba" />
         </set>
+        
         <set name="TieTitles" table="t_tietitle" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="userId" />
             </key>
-            <one-to-many class="domain.TTietitle" />
+            <one-to-many class="hehetieba.domain.TieTitle" />
         </set>
     </class>
 </hibernate-mapping>

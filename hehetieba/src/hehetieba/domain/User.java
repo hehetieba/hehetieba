@@ -11,10 +11,10 @@ import java.util.Set;
  */
 public class User implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private String username;
 	private String nickname;
-	private String password;
+	private String pwd;
 	private String headImg;
 	private String introduction;
 	private Byte gender;
@@ -24,28 +24,28 @@ public class User implements java.io.Serializable {
 	private Byte tieRead;
 	private Byte replyRead;
 	private Byte allpyResultRead;
-	private Boolean enabled;
-	private Set TUserTiebas = new HashSet(0);
-	private Set TTietitles = new HashSet(0);
+	private Byte enabled;
+	private Set UserTiebas = new HashSet();
+	private Set Tietitles = new HashSet();
 
 	public User() {
 	}
 
-	public User(int id, String username, Date createdDate) {
+	public User(Integer id, String username, Date createdDate) {
 		this.id = id;
 		this.username = username;
 		this.createdDate = createdDate;
 	}
 
-	public User(int id, String username, String nickname, String password,
+	public User(Integer id, String username, String nickname, String password,
 			String headImg, String introduction, Byte gender, String birthday,
 			Integer tieCount, Date createdDate, Byte tieRead, Byte replyRead,
-			Byte allpyResultRead, Boolean enabled, Set TUserTiebas,
+			Byte allpyResultRead, Byte enabled, Set TUserTiebas,
 			Set TTietitles) {
 		this.id = id;
 		this.username = username;
 		this.nickname = nickname;
-		this.password = password;
+		this.pwd = password;
 		this.headImg = headImg;
 		this.introduction = introduction;
 		this.gender = gender;
@@ -56,15 +56,15 @@ public class User implements java.io.Serializable {
 		this.replyRead = replyRead;
 		this.allpyResultRead = allpyResultRead;
 		this.enabled = enabled;
-		this.TUserTiebas = TUserTiebas;
-		this.TTietitles = TTietitles;
+		this.UserTiebas = TUserTiebas;
+		this.Tietitles = TTietitles;
 	}
 
 	public int getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -85,11 +85,11 @@ public class User implements java.io.Serializable {
 	}
 
 	public String getPassword() {
-		return this.password;
+		return this.pwd;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.pwd = password;
 	}
 
 	public String getHeadImg() {
@@ -164,28 +164,30 @@ public class User implements java.io.Serializable {
 		this.allpyResultRead = allpyResultRead;
 	}
 
-	public Boolean getEnabled() {
-		return this.enabled;
+	public Byte getEnabled() {
+		return enabled;
 	}
 
-	public void setEnabled(Boolean enabled) {
+	public void setEnabled(Byte enabled) {
 		this.enabled = enabled;
 	}
 
-	public Set getTUserTiebas() {
-		return this.TUserTiebas;
+	public Set getUserTiebas() {
+		return UserTiebas;
 	}
 
-	public void setTUserTiebas(Set TUserTiebas) {
-		this.TUserTiebas = TUserTiebas;
+	public void setUserTiebas(Set userTiebas) {
+		UserTiebas = userTiebas;
 	}
 
-	public Set getTTietitles() {
-		return this.TTietitles;
+	public Set getTietitles() {
+		return Tietitles;
 	}
 
-	public void setTTietitles(Set TTietitles) {
-		this.TTietitles = TTietitles;
+	public void setTietitles(Set tietitles) {
+		Tietitles = tietitles;
 	}
+
+	
 
 }
