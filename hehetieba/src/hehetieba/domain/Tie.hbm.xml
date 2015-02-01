@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="domain.TTie" table="t_tie" catalog="hehetieba">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TTietitle" class="domain.TTietitle" fetch="select">
+            <column name="tieTitleId" />
+        </many-to-one>
+        <property name="sendUserId" type="java.lang.Integer">
+            <column name="sendUserId" />
+        </property>
+        <property name="beSendUserId" type="java.lang.Integer">
+            <column name="beSendUserId" />
+        </property>
+        <property name="floor" type="java.lang.Integer">
+            <column name="FLOOR" />
+        </property>
+        <property name="body" type="string">
+            <column name="body" length="500" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="createdDate" length="19" not-null="true" />
+        </property>
+        <set name="TReplies" table="t_reply" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tieId" />
+            </key>
+            <one-to-many class="domain.TReply" />
+        </set>
+    </class>
+</hibernate-mapping>

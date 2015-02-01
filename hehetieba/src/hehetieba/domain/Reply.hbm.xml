@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="domain.TReply" table="t_reply" catalog="hehetieba">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TTie" class="domain.TTie" fetch="select">
+            <column name="tieId" />
+        </many-to-one>
+        <many-to-one name="TTietitle" class="domain.TTietitle" fetch="select">
+            <column name="tieTitleId" />
+        </many-to-one>
+        <property name="sendUserId" type="java.lang.Integer">
+            <column name="sendUserId" />
+        </property>
+        <property name="beSendUserId" type="java.lang.Integer">
+            <column name="beSendUserId" />
+        </property>
+        <property name="body" type="string">
+            <column name="body" length="100" />
+        </property>
+        <property name="belongFloor" type="java.lang.Integer">
+            <column name="belongFloor" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="createDate" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

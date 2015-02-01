@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="domain.TTietitle" table="t_tietitle" catalog="hehetieba">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TTieba" class="domain.TTieba" fetch="select">
+            <column name="tiebaId" />
+        </many-to-one>
+        <many-to-one name="TUser" class="domain.TUser" fetch="select">
+            <column name="userId" />
+        </many-to-one>
+        <property name="lastPostTime" type="timestamp">
+            <column name="lastPostTime" length="19" not-null="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="40" />
+        </property>
+        <property name="top" type="java.lang.Byte">
+            <column name="top" />
+        </property>
+        <property name="jiajing" type="java.lang.Byte">
+            <column name="jiajing" />
+        </property>
+        <property name="maxFloor" type="java.lang.Integer">
+            <column name="maxFloor" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="createDate" length="19" not-null="true" />
+        </property>
+        <property name="lastPostUserName" type="string">
+            <column name="lastPostUserName" length="20" />
+        </property>
+        <set name="TReplies" table="t_reply" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tieTitleId" />
+            </key>
+            <one-to-many class="domain.TReply" />
+        </set>
+        <set name="TTies" table="t_tie" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tieTitleId" />
+            </key>
+            <one-to-many class="domain.TTie" />
+        </set>
+    </class>
+</hibernate-mapping>

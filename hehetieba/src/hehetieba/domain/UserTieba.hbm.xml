@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="domain.TUserTieba" table="t_user_tieba" catalog="hehetieba">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TTieba" class="domain.TTieba" fetch="select">
+            <column name="tiebaId" />
+        </many-to-one>
+        <many-to-one name="TUser" class="domain.TUser" fetch="select">
+            <column name="userId" />
+        </many-to-one>
+        <property name="points" type="java.lang.Integer">
+            <column name="points" />
+        </property>
+        <property name="enabled" type="java.lang.Byte">
+            <column name="enabled" />
+        </property>
+        <property name="type" type="java.lang.Byte">
+            <column name="TYPE" />
+        </property>
+    </class>
+</hibernate-mapping>

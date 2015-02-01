@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="domain.TTiebaownerapply" table="t_tiebaownerapply" catalog="hehetieba">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="userId" type="int">
+            <column name="userId" not-null="true" />
+        </property>
+        <property name="tiebaId" type="java.lang.Integer">
+            <column name="tiebaId" />
+        </property>
+        <property name="tiebaName" type="string">
+            <column name="tiebaName" length="20" />
+        </property>
+        <property name="handleStatus" type="java.lang.Byte">
+            <column name="handleStatus" />
+        </property>
+        <property name="applyDate" type="timestamp">
+            <column name="applyDate" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

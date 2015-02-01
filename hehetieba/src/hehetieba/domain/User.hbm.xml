@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="domain.TUser" table="t_user" catalog="hehetieba">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="20" not-null="true" />
+        </property>
+        <property name="nickname" type="string">
+            <column name="nickname" length="20" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="40" />
+        </property>
+        <property name="headImg" type="string">
+            <column name="headImg" length="40" />
+        </property>
+        <property name="introduction" type="string">
+            <column name="introduction" length="100" />
+        </property>
+        <property name="gender" type="java.lang.Byte">
+            <column name="gender" />
+        </property>
+        <property name="birthday" type="string">
+            <column name="birthday" length="20" />
+        </property>
+        <property name="tieCount" type="java.lang.Integer">
+            <column name="tieCount" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="createdDate" length="19" not-null="true" />
+        </property>
+        <property name="tieRead" type="java.lang.Byte">
+            <column name="tieRead" />
+        </property>
+        <property name="replyRead" type="java.lang.Byte">
+            <column name="replyRead" />
+        </property>
+        <property name="allpyResultRead" type="java.lang.Byte">
+            <column name="allpyResultRead" />
+        </property>
+        <property name="enabled" type="java.lang.Boolean">
+            <column name="enabled" />
+        </property>
+        <set name="UserTiebas" table="t_user_tieba" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="domain.TUserTieba" />
+        </set>
+        <set name="TieTitles" table="t_tietitle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="domain.TTietitle" />
+        </set>
+    </class>
+</hibernate-mapping>

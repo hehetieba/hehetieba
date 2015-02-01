@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="domain.TTieba" table="t_tieba" catalog="hehetieba">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="tiebaName" type="string">
+            <column name="tiebaName" length="20" />
+        </property>
+        <property name="headImg" type="string">
+            <column name="headImg" length="40" />
+        </property>
+        <property name="bgImg" type="string">
+            <column name="bgImg" length="40" />
+        </property>
+        <property name="intruduction" type="string">
+            <column name="intruduction" length="15" />
+        </property>
+        <property name="enabled" type="java.lang.Boolean">
+            <column name="enabled" />
+        </property>
+        <set name="TUserTiebas" table="t_user_tieba" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tiebaId" />
+            </key>
+            <one-to-many class="domain.TUserTieba" />
+        </set>
+        <set name="TTietitles" table="t_tietitle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tiebaId" />
+            </key>
+            <one-to-many class="domain.TTietitle" />
+        </set>
+    </class>
+</hibernate-mapping>
