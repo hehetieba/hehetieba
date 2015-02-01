@@ -10,5 +10,6 @@
 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<import resource="applicationContext-aop.xml"/>
+	<import resource="applicationContext-user.xml"/>
 
 </beans>
