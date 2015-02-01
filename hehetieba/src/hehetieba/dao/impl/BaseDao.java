@@ -14,7 +14,7 @@ import org.hibernate.SessionFactory;
 import hehetieba.basic.Pager;
 import hehetieba.dao.IBaseDao;
 
-public class BaseDaoImpl<T> implements IBaseDao<T> {
+public class BaseDao<T> implements IBaseDao<T> {
 	private SessionFactory sessionFactory;
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

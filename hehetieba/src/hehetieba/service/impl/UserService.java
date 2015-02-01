@@ -25,20 +25,17 @@ public class UserService implements IUserService {
 	
 	@Override
 	public boolean checkUsername(String username) {
-		// TODO Auto-generated method stub
-		return false;
+		return iUserDao.checkUsername(username);
 	}
 
 	@Override
 	public boolean checkNickname(String nickname) {
-		// TODO Auto-generated method stub
-		return false;
+		return iUserDao.checkUsername(nickname);
 	}
 
 	@Override
 	public void save(User user) {
-		// TODO Auto-generated method stub
-		
+		iUserDao.save(user);
 	}
 
 	@Override
