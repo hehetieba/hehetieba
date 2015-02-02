@@ -90,6 +90,34 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return (T)this.getSession().get(this.getClz(), id);
 	}
 	
+	/**
+	 * 查询一个对象
+	 */
+	
+	public Object queryObject(String hql) {
+		return this.queryObject(hql,null);
+	}
+	
+	public Object queryObject(String hql, Object arg) {
+		return this.queryObject(hql, new Object[]{arg});
+	}
+	
+	public Object queryObject(String hql, Object[] args) {
+		return this.queryObject(hql, args,null);
+	}
+	
+	public Object queryObjectByAlias(String hql, Map<String, Object> alias) {
+		return this.queryObject(hql,null,alias);
+	}
+
+	public Object queryObject(String hql, Object[] args,
+			Map<String, Object> alias) {
+		Query query = getSession().createQuery(hql);
+		setAliasParameter(query, alias);
+		setParameter(query, args);
+		return query.setMaxResults(1).uniqueResult();
+	}
+	
 	public List<T> list(String hql) {
 		return this.list(hql,null);
 	}

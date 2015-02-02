@@ -13,9 +13,11 @@ public interface IUserService {
 	//增加用户
 	public void save(User user);
 	//登录
-	public boolean checkLogin(String username,String pwd);
+	public boolean login(String username,String pwd);
+	//判断旧密码
+	public boolean checkOldPwd(Integer id,String oldPwd);
 	//修改密码
-	public boolean changePwd(Integer id,String oldPwd,String newPwd);
+	public void changePwd(Integer id,String newPwd);
 	//上传头像
 	public void uploadHeadImg(Integer id,String fileName,File file);
 	//修改信息

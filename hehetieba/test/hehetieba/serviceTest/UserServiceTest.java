@@ -15,4 +15,38 @@ public class UserServiceTest extends SpringInit {
 		user.setGender((byte) 1);
 		iUserService.save(user);
 	}
+	
+	@Test
+	public void testCheckUsername() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		boolean flag = iUserService.checkUsername("zhangsan");
+		System.out.println(flag);
+	}
+	
+	@Test
+	public void testCheckNickname() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		boolean flag = iUserService.checkNickname("张三");
+		System.out.println(flag);
+	}
+	
+	@Test
+	public void testLogin() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		boolean flag = iUserService.login("zhangsan","111");
+		System.out.println(flag);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
