@@ -3,10 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="domain.TTiebaapply" table="t_tiebaapply" catalog="hehetieba">
-        <id name="id" type="string">
+    <class name="hehetieba.domain.TiebaApply" table="t_tiebaapply" catalog="hehetieba">
+        <id name="id" type="java.lang.Integer">
             <column name="id" length="10" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="tiebarName" type="string">
             <column name="tiebarName" length="20" not-null="true" />

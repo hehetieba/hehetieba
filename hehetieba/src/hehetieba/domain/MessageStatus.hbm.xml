@@ -3,10 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="domain.TMessagestatus" table="t_messagestatus" catalog="hehetieba">
-        <id name="id" type="int">
+    <class name="hehetieba.domain.MessageStatus" table="t_messagestatus" catalog="hehetieba">
+        <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="ownerApplyRead" type="java.lang.Byte">
             <column name="ownerApplyRead" />

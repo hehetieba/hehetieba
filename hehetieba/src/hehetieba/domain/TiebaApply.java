@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class TiebaApply implements java.io.Serializable {
 
-	private String id;
+	private Integer id;
 	private String tiebarName;
 	private Byte handleStatus;
 	private Date applyDate;
@@ -17,13 +17,13 @@ public class TiebaApply implements java.io.Serializable {
 	public TiebaApply() {
 	}
 
-	public TiebaApply(String id, String tiebarName, Date applyDate) {
+	public TiebaApply(Integer id, String tiebarName, Date applyDate) {
 		this.id = id;
 		this.tiebarName = tiebarName;
 		this.applyDate = applyDate;
 	}
 
-	public TiebaApply(String id, String tiebarName, Byte handleStatus,
+	public TiebaApply(Integer id, String tiebarName, Byte handleStatus,
 			Date applyDate) {
 		this.id = id;
 		this.tiebarName = tiebarName;
@@ -31,11 +31,11 @@ public class TiebaApply implements java.io.Serializable {
 		this.applyDate = applyDate;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

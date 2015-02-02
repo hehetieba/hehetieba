@@ -9,8 +9,8 @@ import java.util.Date;
  */
 public class TiebaOwnerApply implements java.io.Serializable {
 
-	private int id;
-	private int userId;
+	private Integer id;
+	private Integer userId;
 	private Integer tiebaId;
 	private String tiebaName;
 	private Byte handleStatus;

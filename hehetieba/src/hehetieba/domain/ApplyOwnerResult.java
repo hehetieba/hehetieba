@@ -7,7 +7,7 @@ package hehetieba.domain;
  */
 public class ApplyOwnerResult implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private Integer userId;
 	private Integer tiebaName;
 	private Byte result;

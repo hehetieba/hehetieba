@@ -7,9 +7,9 @@ package hehetieba.domain;
  */
 public class Manager implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private String managername;
-	private String password;
+	private String pwd;
 
 	public Manager() {
 	}
@@ -21,7 +21,7 @@ public class Manager implements java.io.Serializable {
 	public Manager(int id, String managername, String password) {
 		this.id = id;
 		this.managername = managername;
-		this.password = password;
+		this.pwd = password;
 	}
 
 	public int getId() {
@@ -41,11 +41,11 @@ public class Manager implements java.io.Serializable {
 	}
 
 	public String getPassword() {
-		return this.password;
+		return this.pwd;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.pwd = password;
 	}
 
 }

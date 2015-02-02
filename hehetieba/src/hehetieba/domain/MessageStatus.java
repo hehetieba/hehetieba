@@ -7,7 +7,7 @@ package hehetieba.domain;
  */
 public class MessageStatus implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private Byte ownerApplyRead;
 	private Byte tiebaApplyRead;
 
