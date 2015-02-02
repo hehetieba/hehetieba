@@ -14,21 +14,21 @@ public class Manager implements java.io.Serializable {
 	public Manager() {
 	}
 
-	public Manager(int id) {
+	public Manager(Integer id) {
 		this.id = id;
 	}
 
-	public Manager(int id, String managername, String password) {
+	public Manager(Integer id, String managername, String pwd) {
 		this.id = id;
 		this.managername = managername;
-		this.pwd = password;
+		this.pwd = pwd;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -40,12 +40,13 @@ public class Manager implements java.io.Serializable {
 		this.managername = managername;
 	}
 
-	public String getPassword() {
-		return this.pwd;
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setPassword(String password) {
-		this.pwd = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
+
 
 }

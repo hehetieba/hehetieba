@@ -23,12 +23,12 @@ public class Tie implements java.io.Serializable {
 	public Tie() {
 	}
 
-	public Tie(int id, Date createdDate) {
+	public Tie(Integer id, Date createdDate) {
 		this.id = id;
 		this.createdDate = createdDate;
 	}
 
-	public Tie(int id, TieTitle TieTitle, Integer sendUserId,
+	public Tie(Integer id, TieTitle TieTitle, Integer sendUserId,
 			Integer beSendUserId, Integer floor, String body, Date createdDate,
 			Set TReplies) {
 		this.id = id;

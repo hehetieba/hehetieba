@@ -14,21 +14,21 @@ public class MessageStatus implements java.io.Serializable {
 	public MessageStatus() {
 	}
 
-	public MessageStatus(int id) {
+	public MessageStatus(Integer id) {
 		this.id = id;
 	}
 
-	public MessageStatus(int id, Byte ownerApplyRead, Byte tiebaApplyRead) {
+	public MessageStatus(Integer id, Byte ownerApplyRead, Byte tiebaApplyRead) {
 		this.id = id;
 		this.ownerApplyRead = ownerApplyRead;
 		this.tiebaApplyRead = tiebaApplyRead;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

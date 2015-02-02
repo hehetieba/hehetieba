@@ -21,21 +21,21 @@ public class TieTitle implements java.io.Serializable {
 	private Integer maxFloor;
 	private Date createDate;
 	private String lastPostUserName;
-	private Set Replies = new HashSet();
-	private Set Ties = new HashSet();
+	private Set replies = new HashSet();
+	private Set ties = new HashSet();
 
 	public TieTitle() {
 	}
 
-	public TieTitle(int id, Date lastPostTime, Date createDate) {
+	public TieTitle(Integer id, Date lastPostTime, Date createDate) {
 		this.id = id;
 		this.lastPostTime = lastPostTime;
 		this.createDate = createDate;
 	}
 
-	public TieTitle(int id, Tieba Tieba, User User, Date lastPostTime,
+	public TieTitle(Integer id, Tieba Tieba, User User, Date lastPostTime,
 			String title, Byte top, Byte jiajing, Integer maxFloor,
-			Date createDate, String lastPostUserName, Set TReplies, Set TTies) {
+			Date createDate, String lastPostUserName, Set replies, Set ties) {
 		this.id = id;
 		this.Tieba = Tieba;
 		this.User = User;
@@ -46,8 +46,8 @@ public class TieTitle implements java.io.Serializable {
 		this.maxFloor = maxFloor;
 		this.createDate = createDate;
 		this.lastPostUserName = lastPostUserName;
-		this.Replies = TReplies;
-		this.Ties = TTies;
+		this.replies = replies;
+		this.ties = ties;
 	}
 
 	public Integer getId() {
@@ -131,19 +131,19 @@ public class TieTitle implements java.io.Serializable {
 	}
 
 	public Set getReplies() {
-		return this.Replies;
+		return replies;
 	}
 
-	public void setReplies(Set TReplies) {
-		this.Replies = TReplies;
+	public void setReplies(Set replies) {
+		this.replies = replies;
 	}
 
 	public Set getTies() {
-		return this.Ties;
+		return ties;
 	}
 
-	public void setTies(Set TTies) {
-		this.Ties = TTies;
+	public void setTies(Set ties) {
+		this.ties = ties;
 	}
 
 }

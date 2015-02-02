@@ -18,7 +18,7 @@
             <column name="beSendUserId" />
         </property>
         <property name="floor" type="java.lang.Integer">
-            <column name="FLOOR" />
+            <column name="floor" />
         </property>
         <property name="body" type="string">
             <column name="body" length="500" />
@@ -26,7 +26,7 @@
         <property name="createdDate" type="timestamp">
             <column name="createdDate" length="19" not-null="true" />
         </property>
-        <set name="Replies" table="t_reply" inverse="true" lazy="true" fetch="select" cascade="save-update">
+        <set name="replies" table="t_reply" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tieId" />
             </key>

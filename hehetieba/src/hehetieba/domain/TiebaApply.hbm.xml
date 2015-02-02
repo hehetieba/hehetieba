@@ -8,8 +8,8 @@
             <column name="id" length="10" />
             <generator class="identity" />
         </id>
-        <property name="tiebarName" type="string">
-            <column name="tiebarName" length="20" not-null="true" />
+        <property name="tiebaName" type="string">
+            <column name="tiebaName" length="20" not-null="true" />
         </property>
         <property name="handleStatus" type="java.lang.Byte">
             <column name="handleStatus" />

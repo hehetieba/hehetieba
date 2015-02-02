@@ -17,11 +17,11 @@ public class UserTieba implements java.io.Serializable {
 	public UserTieba() {
 	}
 
-	public UserTieba(int id) {
+	public UserTieba(Integer id) {
 		this.id = id;
 	}
 
-	public UserTieba(int id, Tieba Tieba, User User, Integer points,
+	public UserTieba(Integer id, Tieba Tieba, User User, Integer points,
 			Byte enabled, Byte type) {
 		this.id = id;
 		this.Tieba = Tieba;

@@ -15,11 +15,11 @@ public class ApplyOwnerResult implements java.io.Serializable {
 	public ApplyOwnerResult() {
 	}
 
-	public ApplyOwnerResult(int id) {
+	public ApplyOwnerResult(Integer id) {
 		this.id = id;
 	}
 
-	public ApplyOwnerResult(int id, Integer userId, Integer tiebaName,
+	public ApplyOwnerResult(Integer id, Integer userId, Integer tiebaName,
 			Byte result) {
 		this.id = id;
 		this.userId = userId;
@@ -27,11 +27,11 @@ public class ApplyOwnerResult implements java.io.Serializable {
 		this.result = result;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

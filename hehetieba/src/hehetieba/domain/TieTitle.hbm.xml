@@ -35,13 +35,13 @@
         <property name="lastPostUserName" type="string">
             <column name="lastPostUserName" length="20" />
         </property>
-        <set name="Replies" table="t_reply" inverse="true" lazy="true" fetch="select">
+        <set name="replies" table="t_reply" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tieTitleId" />
             </key>
             <one-to-many class="Reply" />
         </set>
-        <set name="Ties" table="t_tie" inverse="true" lazy="true" fetch="select">
+        <set name="ties" table="t_tie" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tieTitleId" />
             </key>
