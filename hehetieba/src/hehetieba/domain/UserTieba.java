@@ -7,7 +7,7 @@ package hehetieba.domain;
  */
 public class UserTieba implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private Tieba Tieba;
 	private User User;
 	private Integer points;

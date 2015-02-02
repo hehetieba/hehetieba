@@ -37,9 +37,7 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="format_sql">true</property>
 		
-		
-
-
+		<mapping resource="hehetieba/domain/User.hbm.xml"/>
 
 	</session-factory>
 </hibernate-configuration>
