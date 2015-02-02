@@ -23,13 +23,13 @@
         <property name="enabled" type="java.lang.Byte">
             <column name="enabled" />
         </property>
-        <set name="UserTiebas" table="t_user_tieba" inverse="true" lazy="true" fetch="select">
+        <set name="userTiebas" table="t_user_tieba" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tiebaId" />
             </key>
             <one-to-many class="UserTieba" />
         </set>
-        <set name="Tietitles" table="t_tietitle" inverse="true" lazy="true" fetch="select">
+        <set name="tieTitles" table="t_tietitle" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tiebaId" />
             </key>

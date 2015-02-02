@@ -31,11 +31,11 @@ public class UserTieba implements java.io.Serializable {
 		this.type = type;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

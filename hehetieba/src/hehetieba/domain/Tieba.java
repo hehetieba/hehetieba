@@ -16,17 +16,17 @@ public class Tieba implements java.io.Serializable {
 	private String bgImg;
 	private String intruduction;
 	private Byte enabled;
-	private Set UserTiebas = new HashSet();
-	private Set Tietitles = new HashSet();
+	private Set userTiebas = new HashSet();
+	private Set tieTitles = new HashSet();
 
 	public Tieba() {
 	}
 
-	public Tieba(int id) {
+	public Tieba(Integer id) {
 		this.id = id;
 	}
 
-	public Tieba(int id, String tiebaName, String headImg, String bgImg,
+	public Tieba(Integer id, String tiebaName, String headImg, String bgImg,
 			String intruduction, Byte enabled, Set TUserTiebas,
 			Set TTietitles) {
 		this.id = id;
@@ -35,15 +35,15 @@ public class Tieba implements java.io.Serializable {
 		this.bgImg = bgImg;
 		this.intruduction = intruduction;
 		this.enabled = enabled;
-		this.UserTiebas = TUserTiebas;
-		this.Tietitles = TTietitles;
+		this.userTiebas = TUserTiebas;
+		this.tieTitles = TTietitles;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -87,20 +87,21 @@ public class Tieba implements java.io.Serializable {
 		this.enabled = enabled;
 	}
 
-	public Set getTUserTiebas() {
-		return this.UserTiebas;
+	public Set getUserTiebas() {
+		return userTiebas;
 	}
 
-	public void setTUserTiebas(Set TUserTiebas) {
-		this.UserTiebas = TUserTiebas;
+	public void setUserTiebas(Set userTiebas) {
+		this.userTiebas = userTiebas;
 	}
 
-	public Set getTTietitles() {
-		return this.Tietitles;
+	public Set getTieTitles() {
+		return tieTitles;
 	}
 
-	public void setTTietitles(Set TTietitles) {
-		this.Tietitles = TTietitles;
+	public void setTieTitles(Set tieTitles) {
+		this.tieTitles = tieTitles;
 	}
+
 
 }

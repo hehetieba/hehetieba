@@ -38,6 +38,11 @@
 		<property name="format_sql">true</property>
 		
 		<mapping resource="hehetieba/domain/User.hbm.xml"/>
+		<mapping resource="hehetieba/domain/UserTieba.hbm.xml"/>
+		<mapping resource="hehetieba/domain/Tieba.hbm.xml"/>
+		<mapping resource="hehetieba/domain/TieTitle.hbm.xml"/>
+		<mapping resource="hehetieba/domain/Tie.hbm.xml"/>
+		<mapping resource="hehetieba/domain/Reply.hbm.xml"/>
 
 	</session-factory>
 </hibernate-configuration>

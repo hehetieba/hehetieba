@@ -41,11 +41,11 @@ public class Tie implements java.io.Serializable {
 		this.replies = TReplies;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -97,12 +97,12 @@ public class Tie implements java.io.Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public Set getTReplies() {
+	public Set getReplies() {
 		return this.replies;
 	}
 
-	public void setTReplies(Set TReplies) {
-		this.replies = TReplies;
+	public void setReplies(Set Replies) {
+		this.replies = Replies;
 	}
 
 }

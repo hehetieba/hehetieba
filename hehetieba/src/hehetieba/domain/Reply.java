@@ -21,12 +21,12 @@ public class Reply implements java.io.Serializable {
 	public Reply() {
 	}
 
-	public Reply(int id, Date createDate) {
+	public Reply(Integer id, Date createDate) {
 		this.id = id;
 		this.createDate = createDate;
 	}
 
-	public Reply(int id, Tie Tie, TieTitle TieTitle, Integer sendUserId,
+	public Reply(Integer id, Tie Tie, TieTitle TieTitle, Integer sendUserId,
 			Integer beSendUserId, String body, Integer belongFloor,
 			Date createDate) {
 		this.id = id;
@@ -39,11 +39,11 @@ public class Reply implements java.io.Serializable {
 		this.createDate = createDate;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -50,11 +50,11 @@ public class TieTitle implements java.io.Serializable {
 		this.Ties = TTies;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -130,19 +130,19 @@ public class TieTitle implements java.io.Serializable {
 		this.lastPostUserName = lastPostUserName;
 	}
 
-	public Set getTReplies() {
+	public Set getReplies() {
 		return this.Replies;
 	}
 
-	public void setTReplies(Set TReplies) {
+	public void setReplies(Set TReplies) {
 		this.Replies = TReplies;
 	}
 
-	public Set getTTies() {
+	public Set getTies() {
 		return this.Ties;
 	}
 
-	public void setTTies(Set TTies) {
+	public void setTies(Set TTies) {
 		this.Ties = TTies;
 	}
 

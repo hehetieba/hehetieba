@@ -10,6 +10,8 @@ public class UserServiceTest extends SpringInit {
 	public void testUserSave() {
 		IUserService iUserService = (IUserService)context.getBean("userService");
 		User user = new User();
+		user.setUsername("zhangsan");
+		user.setNickname("张三");
 		user.setGender((byte) 1);
 		iUserService.save(user);
 	}
