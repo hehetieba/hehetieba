@@ -9,9 +9,9 @@ import java.util.Date;
  */
 public class Reply implements java.io.Serializable {
 
-	private int id;
-	private Tie Tie;
-	private TieTitle TieTitle;
+	private Integer id;
+	private Tie tie;
+	private TieTitle tieTitle;
 	private Integer sendUserId;
 	private Integer beSendUserId;
 	private String body;
@@ -30,8 +30,8 @@ public class Reply implements java.io.Serializable {
 			Integer beSendUserId, String body, Integer belongFloor,
 			Date createDate) {
 		this.id = id;
-		this.Tie = Tie;
-		this.TieTitle = TieTitle;
+		this.tie = Tie;
+		this.tieTitle = TieTitle;
 		this.sendUserId = sendUserId;
 		this.beSendUserId = beSendUserId;
 		this.body = body;
@@ -48,19 +48,19 @@ public class Reply implements java.io.Serializable {
 	}
 
 	public Tie getTie() {
-		return this.Tie;
+		return this.tie;
 	}
 
 	public void setTie(Tie Tie) {
-		this.Tie = Tie;
+		this.tie = Tie;
 	}
 
 	public TieTitle getTieTitle() {
-		return this.TieTitle;
+		return this.tieTitle;
 	}
 
 	public void setTieTitle(TieTitle TieTitle) {
-		this.TieTitle = TieTitle;
+		this.tieTitle = TieTitle;
 	}
 
 	public Integer getSendUserId() {

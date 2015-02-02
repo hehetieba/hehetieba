@@ -11,14 +11,14 @@ import java.util.Set;
  */
 public class Tie implements java.io.Serializable {
 
-	private int id;
-	private TieTitle TieTitle;
+	private Integer id;
+	private TieTitle tieTitle;
 	private Integer sendUserId;
 	private Integer beSendUserId;
 	private Integer floor;
 	private String body;
 	private Date createdDate;
-	private Set TReplies = new HashSet(0);
+	private Set replies = new HashSet();
 
 	public Tie() {
 	}
@@ -32,13 +32,13 @@ public class Tie implements java.io.Serializable {
 			Integer beSendUserId, Integer floor, String body, Date createdDate,
 			Set TReplies) {
 		this.id = id;
-		this.TieTitle = TieTitle;
+		this.tieTitle = TieTitle;
 		this.sendUserId = sendUserId;
 		this.beSendUserId = beSendUserId;
 		this.floor = floor;
 		this.body = body;
 		this.createdDate = createdDate;
-		this.TReplies = TReplies;
+		this.replies = TReplies;
 	}
 
 	public int getId() {
@@ -50,11 +50,11 @@ public class Tie implements java.io.Serializable {
 	}
 
 	public TieTitle getTieTitle() {
-		return this.TieTitle;
+		return this.tieTitle;
 	}
 
 	public void setTieTitle(TieTitle TieTitle) {
-		this.TieTitle = TieTitle;
+		this.tieTitle = TieTitle;
 	}
 
 	public Integer getSendUserId() {
@@ -98,11 +98,11 @@ public class Tie implements java.io.Serializable {
 	}
 
 	public Set getTReplies() {
-		return this.TReplies;
+		return this.replies;
 	}
 
 	public void setTReplies(Set TReplies) {
-		this.TReplies = TReplies;
+		this.replies = TReplies;
 	}
 
 }

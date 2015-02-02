@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class TieTitle implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private Tieba Tieba;
 	private User User;
 	private Date lastPostTime;
@@ -21,8 +21,8 @@ public class TieTitle implements java.io.Serializable {
 	private Integer maxFloor;
 	private Date createDate;
 	private String lastPostUserName;
-	private Set TReplies = new HashSet(0);
-	private Set TTies = new HashSet(0);
+	private Set Replies = new HashSet();
+	private Set Ties = new HashSet();
 
 	public TieTitle() {
 	}
@@ -46,8 +46,8 @@ public class TieTitle implements java.io.Serializable {
 		this.maxFloor = maxFloor;
 		this.createDate = createDate;
 		this.lastPostUserName = lastPostUserName;
-		this.TReplies = TReplies;
-		this.TTies = TTies;
+		this.Replies = TReplies;
+		this.Ties = TTies;
 	}
 
 	public int getId() {
@@ -131,19 +131,19 @@ public class TieTitle implements java.io.Serializable {
 	}
 
 	public Set getTReplies() {
-		return this.TReplies;
+		return this.Replies;
 	}
 
 	public void setTReplies(Set TReplies) {
-		this.TReplies = TReplies;
+		this.Replies = TReplies;
 	}
 
 	public Set getTTies() {
-		return this.TTies;
+		return this.Ties;
 	}
 
 	public void setTTies(Set TTies) {
-		this.TTies = TTies;
+		this.Ties = TTies;
 	}
 
 }

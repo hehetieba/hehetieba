@@ -10,14 +10,14 @@ import java.util.Set;
  */
 public class Tieba implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private String tiebaName;
 	private String headImg;
 	private String bgImg;
 	private String intruduction;
-	private Boolean enabled;
-	private Set TUserTiebas = new HashSet(0);
-	private Set TTietitles = new HashSet(0);
+	private Byte enabled;
+	private Set UserTiebas = new HashSet();
+	private Set Tietitles = new HashSet();
 
 	public Tieba() {
 	}
@@ -27,7 +27,7 @@ public class Tieba implements java.io.Serializable {
 	}
 
 	public Tieba(int id, String tiebaName, String headImg, String bgImg,
-			String intruduction, Boolean enabled, Set TUserTiebas,
+			String intruduction, Byte enabled, Set TUserTiebas,
 			Set TTietitles) {
 		this.id = id;
 		this.tiebaName = tiebaName;
@@ -35,8 +35,8 @@ public class Tieba implements java.io.Serializable {
 		this.bgImg = bgImg;
 		this.intruduction = intruduction;
 		this.enabled = enabled;
-		this.TUserTiebas = TUserTiebas;
-		this.TTietitles = TTietitles;
+		this.UserTiebas = TUserTiebas;
+		this.Tietitles = TTietitles;
 	}
 
 	public int getId() {
@@ -79,28 +79,28 @@ public class Tieba implements java.io.Serializable {
 		this.intruduction = intruduction;
 	}
 
-	public Boolean getEnabled() {
+	public Byte getEnabled() {
 		return this.enabled;
 	}
 
-	public void setEnabled(Boolean enabled) {
+	public void setEnabled(Byte enabled) {
 		this.enabled = enabled;
 	}
 
 	public Set getTUserTiebas() {
-		return this.TUserTiebas;
+		return this.UserTiebas;
 	}
 
 	public void setTUserTiebas(Set TUserTiebas) {
-		this.TUserTiebas = TUserTiebas;
+		this.UserTiebas = TUserTiebas;
 	}
 
 	public Set getTTietitles() {
-		return this.TTietitles;
+		return this.Tietitles;
 	}
 
 	public void setTTietitles(Set TTietitles) {
-		this.TTietitles = TTietitles;
+		this.Tietitles = TTietitles;
 	}
 
 }

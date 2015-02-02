@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
-    <class name="domain.TTieba" table="t_tieba" catalog="hehetieba">
-        <id name="id" type="int">
+<hibernate-mapping package="hehetieba.domain">
+    <class name="Tieba" table="t_tieba" catalog="hehetieba">
+        <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="tiebaName" type="string">
             <column name="tiebaName" length="20" />
@@ -20,20 +20,20 @@
         <property name="intruduction" type="string">
             <column name="intruduction" length="15" />
         </property>
-        <property name="enabled" type="java.lang.Boolean">
+        <property name="enabled" type="java.lang.Byte">
             <column name="enabled" />
         </property>
-        <set name="TUserTiebas" table="t_user_tieba" inverse="true" lazy="true" fetch="select">
+        <set name="UserTiebas" table="t_user_tieba" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tiebaId" />
             </key>
-            <one-to-many class="domain.TUserTieba" />
+            <one-to-many class="UserTieba" />
         </set>
-        <set name="TTietitles" table="t_tietitle" inverse="true" lazy="true" fetch="select">
+        <set name="Tietitles" table="t_tietitle" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="tiebaId" />
             </key>
-            <one-to-many class="domain.TTietitle" />
+            <one-to-many class="TieTitle" />
         </set>
     </class>
 </hibernate-mapping>
