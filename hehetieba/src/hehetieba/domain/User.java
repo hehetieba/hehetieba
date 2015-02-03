@@ -27,6 +27,20 @@ public class User implements java.io.Serializable {
 	private Byte enabled;
 	private Set userTiebas = new HashSet();
 	private Set tieTitles = new HashSet();
+	
+	
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", nickname="
+				+ nickname + ", pwd=" + pwd + ", headImg=" + headImg
+				+ ", introduction=" + introduction + ", gender=" + gender
+				+ ", birthday=" + birthday + ", tieCount=" + tieCount
+				+ ", createdDate=" + createdDate + ", tieRead=" + tieRead
+				+ ", replyRead=" + replyRead + ", allpyResultRead="
+				+ allpyResultRead + ", enabled=" + enabled + ", userTiebas="
+				+ userTiebas + ", tieTitles=" + tieTitles + "]";
+	}
 
 	public User() {
 	}

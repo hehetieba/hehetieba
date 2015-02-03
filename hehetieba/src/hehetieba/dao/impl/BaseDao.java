@@ -118,6 +118,9 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return query.setMaxResults(1).uniqueResult();
 	}
 	
+	/**
+	 * 批量查询
+	 */
 	public List<T> list(String hql) {
 		return this.list(hql,null);
 	}

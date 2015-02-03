@@ -18,7 +18,7 @@
             <column name="pwd" length="40" />
         </property>
         <property name="headImg" type="string">
-            <column name="headImg" length="40" />
+            <column name="headImg" length="100" />
         </property>
         <property name="introduction" type="string">
             <column name="introduction" length="100" />
@@ -29,8 +29,13 @@
         <property name="birthday" type="string">
             <column name="birthday" length="20" />
         </property>
-        <property name="tieCount" type="java.lang.Integer">
-            <column name="tieCount" />
+        <property name="tieCount" type="java.lang.Integer" 
+        	formula="(SELECT COUNT(*)+(SELECT COUNT(*)
+									FROM t_reply r
+									WHERE r.sendUserId=id
+									)
+					FROM t_tie t
+					WHERE t.sendUserId=id)">
         </property>
         <property name="createdDate" type="timestamp">
             <column name="createdDate" length="19" />

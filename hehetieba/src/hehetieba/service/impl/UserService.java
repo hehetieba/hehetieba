@@ -8,6 +8,7 @@ import org.apache.jasper.tagplugins.jstl.core.If;
 import hehetieba.dao.IUserDao;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
+import hehetieba.util.UploadUtils;
 
 public class UserService implements IUserService {
 	
@@ -24,6 +25,13 @@ public class UserService implements IUserService {
 	/**
 	 * 分割线
 	 */
+	
+	@Override
+	public User loadUser(Integer id) {
+		User user = (User)iUserDao.get(id);
+//		System.out.println(user.toString());
+		return user;
+	}
 	
 	@Override
 	public boolean checkUsername(String username) {
@@ -44,6 +52,9 @@ public class UserService implements IUserService {
 	public boolean login(String username, String pwd) {
 		//不存在此用户
 		if(iUserDao.checkUsername(username)==false)
+			return false;
+		//此用户被封号了
+		if(iUserDao.checkUserEnabled(username)==false)
 			return false;
 		User user = iUserDao.loadByUsername(username);
 		if(user!=null && user.getPwd().equals(pwd))
@@ -77,9 +88,11 @@ public class UserService implements IUserService {
 	 * 上传头像
 	 */
 	@Override
-	public void uploadHeadImg(Integer id, String fileName, File file) {
-		// TODO Auto-generated method stub
-		
+	public void uploadHeadImg(Integer id, File file,String ext) {
+		String headImg = UploadUtils.saveUploadFile(file, ext);
+		User user = (User)iUserDao.load(id);
+		user.setHeadImg(headImg);
+		iUserDao.update(user);
 	}
 
 	/**
@@ -87,18 +100,39 @@ public class UserService implements IUserService {
 	 */
 	@Override
 	public void changeMessage(User user) {
-		// TODO Auto-generated method stub
-		
+		iUserDao.update(user);
 	}
 
-	/**
-	 * 查关注的贴吧
-	 */
 	@Override
-	public List listTieba(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void disableUser(Integer id) {
+		iUserDao.disableUser(id);
 	}
+
+	@Override
+	public void enableUser(Integer id) {
+		iUserDao.enableUser(id);
+	}
+
+	@Override
+	public boolean checkTieRead(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkReplyRead(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkAllpyResultRead(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
 
 
 }

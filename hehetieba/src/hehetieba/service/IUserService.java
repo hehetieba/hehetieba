@@ -3,25 +3,112 @@ package hehetieba.service;
 import java.io.File;
 import java.util.List;
 
+import javax.swing.text.DefaultEditorKit.BeepAction;
+
 import hehetieba.domain.User;
 
 public interface IUserService {
-	//检查是否有这个用户
+	
+	/**
+	 * 返回User信息
+	 * @param id
+	 * @return
+	 */
+	public User loadUser(Integer id);
+	
+	/**
+	 * 检查是否有这个用户
+	 * @param username
+	 * @return
+	 */
 	public boolean checkUsername(String username);
-	//检查是否有这个昵称
+	/**
+	 * 检查是否有这个昵称
+	 * @param nickname
+	 * @return
+	 */
 	public boolean checkNickname(String nickname);
-	//增加用户
+	/**
+	 * 增加用户
+	 * @param user
+	 */
 	public void save(User user);
-	//登录
+	/**
+	 * 登录
+	 * @param username
+	 * @param pwd
+	 * @return
+	 */
 	public boolean login(String username,String pwd);
-	//判断旧密码
+	/**
+	 * 判断旧密码
+	 * @param id
+	 * @param oldPwd
+	 * @return
+	 */
 	public boolean checkOldPwd(Integer id,String oldPwd);
-	//修改密码
+	/**
+	 * 修改密码
+	 * @param id
+	 * @param newPwd
+	 */
 	public void changePwd(Integer id,String newPwd);
-	//上传头像
-	public void uploadHeadImg(Integer id,String fileName,File file);
-	//修改信息
+	/**
+	 * 上传头像
+	 * @param id
+	 * @param file
+	 * @param ext
+	 */
+	public void uploadHeadImg(Integer id,File file,String ext);
+	/**
+	 * 修改信息
+	 * @param user
+	 */
 	public void changeMessage(User user);
-	//查关注的贴吧
-	public List listTieba(Integer id);
+	/**
+	 * 根据userId封号
+	 * @param id
+	 */
+	public void disableUser(Integer id);
+	/**
+	 * 解封用户
+	 * @param id
+	 */
+	public void enableUser(Integer id);
+	
+	/**
+	 * 检查未读回帖
+	 * @param id
+	 * @return true：有未读回帖
+	 */
+	public boolean checkTieRead(Integer id);
+	
+	/**
+	 * 检查未读回复
+	 * @param id
+	 * @return true：有未读回复
+	 */
+	public boolean checkReplyRead(Integer id);
+	
+	/**
+	 * 检查吧主申请反馈
+	 * @param id
+	 * @return true：有未读反馈
+	 */
+	public boolean checkAllpyResultRead(Integer id);
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

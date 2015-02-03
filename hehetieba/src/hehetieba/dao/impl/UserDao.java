@@ -53,4 +53,62 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 		return null;
 	}
 
+	/**
+	 * 检查用户是否激活，返回true表示已激活
+	 */
+	@Override
+	public boolean checkUserEnabled(String username) {
+		User user = (User)loadByUsername(username);
+		if(user.getEnabled()==(byte)1)
+			return true;
+		return false;
+	}
+
+	/**
+	 * 检查用户是否激活，返回true表示已激活
+	 */
+	@Override
+	public boolean checkUserEnabled(Integer id) {
+		User user = (User)load(id);
+		if(user.getEnabled()==(byte)1)
+			return true;
+		return false;
+	}
+
+	@Override
+	public void disableUser(Integer id) {
+		User user = (User)load(id);
+		user.setEnabled((byte) 0);
+	}
+
+	@Override
+	public void enableUser(Integer id) {
+		User user = (User)load(id);
+		user.setEnabled((byte) 1);
+	}
+
+	@Override
+	public boolean checkTieRead(Integer id) {
+		User user = (User)load(id);
+		if(user.getTieRead()==(byte)1)
+			return true;
+		return false;
+	}
+
+	@Override
+	public boolean checkReplyRead(Integer id) {
+		User user = (User)load(id);
+		if(user.getReplyRead()==(byte)1)
+			return true;
+		return false;
+	}
+
+	@Override
+	public boolean checkAllpyResultRead(Integer id) {
+		User user = (User)load(id);
+		if(user.getAllpyResultRead()==(byte)1)
+			return true;
+		return false;
+	}
+
 }
