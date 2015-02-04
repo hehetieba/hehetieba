@@ -6,16 +6,32 @@ import hehetieba.basic.Pager;
 import hehetieba.domain.User;
 
 public interface IUserDao extends IBaseDao<User> {
-	// 检查是否有这个用户
+	/**
+	 *  检查是否有这个用户
+	 * @param username
+	 * @return
+	 */
 	public boolean checkUsername(String username);
 
-	// 检查是否有这个昵称
+	/**
+	 *  检查是否有这个昵称
+	 * @param nickname
+	 * @return
+	 */
 	public boolean checkNickname(String nickname);
 	
-	//根据用户名查找用户
+	/**
+	 * 根据用户名查找用户
+	 * @param username
+	 * @return
+	 */
 	public User loadByUsername(String username);
 	
-	//后台分页模糊查找用户
+	/**
+	 * 后台分页模糊查找用户
+	 * @param username
+	 * @return
+	 */
 	public Pager<User> findByUsername(String username);
 	
 	/**

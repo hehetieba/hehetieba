@@ -44,14 +44,19 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void save(User user) {
+	public boolean register(User user) {
+		if(checkUsername(user.getUsername())==true)
+			return false;
+		if(checkNickname(user.getNickname())==true)
+			return false;
 		iUserDao.save(user);
+		return true;
 	}
 
 	@Override
 	public boolean login(String username, String pwd) {
 		//不存在此用户
-		if(iUserDao.checkUsername(username)==false)
+		if(checkUsername(username)==false)
 			return false;
 		//此用户被封号了
 		if(iUserDao.checkUserEnabled(username)==false)
@@ -78,10 +83,13 @@ public class UserService implements IUserService {
 	 * 更新密码
 	 */
 	@Override
-	public void changePwd(Integer id, String newPwd) {
+	public boolean changePwd(Integer id,String oldPwd, String newPwd) {
+		if(checkOldPwd(id, oldPwd)==false)
+			return false;
 		User user = iUserDao.load(id);
 		user.setPwd(newPwd);
 		iUserDao.update(user);
+		return true;
 	}
 
 	/**

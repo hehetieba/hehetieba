@@ -14,5 +14,11 @@
         <property name="pwd" type="string">
             <column name="pwd" length="40" />
         </property>
+        <property name="tiabaApplyRead" type="java.lang.Byte">
+        	<column name="tiabaApplyRead"></column>
+        </property>
+        <property name="tiebaOwnerApplyRead" type="java.lang.Byte">
+        	<column name="tiebaOwnerApplyRead"></column>
+        </property>
     </class>
 </hibernate-mapping>

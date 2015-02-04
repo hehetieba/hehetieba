@@ -29,10 +29,10 @@ public interface IUserService {
 	 */
 	public boolean checkNickname(String nickname);
 	/**
-	 * 增加用户
+	 * 注册用户
 	 * @param user
 	 */
-	public void save(User user);
+	public boolean register(User user);
 	/**
 	 * 登录
 	 * @param username
@@ -52,7 +52,7 @@ public interface IUserService {
 	 * @param id
 	 * @param newPwd
 	 */
-	public void changePwd(Integer id,String newPwd);
+	public boolean changePwd(Integer id,String oldPwd,String newPwd);
 	/**
 	 * 上传头像
 	 * @param id

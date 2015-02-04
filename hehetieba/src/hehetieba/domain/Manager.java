@@ -10,6 +10,8 @@ public class Manager implements java.io.Serializable {
 	private Integer id;
 	private String managername;
 	private String pwd;
+	private Byte tiabaApplyRead;
+	private Byte tiebaOwnerApplyRead;
 
 	public Manager() {
 	}
@@ -48,5 +50,22 @@ public class Manager implements java.io.Serializable {
 		this.pwd = pwd;
 	}
 
+	public Byte getTiabaApplyRead() {
+		return tiabaApplyRead;
+	}
+
+	public void setTiabaApplyRead(Byte tiabaApplyRead) {
+		this.tiabaApplyRead = tiabaApplyRead;
+	}
+
+	public Byte getTiebaOwnerApplyRead() {
+		return tiebaOwnerApplyRead;
+	}
+
+	public void setTiebaOwnerApplyRead(Byte tiebaOwnerApplyRead) {
+		this.tiebaOwnerApplyRead = tiebaOwnerApplyRead;
+	}
+
+	
 
 }
