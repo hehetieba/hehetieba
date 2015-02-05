@@ -33,24 +33,53 @@ public class UserService implements IUserService {
 		return user;
 	}
 	
+	/**
+	 * true表示存在username
+	 */
 	@Override
 	public boolean checkUsername(String username) {
-		return iUserDao.checkUsername(username);
+		Integer cnt = iUserDao.calcUsernameCount(username);
+		if(cnt>0)
+			return true;
+		else
+			return false;
 	}
 
+	/**
+	 * true表示存在nickname
+	 */
 	@Override
 	public boolean checkNickname(String nickname) {
-		return iUserDao.checkNickname(nickname);
+		Integer cnt = iUserDao.calcNicknameCount(nickname);
+		if(cnt>0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
-	public boolean register(User user) {
-		if(checkUsername(user.getUsername())==true)
+	public boolean register(String username,String nickname,String pwd) {
+		//存在username
+		if(checkUsername(username)==true)
 			return false;
-		if(checkNickname(user.getNickname())==true)
+		//存在nickname
+		if(checkNickname(nickname)==true)
 			return false;
+		User user = newAnDefaultUser();
+		user.setUsername(username);
+		user.setNickname(nickname);
+		user.setPwd(pwd);
 		iUserDao.save(user);
 		return true;
+	}
+	
+	public User newAnDefaultUser () {
+		User user = new User();
+		user.setTieRead((byte) 0);
+		user.setReplyRead((byte) 0);
+		user.setApplyResultRead((byte) 0);
+		user.setEnabled((byte) 0);
+		return user;
 	}
 
 	@Override

@@ -46,8 +46,8 @@
         <property name="replyRead" type="java.lang.Byte">
             <column name="replyRead" />
         </property>
-        <property name="allpyResultRead" type="java.lang.Byte">
-            <column name="allpyResultRead" />
+        <property name="applyResultRead" type="java.lang.Byte">
+            <column name="applyResultRead" />
         </property>
         <property name="enabled" type="java.lang.Byte">
             <column name="enabled" />

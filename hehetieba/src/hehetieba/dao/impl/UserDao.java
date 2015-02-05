@@ -7,35 +7,29 @@ import hehetieba.domain.User;
 public class UserDao extends BaseDao<User> implements IUserDao {
 
 	/**
-	 * 返回true表示数据库存在此用户名
-	 * 返回false表示数据库不存在此用户名
+	 * 查username数量
 	 */
 	@Override
-	public boolean checkUsername(String username) {
+	public Integer calcUsernameCount(String username) {
 		String hql="select count(*) from User u where u.username=:username";
 		Integer count = Integer.valueOf(this.getSession().createQuery(hql)
 						.setString("username", username)
 						.uniqueResult()
 						.toString());
-		if(count>0)
-			return true;
-		else return false;
+		return count;
 	}
 	
 	/**
-	 * 返回true表示数据库存在此昵称
-	 * 返回false表示数据库不存在此昵称
+	 * 查nickname数量
 	 */
 	@Override
-	public boolean checkNickname(String nickname) {
+	public Integer calcNicknameCount(String nickname) {
 		String hql="select count(*) from User u where u.nickname=:nickname";
 		int count = Integer.valueOf(this.getSession().createQuery(hql)
 						.setString("nickname", nickname)
 						.uniqueResult()
 						.toString());
-		if(count>0)
-			return true;
-		else return false;
+		return count;
 	}
 
 	@Override
@@ -106,7 +100,7 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 	@Override
 	public boolean checkAllpyResultRead(Integer id) {
 		User user = (User)load(id);
-		if(user.getAllpyResultRead()==(byte)1)
+		if(user.getApplyResultRead()==(byte)1)
 			return true;
 		return false;
 	}

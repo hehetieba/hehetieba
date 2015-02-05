@@ -11,14 +11,14 @@ public interface IUserDao extends IBaseDao<User> {
 	 * @param username
 	 * @return
 	 */
-	public boolean checkUsername(String username);
+	public Integer calcUsernameCount(String username);
 
 	/**
 	 *  检查是否有这个昵称
 	 * @param nickname
 	 * @return
 	 */
-	public boolean checkNickname(String nickname);
+	public Integer calcNicknameCount(String nickname);
 	
 	/**
 	 * 根据用户名查找用户

@@ -23,7 +23,7 @@ public class User implements java.io.Serializable {
 	private Date createdDate;
 	private Byte tieRead;
 	private Byte replyRead;
-	private Byte allpyResultRead;
+	private Byte applyResultRead;
 	private Byte enabled;
 	private Set userTiebas = new HashSet();
 	private Set tieTitles = new HashSet();
@@ -37,8 +37,8 @@ public class User implements java.io.Serializable {
 				+ ", introduction=" + introduction + ", gender=" + gender
 				+ ", birthday=" + birthday + ", tieCount=" + tieCount
 				+ ", createdDate=" + createdDate + ", tieRead=" + tieRead
-				+ ", replyRead=" + replyRead + ", allpyResultRead="
-				+ allpyResultRead + ", enabled=" + enabled + ", userTiebas="
+				+ ", replyRead=" + replyRead + ", applyResultRead="
+				+ applyResultRead + ", enabled=" + enabled + ", userTiebas="
 				+ userTiebas + ", tieTitles=" + tieTitles + "]";
 	}
 
@@ -54,7 +54,7 @@ public class User implements java.io.Serializable {
 	public User(Integer id, String username, String nickname, String password,
 			String headImg, String introduction, Byte gender, String birthday,
 			Integer tieCount, Date createdDate, Byte tieRead, Byte replyRead,
-			Byte allpyResultRead, Byte enabled, Set TUserTiebas,
+			Byte applyResultRead, Byte enabled, Set TUserTiebas,
 			Set TTietitles) {
 		this.id = id;
 		this.username = username;
@@ -68,7 +68,7 @@ public class User implements java.io.Serializable {
 		this.createdDate = createdDate;
 		this.tieRead = tieRead;
 		this.replyRead = replyRead;
-		this.allpyResultRead = allpyResultRead;
+		this.applyResultRead = applyResultRead;
 		this.enabled = enabled;
 		this.userTiebas = TUserTiebas;
 		this.tieTitles = TTietitles;
@@ -102,8 +102,8 @@ public class User implements java.io.Serializable {
 		return this.pwd;
 	}
 
-	public void setPwd(String password) {
-		this.pwd = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	public String getHeadImg() {
@@ -170,12 +170,12 @@ public class User implements java.io.Serializable {
 		this.replyRead = replyRead;
 	}
 
-	public Byte getAllpyResultRead() {
-		return this.allpyResultRead;
+	public Byte getApplyResultRead() {
+		return this.applyResultRead;
 	}
 
-	public void setAllpyResultRead(Byte allpyResultRead) {
-		this.allpyResultRead = allpyResultRead;
+	public void setApplyResultRead(Byte applyResultRead) {
+		this.applyResultRead = applyResultRead;
 	}
 
 	public Byte getEnabled() {

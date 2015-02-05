@@ -32,9 +32,9 @@ public interface IUserService {
 	 * 注册用户
 	 * @param user
 	 */
-	public boolean register(User user);
+	public boolean register(String username,String nickname,String pwd);
 	/**
-	 * 登录
+	 * 登录按钮按下
 	 * @param username
 	 * @param pwd
 	 * @return
