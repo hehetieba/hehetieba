@@ -32,7 +32,7 @@
 			$(".message span").html("请输入正确的用户名（英文数字下划线）。");
 		}
 	}
-/*	function checkNickname() {
+	function checkNickname() {
 		if ($("#nickname").val() !='') {
 			checkReg();
 		}
@@ -40,7 +40,7 @@
 			$(".message").css("display", "block");
 			$(".message span").html("请输入用户昵称！");
 		}
-	}*/
+	}
 	function checkPas() {
 		
 		($("#password1").val().length > 5);
@@ -86,11 +86,11 @@
 					onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
 					onafterpaste="value=value.replace(/[^\w\.\/]/ig,'')" /></label>
 			</p>
-	<!--		<p>
+			<p>
 				<label>用户昵称<br /> <input type="text" id="nickname"
 					name="nickname" class="input" onblur="checkNickname();"  /></label>
 					
-			</p>-->
+			</p>
 			<p>
 				<label>密码<br /> <input type="password" id="password1"
 					name="password" class="input" onblur="checkPas();" />
