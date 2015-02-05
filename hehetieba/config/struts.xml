@@ -41,6 +41,7 @@
 	</package>
 
 	<include file="struts2/struts-ui.xml"></include>
+	<include file="struts2/struts-user.xml"></include>
 
 
 </struts>

@@ -18,13 +18,17 @@ public class UserServiceTest extends SpringInit {
 	}
 	
 	@Test
-	public void testUserSave() {
+	public void testRegisterSave() {
 		IUserService iUserService = (IUserService)context.getBean("userService");
 		User user = new User();
-		user.setUsername("zhangsan");
-		user.setNickname("张三");
+		user.setUsername("zhangsan1");
+		user.setNickname("张三1");
 		user.setGender((byte) 1);
-		iUserService.save(user);
+		boolean flag = iUserService.register(user);
+		if(flag==true)
+			System.out.println("注册成功");
+		else
+			System.out.println("注册失败");
 	}
 	
 	@Test
