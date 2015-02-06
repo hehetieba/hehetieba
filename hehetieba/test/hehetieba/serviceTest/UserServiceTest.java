@@ -12,7 +12,7 @@ public class UserServiceTest extends SpringInit {
 	@Test
 	public void testUserLoad() {
 		IUserService iUserService = (IUserService)context.getBean("userService");
-		User user = (User)iUserService.loadUser(1);
+		User user = (User)iUserService.getUserById(1);
 //		System.out.println(user);
 		System.out.println("111");
 	}
@@ -51,7 +51,7 @@ public class UserServiceTest extends SpringInit {
 	 * 测试注册按钮点下后
 	 */
 	@Test
-	public void testRegisterSave() {
+	public void testRegister() {
 		IUserService iUserService = (IUserService)context.getBean("userService");
 		String username = "zhangsan2";
 		String nickname = "张三2";
@@ -72,6 +72,16 @@ public class UserServiceTest extends SpringInit {
 		String pwd = "zhangsan";
 		boolean flag = iUserService.login(username,pwd);
 		System.out.println(flag);
+	}
+	
+	@Test
+	public void testChangeMessage() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		String nickname = "zhangsan11";
+		String introduction = "zhangsan11";
+		Byte gender = (byte) 1;
+		String birthday = "1990-0-0";
+		iUserService.changeMessage(1, nickname, introduction, gender, birthday);
 	}
 	
 	@Test

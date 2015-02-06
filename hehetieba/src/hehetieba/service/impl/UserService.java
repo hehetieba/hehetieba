@@ -27,7 +27,7 @@ public class UserService implements IUserService {
 	 */
 	
 	@Override
-	public User loadUser(Integer id) {
+	public User getUserById(Integer id) {
 		User user = (User)iUserDao.get(id);
 //		System.out.println(user.toString());
 		return user;
@@ -136,7 +136,12 @@ public class UserService implements IUserService {
 	 * 修改信息
 	 */
 	@Override
-	public void changeMessage(User user) {
+	public void changeMessage(Integer id,String nickname,String introduction,Byte gender,String birthday) {
+		User user = this.getUserById(id);
+		user.setNickname(nickname);
+		user.setIntroduction(introduction);
+		user.setGender(gender);
+		user.setBirthday(birthday);
 		iUserDao.update(user);
 	}
 

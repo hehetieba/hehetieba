@@ -14,7 +14,7 @@ public interface IUserService {
 	 * @param id
 	 * @return
 	 */
-	public User loadUser(Integer id);
+	public User getUserById(Integer id);
 	
 	/**
 	 * 检查是否有这个用户
@@ -64,7 +64,7 @@ public interface IUserService {
 	 * 修改信息
 	 * @param user
 	 */
-	public void changeMessage(User user);
+	public void changeMessage(Integer id,String nickname,String introduction,Byte gender,String birthday);
 	/**
 	 * 根据userId封号
 	 * @param id
