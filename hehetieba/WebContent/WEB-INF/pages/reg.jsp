@@ -1,12 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>注册</title>
-<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/img/favicon.ico"/>
-<link rel="stylesheet" href="css/login.min.css" type='text/css' />
-<script type="text/javascript"  src="js/jquery-1.9.1.min.js"></script>
+<title>注册</title>
+<link rel="icon" type="image/x-icon" href="<%=path%>/img/favicon.ico"/>
+<link rel="stylesheet" href="<%=path%>/css/login.min.css" type='text/css' />
+<script type="text/javascript"  src="<%=path%>/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
+if('${successMsg}'!=''){
+	alert("注册成功，请登录");
+}
+
 	function checkReg() {
 		if ($("#username").val() != '' && $("#nickname").val() != ''
 				&& $("#password1").val() != '' && $("#password2").val() != ''
@@ -25,6 +32,21 @@
 	}
 	function checkUsername() {
 		if ($("#username").val() != '') {
+			$.ajax({
+				type:"POST",
+				url:"hehetieba/userAction_checkUsername",
+				data:{
+					username:$("#username").val()
+					},
+					dataType : "json",
+				success:function(data){ 
+					if(data.flag=="true"){
+					$(".message span").html("该用户已存在！");
+					}else{
+						$(".message").css("display", "none");
+						}
+					}
+				})
 			checkReg();
 		}
 		if ($("#username").val() == '') {
@@ -65,17 +87,26 @@
 		}
 
 	}
+	
+	
+   $(document).ready(function(e) {
+
+    
+});
 </script>
 </head>
 
-
+`
 <body class="login login-action-register  ">
 	<div id="login">
 		<h1>
 			<a id="logo" href="book.do?method=index" title="">HeHe</a>
 		</h1>
 		<p class="message register" style="display: none;">
-			<strong>错误</strong>：<span></span>
+			<strong>错误</strong>：<span><c:if test="${not empty errorMsg}">${errorMsg}<script>
+				$(".message").css("display", "block");
+			</script>
+				</c:if></span>
 		</p>
 
 
@@ -114,7 +145,7 @@
 		</p>
 
 		<p id="backtoblog">
-			<a href="#" title="不知道自己在哪？">&larr; 回到Hehe</a>
+			<a href="book.do?method=inde" title="不知道自己在哪？">&larr; 回到Hehe</a>
 		</p>
 
 	</div>
