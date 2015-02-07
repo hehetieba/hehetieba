@@ -65,16 +65,7 @@ public interface IUserService {
 	 * @param user
 	 */
 	public void changeMessage(Integer id,String nickname,String introduction,Byte gender,String birthday);
-	/**
-	 * 根据userId封号
-	 * @param id
-	 */
-	public void disableUser(Integer id);
-	/**
-	 * 解封用户
-	 * @param id
-	 */
-	public void enableUser(Integer id);
+	
 	
 	/**
 	 * 检查未读回帖
@@ -96,6 +87,17 @@ public interface IUserService {
 	 * @return true：有未读反馈
 	 */
 	public boolean checkAllpyResultRead(Integer id);
+	
+	/**
+	 * 根据userId封号
+	 * @param id
+	 */
+	public void disableUser(Integer id);
+	/**
+	 * 解封用户
+	 * @param id
+	 */
+	public void enableUser(Integer id);
 	
 }
 

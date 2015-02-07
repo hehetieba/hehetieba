@@ -85,6 +85,19 @@ public class UserServiceTest extends SpringInit {
 	}
 	
 	@Test
+	public void changePwd() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		Integer id = 1;
+		String oldPwd = "zhangsan";
+		String newPwd = "zhangsan1";
+		Boolean flag = iUserService.changePwd(id, oldPwd, newPwd);
+		if(flag == true)
+			System.out.println("改变密码成功");
+		else
+			System.out.println("改变密码失败");
+	}
+	
+	@Test
 	public void testUploadHeadImg() {
 		IUserService iUserService = (IUserService)context.getBean("userService");
 		File file = new File("C:\\Users\\Administrator\\Desktop\\gbk.txt");

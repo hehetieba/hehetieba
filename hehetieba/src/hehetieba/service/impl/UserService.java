@@ -145,19 +145,14 @@ public class UserService implements IUserService {
 		iUserDao.update(user);
 	}
 
-	@Override
-	public void disableUser(Integer id) {
-		iUserDao.disableUser(id);
-	}
-
-	@Override
-	public void enableUser(Integer id) {
-		iUserDao.enableUser(id);
-	}
+	
 
 	@Override
 	public boolean checkTieRead(Integer id) {
-		// TODO Auto-generated method stub
+		User user = iUserDao.load(id);
+		Byte flag = user.getTieRead();
+		if(flag==1)
+			return true;
 		return false;
 	}
 
@@ -173,7 +168,15 @@ public class UserService implements IUserService {
 		return false;
 	}
 
+	@Override
+	public void disableUser(Integer id) {
+		iUserDao.disableUser(id);
+	}
 
+	@Override
+	public void enableUser(Integer id) {
+		iUserDao.enableUser(id);
+	}
 
 
 

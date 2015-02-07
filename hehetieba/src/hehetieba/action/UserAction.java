@@ -79,22 +79,30 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 
 	}
 
-	public String register() {
+	public String register() throws IOException {
 		String username = request.getParameter("username");
 		String nickname = request.getParameter("nickname");
 		String pwd = request.getParameter("pwd");
-		System.out.println("username:" + username);
-		System.out.println("nickname:" + nickname);
-		System.out.println("nickname:" + pwd);
+//		System.out.println("username:" + username);
+//		System.out.println("nickname:" + nickname);
+//		System.out.println("nickname:" + pwd);
 		boolean flag = iUserService.register(username, nickname, pwd);
 		if (flag == true)
 			System.out.println("注册成功");
 		else
 			System.out.println("注册失败");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("flag", flag);
+
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
 		return null;
 	}
 
-	public String login() {
+	public String login() throws IOException {
 		boolean flag = false;
 		String username = request.getParameter("username");
 		String pwd = request.getParameter("pwd");
@@ -105,6 +113,15 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 			System.out.println("登录失败");
 		else
 			System.out.println("登录成功");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("flag", flag);
+
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
 		return null;
 	}
 	
