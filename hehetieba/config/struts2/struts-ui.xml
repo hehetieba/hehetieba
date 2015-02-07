@@ -7,5 +7,8 @@
 		<action name="register"  class="hehetieba.ui.RegisterUI">
 			<result>WEB-INF/pages/reg.jsp</result>
 		</action>
+		<action name="index"  class="hehetieba.ui.RegisterUI">
+			<result>WEB-INF/pages/myindex.html</result>
+		</action>
 	</package>
 </struts>	
