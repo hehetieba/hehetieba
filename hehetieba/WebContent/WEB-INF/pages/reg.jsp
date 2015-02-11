@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%String path = request.getContextPath();%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>注册</title>
@@ -40,13 +40,13 @@ if('${successMsg}'!=''){
 					},
 					dataType : "json",
 				success:function(data){ 
-					if(data.flag=="true"){
+					if(data.flag){
 					$(".message span").html("该用户已存在！");
 					}else{
 						$(".message").css("display", "none");
 						}
 					}
-				})
+				});
 			checkReg();
 		}
 		if ($("#username").val() == '') {
@@ -56,6 +56,21 @@ if('${successMsg}'!=''){
 	}
 	function checkNickname() {
 		if ($("#nickname").val() !='') {
+			$.ajax({
+				type:"POST",
+				url:"hehetieba/userAction_CheckNickname",
+				data:{
+					nickname:$("#nickname").val()
+					},
+					dataType : "json",
+					success:function(data){ 
+					if(data.flag){
+					$(".message span").html("该昵称已存在！");
+					}else{
+						$(".message").css("display", "none");
+						}
+					}
+				});
 			checkReg();
 		}
 		if ($("#nickname").val()=='') {		
@@ -110,7 +125,7 @@ if('${successMsg}'!=''){
 		</p>
 
 
-		<form action="book.do?method=regVer" method="post">
+		<form action="hehetieba/userAction_register" method="post">
 			<p>
 				<label>用户名<br /> <input type="text" id="username"
 					name="username" class="input" onblur="checkUsername();"
