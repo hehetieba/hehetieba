@@ -86,7 +86,7 @@ public interface IUserService {
 	 * @param id
 	 * @return true：有未读反馈
 	 */
-	public boolean checkAllpyResultRead(Integer id);
+	public boolean checkApplyResultRead(Integer id);
 	
 	/**
 	 * 根据userId封号

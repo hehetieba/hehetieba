@@ -158,13 +158,19 @@ public class UserService implements IUserService {
 
 	@Override
 	public boolean checkReplyRead(Integer id) {
-		// TODO Auto-generated method stub
+		User user = iUserDao.load(id);
+		Byte flag = user.getReplyRead();
+		if(flag==1)
+			return true;
 		return false;
 	}
 
 	@Override
-	public boolean checkAllpyResultRead(Integer id) {
-		// TODO Auto-generated method stub
+	public boolean checkApplyResultRead(Integer id) {
+		User user = iUserDao.load(id);
+		Byte flag = user.getApplyResultRead();
+		if(flag==1)
+			return true;
 		return false;
 	}
 

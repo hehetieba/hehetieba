@@ -105,6 +105,40 @@ public class UserServiceTest extends SpringInit {
 		iUserService.uploadHeadImg(1, file, ext);
 		
 	}
+	
+	@Test
+	public void testCheckTieRead() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		Integer id = 1;
+		Boolean flag = iUserService.checkTieRead(id);
+		if(flag==true)
+			System.out.println("有未读回贴");
+		else
+			System.out.println("木有未读回贴");
+	}
+	
+	@Test
+	public void testCheckReplyRead() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		Integer id = 1;
+		Boolean flag = iUserService.checkReplyRead(id);
+		if(flag==true)
+			System.out.println("有未读回复");
+		else
+			System.out.println("木有未读回复");
+	}
+	
+	@Test
+	public void testCheckApplyResultRead() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		Integer id = 1;
+		Boolean flag = iUserService.checkApplyResultRead(id);
+		if(flag==true)
+			System.out.println("有未读吧主申请反馈");
+		else
+			System.out.println("木有未读吧主申请反馈");
+	}
+	
 }
 
 

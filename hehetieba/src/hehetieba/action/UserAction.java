@@ -83,15 +83,15 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		String username = request.getParameter("username");
 		String nickname = request.getParameter("nickname");
 		String pwd = request.getParameter("pwd");
-//		System.out.println("username:" + username);
-//		System.out.println("nickname:" + nickname);
-//		System.out.println("nickname:" + pwd);
+		// System.out.println("username:" + username);
+		// System.out.println("nickname:" + nickname);
+		// System.out.println("nickname:" + pwd);
 		boolean flag = iUserService.register(username, nickname, pwd);
 		if (flag == true)
 			System.out.println("注册成功");
 		else
 			System.out.println("注册失败");
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("flag", flag);
 
@@ -113,7 +113,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 			System.out.println("登录失败");
 		else
 			System.out.println("登录成功");
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("flag", flag);
 
@@ -121,10 +121,65 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		Gson gson = new Gson();
 		out.print(gson.toJson(map));
 		System.out.println(gson.toJson(map));
-		
+
 		return null;
 	}
-	
-	
+
+	public String checkTieRead() throws IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Boolean flag = iUserService.checkTieRead(id);
+		if (flag == true)
+			System.out.println("有未读回贴");
+		else
+			System.out.println("木有未读回贴");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("flag", flag);
+
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+
+		return null;
+	}
+
+	public String checkReplyRead() throws IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Boolean flag = iUserService.checkTieRead(id);
+		if (flag == true)
+			System.out.println("有未读回复");
+		else
+			System.out.println("木有未读回复");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("flag", flag);
+
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+
+		return null;
+	}
+
+	public String checkApplyResultRead() throws IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		Boolean flag = iUserService.checkTieRead(id);
+		if (flag == true)
+			System.out.println("有未读吧主申请反馈");
+		else
+			System.out.println("木有未读吧主申请反馈");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("flag", flag);
+
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+
+		return null;
+	}
 
 }
