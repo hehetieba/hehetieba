@@ -40,6 +40,13 @@ public interface IUserService {
 	 * @return
 	 */
 	public boolean login(String username,String pwd);
+	
+	/**
+	 * 根据用户名返回User
+	 * @param username
+	 * @return
+	 */
+	public User getByUsername(String username);
 	/**
 	 * 判断旧密码
 	 * @param id

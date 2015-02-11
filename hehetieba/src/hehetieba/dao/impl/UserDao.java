@@ -1,5 +1,7 @@
 package hehetieba.dao.impl;
 
+import org.hibernate.Hibernate;
+
 import hehetieba.basic.Pager;
 import hehetieba.dao.IUserDao;
 import hehetieba.domain.User;
@@ -36,6 +38,16 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 	public User loadByUsername(String username) {
 		String hql="from User u where u.username=?";
 		User user = (User)this.queryObject(hql, username);
+		if(user!=null)
+			return user;
+		return null;
+	}
+	
+	@Override
+	public User getByUsername(String username) {
+		String hql="from User u where u.username=?";
+		User user = (User)this.queryObject(hql, username);
+//		Hibernate.initialize(user);
 		if(user!=null)
 			return user;
 		return null;

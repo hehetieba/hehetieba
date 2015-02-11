@@ -12,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import hehetieba.domain.User;
 import hehetieba.service.IUserService;
 
 import com.google.gson.Gson;
@@ -111,8 +112,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		flag = iUserService.login(username, pwd);
 		if (flag == false)
 			System.out.println("登录失败");
-		else
+		else {
 			System.out.println("登录成功");
+			User user = iUserService.getByUsername(username);
+			request.getSession().setAttribute("user", user);
+		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("flag", flag);

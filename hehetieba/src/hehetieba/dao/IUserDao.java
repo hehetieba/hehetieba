@@ -27,6 +27,8 @@ public interface IUserDao extends IBaseDao<User> {
 	 */
 	public User loadByUsername(String username);
 	
+	public User getByUsername(String username);
+	
 	/**
 	 * 后台分页模糊查找用户
 	 * @param username

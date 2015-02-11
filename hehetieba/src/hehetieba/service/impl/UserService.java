@@ -96,6 +96,11 @@ public class UserService implements IUserService {
 		return false;
 	}
 	
+	@Override
+	public User getByUsername(String username) {
+		return iUserDao.getByUsername(username);
+	}
+	
 	/**
 	 * 检查输入的旧密码是否正确
 	 */
@@ -183,7 +188,5 @@ public class UserService implements IUserService {
 	public void enableUser(Integer id) {
 		iUserDao.enableUser(id);
 	}
-
-
 
 }
