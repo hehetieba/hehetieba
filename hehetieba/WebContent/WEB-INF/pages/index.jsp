@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html class="app js no-touch no-android no-chrome firefox no-iemobile no-ie no-ie8 no-ie10 no-ie11 no-ios no-ios7 ipad" lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
@@ -233,15 +236,17 @@
 								登录
 							</h4>
 						</div>
+					
 						<div class="modal-body">
-                        <form action="	">
-						<p>	<label>用户名</label> <input type="text"></p>
-                           <p> <label>密码</label><input type="password"></p>
-                           </form>
+                       
+						<p>	<label>用户名</label> <input id="username" type="text"></p>
+                           <p> <label>密码</label><input id="pwd" type="password"></p>
+                           
 						</div>
 						<div class="modal-footer">
-							 <button type="button" class="btn  btn-warning" >注册</button> <button type="button" class="btn btn-primary">登录</button>
+							 <button type="button" class="btn  btn-warning" >注册</button> <button type="button" class="btn btn-primary login-btn">登录</button>
 						</div>
+					
 					</div>
 					
 				</div>
@@ -255,6 +260,27 @@
   <script src="js/jquery.js"></script>
     <script src="js/app_002.js"></script>
   <script type="text/javascript" src="js/jquery_002.js"></script>
+<script>
+   $(document).ready(function(e) {
+	   $(".login-btn").click(function(){
+		      $.ajax({
+		          	type:"post",
+					url:"hehetieba/userAction_login",
+					data:{
+						username:$("#username").val(),
+						pwd:$("#pwd").val()
+						},
+					dataType : "json",
+					success:function(data){
+						alert(data.flag);
+						} ,
+					error:function(){
+						alert("未知错误");
+						}	
+		          })  
+		});
+    
+});
 
-
+</script>
 </body></html>
