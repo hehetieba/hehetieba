@@ -18,6 +18,9 @@ public class Tieba implements java.io.Serializable {
 	private Byte enabled;
 	private Set userTiebas = new HashSet();
 	private Set tieTitles = new HashSet();
+	// 派生属性
+	private Integer memberCount;
+	private Integer tieCount;
 
 	public Tieba() {
 	}
@@ -27,16 +30,19 @@ public class Tieba implements java.io.Serializable {
 	}
 
 	public Tieba(Integer id, String tiebaName, String headImg, String bgImg,
-			String intruduction, Byte enabled, Set TUserTiebas,
-			Set TTietitles) {
+			String intruduction, Byte enabled, Set userTiebas, Set tieTitles,
+			Integer memberCount, Integer tieCount) {
+		super();
 		this.id = id;
 		this.tiebaName = tiebaName;
 		this.headImg = headImg;
 		this.bgImg = bgImg;
 		this.intruduction = intruduction;
 		this.enabled = enabled;
-		this.userTiebas = TUserTiebas;
-		this.tieTitles = TTietitles;
+		this.userTiebas = userTiebas;
+		this.tieTitles = tieTitles;
+		this.memberCount = memberCount;
+		this.tieCount = tieCount;
 	}
 
 	public Integer getId() {
@@ -103,5 +109,22 @@ public class Tieba implements java.io.Serializable {
 		this.tieTitles = tieTitles;
 	}
 
+	public Integer getMemberCount() {
+		return memberCount;
+	}
+
+	public void setMemberCount(Integer memberCount) {
+		this.memberCount = memberCount;
+	}
+
+	public Integer getTieCount() {
+		return tieCount;
+	}
+
+	public void setTieCount(Integer tieCount) {
+		this.tieCount = tieCount;
+	}
+	
+	
 
 }

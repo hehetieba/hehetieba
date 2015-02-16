@@ -51,6 +51,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 
 	// --------------------华丽的分割线-------------------------------------
 
+	/**
+	 * 检查Username是否存在
+	 * @return
+	 * @throws IOException
+	 */
 	public String checkUsername() throws IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String username = request.getParameter("username");
@@ -65,6 +70,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 
+	/**
+	 * 检查Nickname是否存在
+	 * @return
+	 * @throws IOException
+	 */
 	public String CheckNickname() throws IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String nickname = request.getParameter("nickname");
@@ -80,6 +90,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 
 	}
 
+	/**
+	 * 点击注册按钮
+	 * @return
+	 * @throws IOException
+	 */
 	public String register() throws IOException {
 		String username = request.getParameter("username");
 		String nickname = request.getParameter("nickname");
@@ -103,6 +118,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 
+	/**
+	 * 点击登录按钮
+	 * @return
+	 * @throws IOException
+	 */
 	public String login() throws IOException {
 		boolean flag = false;
 		String username = request.getParameter("username");
@@ -129,6 +149,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 
+	/**
+	 * 检查是否有回贴
+	 * @return
+	 * @throws IOException
+	 */
 	public String checkTieRead() throws IOException {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		Boolean flag = iUserService.checkTieRead(id);
@@ -148,6 +173,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 
+	/**
+	 * 检查是否有回复
+	 * @return
+	 * @throws IOException
+	 */
 	public String checkReplyRead() throws IOException {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		Boolean flag = iUserService.checkTieRead(id);
@@ -167,6 +197,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 
+	/**
+	 * 检查贴吧吧主申请反馈
+	 * @return 
+	 * @throws IOException
+	 */
 	public String checkApplyResultRead() throws IOException {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		Boolean flag = iUserService.checkTieRead(id);
@@ -185,5 +220,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 
 		return null;
 	}
+	
+	
 
 }

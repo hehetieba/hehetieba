@@ -35,5 +35,23 @@
             </key>
             <one-to-many class="TieTitle" />
         </set>
+        <!-- 派生属性 -->
+        <property name="memberCount" type="java.lang.Integer" 
+        	formula="(SELECT COUNT(*)
+					FROM t_user_tieba u_t
+					WHERE u_t.tiebaId=id)">
+        </property>
+        
+        <property name="tieCount" type="java.lang.Integer" 
+        	formula="(SELECT COUNT(*)+(SELECT COUNT(*)
+					FROM t_reply r
+					WHERE r.tieTitleId IN (SELECT tt.id
+								 FROM t_tietitle tt
+								 WHERE tt.tiebaId=id)) AS tiecount
+					FROM t_tie tie
+					WHERE tie.tieTitleId IN (SELECT tt.id
+								   FROM t_tietitle tt
+								   WHERE tt.tiebaId=id))">
+        </property>
     </class>
 </hibernate-mapping>

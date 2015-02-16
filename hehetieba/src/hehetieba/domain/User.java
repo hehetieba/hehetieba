@@ -19,7 +19,7 @@ public class User implements java.io.Serializable {
 	private String introduction;
 	private Byte gender;
 	private String birthday;
-	private Integer tieCount;
+	private Integer tieCount;	//派生属性
 	private Date createdDate;
 	private Byte tieRead;
 	private Byte replyRead;

@@ -8,5 +8,6 @@
 
 	<import resource="applicationContext-aop.xml"/>
 	<import resource="applicationContext-user.xml"/>
+	<import resource="applicationContext-tieba.xml"/>
 
 </beans>
