@@ -13,8 +13,8 @@ public class Tie implements java.io.Serializable {
 
 	private Integer id;
 	private TieTitle tieTitle;
-	private Integer sendUserId;
-	private Integer beSendUserId;
+	private User sendUser;
+	private User beSendUser;
 	private Integer floor;
 	private String body;
 	private Date createdDate;
@@ -28,17 +28,17 @@ public class Tie implements java.io.Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public Tie(Integer id, TieTitle TieTitle, Integer sendUserId,
-			Integer beSendUserId, Integer floor, String body, Date createdDate,
-			Set TReplies) {
+	public Tie(Integer id, TieTitle tieTitle, User sendUser, User beSendUser,
+			Integer floor, String body, Date createdDate, Set replies) {
+		super();
 		this.id = id;
-		this.tieTitle = TieTitle;
-		this.sendUserId = sendUserId;
-		this.beSendUserId = beSendUserId;
+		this.tieTitle = tieTitle;
+		this.sendUser = sendUser;
+		this.beSendUser = beSendUser;
 		this.floor = floor;
 		this.body = body;
 		this.createdDate = createdDate;
-		this.replies = TReplies;
+		this.replies = replies;
 	}
 
 	public Integer getId() {
@@ -53,24 +53,25 @@ public class Tie implements java.io.Serializable {
 		return this.tieTitle;
 	}
 
-	public void setTieTitle(TieTitle TieTitle) {
-		this.tieTitle = TieTitle;
+	public void setTieTitle(TieTitle tieTitle) {
+		this.tieTitle = tieTitle;
 	}
 
-	public Integer getSendUserId() {
-		return this.sendUserId;
+
+	public User getSendUser() {
+		return sendUser;
 	}
 
-	public void setSendUserId(Integer sendUserId) {
-		this.sendUserId = sendUserId;
+	public void setSendUser(User sendUser) {
+		this.sendUser = sendUser;
 	}
 
-	public Integer getBeSendUserId() {
-		return this.beSendUserId;
+	public User getBeSendUser() {
+		return beSendUser;
 	}
 
-	public void setBeSendUserId(Integer beSendUserId) {
-		this.beSendUserId = beSendUserId;
+	public void setBeSendUser(User beSendUser) {
+		this.beSendUser = beSendUser;
 	}
 
 	public Integer getFloor() {

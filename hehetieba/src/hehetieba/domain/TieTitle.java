@@ -12,8 +12,8 @@ import java.util.Set;
 public class TieTitle implements java.io.Serializable {
 
 	private Integer id;
-	private Tieba Tieba;
-	private User User;
+	private Tieba tieba;
+	private User user;
 	private Date lastPostTime;
 	private String title;
 	private Byte top;
@@ -23,6 +23,9 @@ public class TieTitle implements java.io.Serializable {
 	private String lastPostUserName;
 	private Set replies = new HashSet();
 	private Set ties = new HashSet();
+	
+	/*派生属性*/
+	private Integer replyCount;
 
 	public TieTitle() {
 	}
@@ -33,12 +36,14 @@ public class TieTitle implements java.io.Serializable {
 		this.createDate = createDate;
 	}
 
-	public TieTitle(Integer id, Tieba Tieba, User User, Date lastPostTime,
+	public TieTitle(Integer id, Tieba tieba, User user, Date lastPostTime,
 			String title, Byte top, Byte jiajing, Integer maxFloor,
-			Date createDate, String lastPostUserName, Set replies, Set ties) {
+			Date createDate, String lastPostUserName, Set replies, Set ties,
+			Integer replyCount) {
+		super();
 		this.id = id;
-		this.Tieba = Tieba;
-		this.User = User;
+		this.tieba = tieba;
+		this.user = user;
 		this.lastPostTime = lastPostTime;
 		this.title = title;
 		this.top = top;
@@ -48,6 +53,7 @@ public class TieTitle implements java.io.Serializable {
 		this.lastPostUserName = lastPostUserName;
 		this.replies = replies;
 		this.ties = ties;
+		this.replyCount = replyCount;
 	}
 
 	public Integer getId() {
@@ -59,19 +65,19 @@ public class TieTitle implements java.io.Serializable {
 	}
 
 	public Tieba getTieba() {
-		return this.Tieba;
+		return this.tieba;
 	}
 
 	public void setTieba(Tieba Tieba) {
-		this.Tieba = Tieba;
+		this.tieba = Tieba;
 	}
 
 	public User getUser() {
-		return this.User;
+		return this.user;
 	}
 
 	public void setUser(User User) {
-		this.User = User;
+		this.user = User;
 	}
 
 	public Date getLastPostTime() {
@@ -145,5 +151,15 @@ public class TieTitle implements java.io.Serializable {
 	public void setTies(Set ties) {
 		this.ties = ties;
 	}
+
+	public Integer getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(Integer replyCount) {
+		this.replyCount = replyCount;
+	}
+	
+	
 
 }

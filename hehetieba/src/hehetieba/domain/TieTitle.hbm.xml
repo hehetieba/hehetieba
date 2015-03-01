@@ -8,14 +8,14 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="Tieba" class="Tieba" fetch="select">
+        <many-to-one name="tieba" class="Tieba" fetch="select">
             <column name="tiebaId" />
         </many-to-one>
-        <many-to-one name="User" class="User" fetch="select">
+        <many-to-one name="user" class="User" fetch="select">
             <column name="userId" />
         </many-to-one>
         <property name="lastPostTime" type="timestamp">
-            <column name="lastPostTime" length="19" not-null="true" />
+            <column name="lastPostTime" length="19" />
         </property>
         <property name="title" type="string">
             <column name="title" length="40" />
@@ -30,7 +30,7 @@
             <column name="maxFloor" />
         </property>
         <property name="createDate" type="timestamp">
-            <column name="createDate" length="19" not-null="true" />
+            <column name="createDate" length="19"  />
         </property>
         <property name="lastPostUserName" type="string">
             <column name="lastPostUserName" length="20" />
@@ -47,5 +47,13 @@
             </key>
             <one-to-many class="Tie" />
         </set>
+        
+        <property name="replyCount" type="java.lang.Integer" 
+        	formula="(SELECT (COUNT(*)+(SELECT COUNT(*)
+							FROM t_reply r
+							WHERE r.tieTitleId = id)-1) AS 'replycount'
+					FROM t_tie tie
+					WHERE tie.tieTitleId = id)">
+		</property>
     </class>
 </hibernate-mapping>

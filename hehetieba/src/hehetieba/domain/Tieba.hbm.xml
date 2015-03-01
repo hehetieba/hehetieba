@@ -43,11 +43,11 @@
         </property>
         
         <property name="tieCount" type="java.lang.Integer" 
-        	formula="(SELECT COUNT(*)+(SELECT COUNT(*)
+        	formula="(SELECT (COUNT(*)+(SELECT COUNT(*)
 					FROM t_reply r
 					WHERE r.tieTitleId IN (SELECT tt.id
 								 FROM t_tietitle tt
-								 WHERE tt.tiebaId=id)) AS tiecount
+								 WHERE tt.tiebaId=id))) AS 'tiecount'
 					FROM t_tie tie
 					WHERE tie.tieTitleId IN (SELECT tt.id
 								   FROM t_tietitle tt

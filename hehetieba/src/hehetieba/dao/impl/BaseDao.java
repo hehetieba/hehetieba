@@ -182,7 +182,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 		setPagers(query,pages,index,size);
 		List<T> datas = query.list();
 		pages.setDatas(datas);
-		int totalRecord = (int)cquery.uniqueResult();
+		int totalRecord = ((Number)cquery.uniqueResult()).intValue();
 		pages.setTotalRecord(totalRecord);
 		pages.setTotalPage(totalRecord%size==0 ? totalRecord/size : (totalRecord/size)+1);
 		return pages;

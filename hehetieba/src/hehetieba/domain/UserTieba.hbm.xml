@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="Tieba" class="Tieba" fetch="select">
+        <many-to-one name="tieba" class="Tieba" fetch="select">
             <column name="tiebaId" />
         </many-to-one>
-        <many-to-one name="User" class="User" fetch="select">
+        <many-to-one name="user" class="User" fetch="select">
             <column name="userId" />
         </many-to-one>
         <property name="points" type="java.lang.Integer">

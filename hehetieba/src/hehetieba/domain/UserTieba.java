@@ -8,8 +8,8 @@ package hehetieba.domain;
 public class UserTieba implements java.io.Serializable {
 
 	private Integer id;
-	private Tieba Tieba;
-	private User User;
+	private Tieba tieba;
+	private User user;
 	private Integer points;
 	private Byte enabled;
 	private Byte type;
@@ -24,8 +24,8 @@ public class UserTieba implements java.io.Serializable {
 	public UserTieba(Integer id, Tieba Tieba, User User, Integer points,
 			Byte enabled, Byte type) {
 		this.id = id;
-		this.Tieba = Tieba;
-		this.User = User;
+		this.tieba = Tieba;
+		this.user = User;
 		this.points = points;
 		this.enabled = enabled;
 		this.type = type;
@@ -40,19 +40,19 @@ public class UserTieba implements java.io.Serializable {
 	}
 
 	public Tieba getTieba() {
-		return this.Tieba;
+		return this.tieba;
 	}
 
 	public void setTieba(Tieba Tieba) {
-		this.Tieba = Tieba;
+		this.tieba = Tieba;
 	}
 
 	public User getUser() {
-		return this.User;
+		return this.user;
 	}
 
 	public void setUser(User User) {
-		this.User = User;
+		this.user = User;
 	}
 
 	public Integer getPoints() {

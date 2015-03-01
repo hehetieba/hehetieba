@@ -9,5 +9,6 @@
 	<import resource="applicationContext-aop.xml"/>
 	<import resource="applicationContext-user.xml"/>
 	<import resource="applicationContext-tieba.xml"/>
-
+	<import resource="applicationContext-tieTitle.xml"/>
+	<import resource="applicationContext-tie.xml"/>
 </beans>

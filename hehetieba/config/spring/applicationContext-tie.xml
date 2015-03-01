@@ -11,13 +11,19 @@
 		</property>
 	</bean> -->
 
-	<bean id="tiebaService" class="hehetieba.service.impl.TiebaService">
+<!-- 	<bean id="tieTitleService" class="hehetieba.service.impl.TieTitleService">
+		<property name="iUserDao">
+			<ref bean="userDao"/>
+		</property>
 		<property name="iTiebaDao">
 			<ref bean="tiebaDao"/>
 		</property>
+		<property name="iTieTitleDao">
+			<ref bean="tieTitleDao"/>
+		</property>
 	</bean>
-
-	<bean id="tiebaDao" class="hehetieba.dao.impl.TiebaDao">
+ -->
+	<bean id="tieDao" class="hehetieba.dao.impl.TieDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory"/>
 		</property>
