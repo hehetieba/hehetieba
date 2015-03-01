@@ -42,6 +42,7 @@
 
 	<include file="struts2/struts-ui.xml"></include>
 	<include file="struts2/struts-user.xml"></include>
+	<include file="struts2/struts-tieba.xml"></include>
 
 
 </struts>
