@@ -42,15 +42,17 @@ public class TieService implements ITieService {
 	/*----------------分割线---------------*/
 	
 	@Override
-	public void post(Integer tieTitleId, Integer sendUserId,
+	public Tie post(Integer tieTitleId, Integer sendUserId,
 			Integer beSendUserId, String body) {
 		// TODO Auto-generated method stub
-		TieTitle tieTitle = iTieTitleDao.load(tieTitleId);
+		TieTitle tieTitle = iTieTitleDao.get(tieTitleId);
 		Integer maxFloor = tieTitle.getMaxFloor();
 		maxFloor++;
 		tieTitle.setMaxFloor(maxFloor);
-		User sendUser = iUserDao.load(sendUserId);
-		User beSendUser = iUserDao.load(beSendUserId);
+		User sendUser = iUserDao.get(sendUserId);
+		User beSendUser = iUserDao.get(beSendUserId);
+		//修改tieTitle
+		tieTitle.setLastPostUserName(sendUser.getUsername());
 		//new tie
 		Tie tie = this.newAnDefaultTie();
 		tie.setTieTitle(tieTitle);
@@ -60,6 +62,8 @@ public class TieService implements ITieService {
 		tie.setBody(body);
 		//save tie
 		iTieDao.save(tie);
+		
+		return tie;
 	}
 
 	@Override

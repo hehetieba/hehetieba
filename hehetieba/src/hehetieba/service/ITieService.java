@@ -8,7 +8,7 @@ public interface ITieService{
 	 * 帖子页面，回帖
 	 * @return
 	 */
-	public void post(Integer tieTitleId,Integer sendUserId,Integer beSendUserId,String body);
+	public Tie post(Integer tieTitleId,Integer sendUserId,Integer beSendUserId,String body);
 	/**
 	 * 在帖子页面，分页显示所有贴
 	 * @return
