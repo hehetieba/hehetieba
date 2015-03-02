@@ -51,39 +51,43 @@
         </div>
       </form>
       <div class="navbar-right ">
-        <ul class="nav navbar-nav m-n hidden-xs nav-user user">
+      <a id="modal-login" href="#modal-container-login" role="button" class="btn" data-toggle="modal">登录</a><a href="register" class="btn">注册</a>
+	<c:if test="${not empty user}">
+	<script> alert(1);</script>
+	</c:if>
+<!--         <ul class="nav navbar-nav m-n hidden-xs nav-user user"> -->
     
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
-              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="images/a0.png" alt="...">
-              </span>
-               华dee<b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu animated fadeInRight">            
-              <li>
-                <span class="arrow top"></span>
-                <a href="#">Settings</a>
-              </li>
-              <li>
-                <a href="#">Profile</a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="badge bg-danger pull-right">3</span>
-                  Notifications
-                </a>
-              </li>
-              <li>
-                <a href="#">Help</a>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <a href="#" >Logout</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+<!--           <li class="dropdown"> -->
+<!--             <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown"> -->
+<!--               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> -->
+<!--                 <img src="images/a0.png" alt="..."> -->
+<!--               </span> -->
+<!--                华dee<b class="caret"></b> -->
+<!--             </a> -->
+<!--             <ul class="dropdown-menu animated fadeInRight">             -->
+<!--               <li> -->
+<!--                 <span class="arrow top"></span> -->
+<!--                 <a href="#">Settings</a> -->
+<!--               </li> -->
+<!--               <li> -->
+<!--                 <a href="#">Profile</a> -->
+<!--               </li> -->
+<!--               <li> -->
+<!--                 <a href="#"> -->
+<!--                   <span class="badge bg-danger pull-right">3</span> -->
+<!--                   Notifications -->
+<!--                 </a> -->
+<!--               </li> -->
+<!--               <li> -->
+<!--                 <a href="#">Help</a> -->
+<!--               </li> -->
+<!--               <li class="divider"></li> -->
+<!--               <li> -->
+<!--                 <a href="#" >Logout</a> -->
+<!--               </li> -->
+<!--             </ul> -->
+<!--           </li> -->
+<!--         </ul> -->
       </div>      
     </header>
     <section>
@@ -225,9 +229,9 @@
       </section>
     </section>    
   </section>
-   <a id="modal-709455" href="#modal-container-709455" role="button" class="btn" data-toggle="modal" style="position:absolute; top:0; z-index:99999; right:0; margin-right:150px; ">触发弹窗</a>
+   
 			
-			<div class="modal fade" id="modal-container-709455" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="modal-container-login" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -244,7 +248,7 @@
                            
 						</div>
 						<div class="modal-footer">
-							 <button type="button" class="btn  btn-warning" >注册</button> <button type="button" class="btn btn-primary login-btn">登录</button>
+							 <a type="button" class="btn  btn-warning" href="register">注册</a> <button type="button" class="btn btn-primary login-btn">登录</button>
 						</div>
 					
 					</div>
