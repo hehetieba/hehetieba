@@ -148,6 +148,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 
 		return null;
 	}
+	
+	public String logout() {
+		request.getSession().removeAttribute("user");
+		return null;
+	}
 
 	/**
 	 * 检查是否有回贴
