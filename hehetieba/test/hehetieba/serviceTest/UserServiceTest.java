@@ -69,7 +69,7 @@ public class UserServiceTest extends SpringInit {
 	public void testLogin() {
 		IUserService iUserService = (IUserService)context.getBean("userService");
 		String username= "zhangsan";
-		String pwd = "zhangsan";
+		String pwd = "zhangsan1";
 		boolean flag = iUserService.login(username,pwd);
 		System.out.println(flag);
 	}

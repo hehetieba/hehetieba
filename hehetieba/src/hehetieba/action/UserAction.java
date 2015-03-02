@@ -150,6 +150,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 	}
 	
 	public String logout() {
+		request.getSession().removeAttribute("user");
 		return null;
 	}
 
