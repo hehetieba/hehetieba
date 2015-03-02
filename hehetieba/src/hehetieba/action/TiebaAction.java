@@ -40,8 +40,17 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 
 	private ITiebaService iTiebaService;
 
+	public ITiebaService getiTiebaService() {
+		return iTiebaService;
+	}
+
+	public void setiTiebaService(ITiebaService iTiebaService) {
+		this.iTiebaService = iTiebaService;
+	}
+
 	
 	// --------------------华丽的分割线-------------------------------------
+
 
 	public String listInIndex() throws IOException {
 		Integer index = Integer.valueOf(request.getParameter("index"));
