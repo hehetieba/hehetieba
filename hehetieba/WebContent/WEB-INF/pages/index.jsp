@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <%String path = request.getContextPath();%>
 <!DOCTYPE html>
 <html class="app js no-touch no-android no-chrome firefox no-iemobile no-ie no-ie8 no-ie10 no-ie11 no-ios no-ios7 ipad" lang="en"><head>
@@ -51,43 +52,44 @@
         </div>
       </form>
       <div class="navbar-right ">
-      <a id="modal-login" href="#modal-container-login" role="button" class="btn" data-toggle="modal">登录</a><a href="register" class="btn">注册</a>
-	<c:if test="${not empty user}">
-	<script> alert(1);</script>
-	</c:if>
-<!--         <ul class="nav navbar-nav m-n hidden-xs nav-user user"> -->
+     <c:if test="${empty user}"> <a id="modal-login" href="#modal-container-login" role="button" class="btn" data-toggle="modal">登录</a><a href="register" class="btn">注册</a></c:if>
+	 <c:if test="${not empty user}">
+	        <ul class="nav navbar-nav m-n hidden-xs nav-user user">
     
-<!--           <li class="dropdown"> -->
-<!--             <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown"> -->
-<!--               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm"> -->
-<!--                 <img src="images/a0.png" alt="..."> -->
-<!--               </span> -->
-<!--                华dee<b class="caret"></b> -->
-<!--             </a> -->
-<!--             <ul class="dropdown-menu animated fadeInRight">             -->
-<!--               <li> -->
-<!--                 <span class="arrow top"></span> -->
-<!--                 <a href="#">Settings</a> -->
-<!--               </li> -->
-<!--               <li> -->
-<!--                 <a href="#">Profile</a> -->
-<!--               </li> -->
-<!--               <li> -->
-<!--                 <a href="#"> -->
-<!--                   <span class="badge bg-danger pull-right">3</span> -->
-<!--                   Notifications -->
-<!--                 </a> -->
-<!--               </li> -->
-<!--               <li> -->
-<!--                 <a href="#">Help</a> -->
-<!--               </li> -->
-<!--               <li class="divider"></li> -->
-<!--               <li> -->
-<!--                 <a href="#" >Logout</a> -->
-<!--               </li> -->
-<!--             </ul> -->
-<!--           </li> -->
-<!--         </ul> -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
+              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img src="images/a0.png" alt="...">
+<%--                 <c:if test="${not empty user.img}"></c:if> --%>
+              </span>
+              ${user.nickname}<b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight">            
+              <li>
+                <span class="arrow top"></span>
+                <a href="#">Settings</a>
+              </li>
+              <li>
+                <a href="#">Profile</a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="badge bg-danger pull-right">3</span>
+                  Notifications
+                </a>
+              </li>
+              <li>
+                <a href="#">Help</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a  id="logout-btn">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+	</c:if>
+
       </div>      
     </header>
     <section>
@@ -266,6 +268,13 @@
   <script type="text/javascript" src="js/jquery_002.js"></script>
 <script>
    $(document).ready(function(e) {
+	   $("#logout-btn").click(function(){
+			$.ajax({
+				type:"POST",
+				url:"hehetieba/userAction_logout"
+				})
+
+		   });
 	   $(".login-btn").click(function(){
 		      $.ajax({
 		          	type:"post",
@@ -276,7 +285,11 @@
 						},
 					dataType : "json",
 					success:function(data){
-						alert(data.flag);
+						if(data.flag==true){
+							alert("登录成功");
+							}else{
+						alert("账号或密码错误");
+								}
 						} ,
 					error:function(){
 						alert("未知错误");

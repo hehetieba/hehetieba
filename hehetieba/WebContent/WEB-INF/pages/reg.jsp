@@ -139,7 +139,7 @@ if('${successMsg}'!=''){
 			</p>
 			<p>
 				<label>密码<br /> <input type="password" id="password1"
-					name="password" class="input" onblur="checkPas();" />
+					name="pwd" class="input" onblur="checkPas();" />
 				</label>
 			</p>
 			<p>
