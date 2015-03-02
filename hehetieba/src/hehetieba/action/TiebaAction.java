@@ -81,7 +81,7 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 	      */
 	    .serializeNulls()
 	    .create();
-		
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));
 		System.out.println(gson.toJson(map));
