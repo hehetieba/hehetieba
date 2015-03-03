@@ -55,8 +55,9 @@ public class TieTitleAction extends ActionSupport implements
 	public String listInTiebaPage() throws IOException {
 		Integer index = Integer.valueOf(request.getParameter("index"));
 		Integer size = Integer.valueOf(request.getParameter("size"));
+		Integer tiebaId = Integer.valueOf(request.getParameter("size"));
 
-		Pager<TieTitle> pager = iTieTitleService.listInTiebaPage(index, size);
+		Pager<TieTitle> pager = iTieTitleService.listInTiebaPage(index, size, tiebaId);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);

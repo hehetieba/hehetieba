@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import hehetieba.basic.Pager;
+import hehetieba.dao.ITiebaDao;
 import hehetieba.domain.TieTitle;
 import hehetieba.domain.Tieba;
 import hehetieba.domain.User;
@@ -23,7 +24,8 @@ public class TieTitleServiceTest extends SpringInit {
 		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
 		Integer index = 1;
 		Integer size = 10;
-		Pager<TieTitle> pager = iTieTitleService.listInTiebaPage(index, size);
+		Integer tiebaId = 1;
+		Pager<TieTitle> pager = iTieTitleService.listInTiebaPage(index, size,tiebaId);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);

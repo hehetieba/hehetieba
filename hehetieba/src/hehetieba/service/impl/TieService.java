@@ -1,5 +1,8 @@
 package hehetieba.service.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import hehetieba.basic.Pager;
 import hehetieba.dao.ITieDao;
 import hehetieba.dao.ITieTitleDao;
@@ -45,12 +48,12 @@ public class TieService implements ITieService {
 	public Tie post(Integer tieTitleId, Integer sendUserId,
 			Integer beSendUserId, String body) {
 		// TODO Auto-generated method stub
-		TieTitle tieTitle = iTieTitleDao.get(tieTitleId);
+		TieTitle tieTitle = iTieTitleDao.load(tieTitleId);
 		Integer maxFloor = tieTitle.getMaxFloor();
 		maxFloor++;
 		tieTitle.setMaxFloor(maxFloor);
-		User sendUser = iUserDao.get(sendUserId);
-		User beSendUser = iUserDao.get(beSendUserId);
+		User sendUser = iUserDao.load(sendUserId);
+		User beSendUser = iUserDao.load(beSendUserId);
 		//修改tieTitle
 		tieTitle.setLastPostUserName(sendUser.getUsername());
 		//new tie
@@ -70,7 +73,11 @@ public class TieService implements ITieService {
 	public Pager<Tie> listInTiePage(Integer tieTitleId, Integer index,
 			Integer size) {
 		// TODO Auto-generated method stub
-		return null;
+		TieTitle tieTitle = iTieTitleDao.load(tieTitleId);
+		String hql = "from Tie t left join t.sendUser su where t.tieTitle=:tieTitle order by t.floor";
+		Map<String, Object> alias = new HashMap<String, Object>();
+		alias.put("tieTitle", tieTitle);
+		return iTieDao.find(hql, index, size, null, alias);
 	}
 	
 	private Tie newAnDefaultTie() {

@@ -1,6 +1,8 @@
 package hehetieba.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import hehetieba.basic.Pager;
 import hehetieba.dao.ITieDao;
@@ -9,6 +11,7 @@ import hehetieba.dao.ITiebaDao;
 import hehetieba.dao.IUserDao;
 import hehetieba.domain.Tie;
 import hehetieba.domain.TieTitle;
+import hehetieba.domain.Tieba;
 import hehetieba.domain.User;
 import hehetieba.service.ITieTitleService;
 
@@ -52,8 +55,13 @@ public class TieTitleService implements ITieTitleService {
 
 	/*--华丽分割线--*/
 	@Override
-	public Pager<TieTitle> listInTiebaPage(Integer index, Integer size) {
-		return iTieTitleDao.listInTiebaPage(index, size);
+	public Pager<TieTitle> listInTiebaPage(Integer index, Integer size,Integer tiebaId) {
+		Tieba tieba = iTiebaDao.load(tiebaId);
+		String hql = "from TieTitle tt left join fetch tt.user u "
+				+ "where tt.tieba=:tieba order by tt.top desc,tt.lastPostTime desc";
+		Map<String, Object> alias = new HashMap<String, Object>();
+		alias.put("tieba", tieba);
+		return iTieTitleDao.find(hql, index, size, null, alias);
 	}
 
 	@Override

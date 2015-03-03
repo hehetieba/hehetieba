@@ -10,7 +10,7 @@ public interface ITieTitleService {
 	 * @param size
 	 * @return
 	 */
-	public Pager<TieTitle> listInTiebaPage(Integer index,Integer size);
+	public Pager<TieTitle> listInTiebaPage(Integer index,Integer size,Integer tiebaId);
 	/**
 	 * 发帖，包括Tie的操作
 	 * @return
