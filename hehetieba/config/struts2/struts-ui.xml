@@ -14,5 +14,8 @@
 		<action name="all-tieba" class="hehetieba.ui.IndexUI">
 			<result>WEB-INF/pages/all-tieba.jsp</result>
 		</action>
+		<action name="myindex" class="hehetieba.ui.IndexUI">
+			<result>WEB-INF/pages/personal-info.jsp</result>
+		</action>
 	</package>
 </struts>	
