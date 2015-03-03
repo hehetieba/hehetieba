@@ -12,10 +12,9 @@ public class Reply implements java.io.Serializable {
 	private Integer id;
 	private Tie tie;
 	private TieTitle tieTitle;
-	private Integer sendUserId;
-	private Integer beSendUserId;
+	private User sendUser;
+	private User beSendUser;
 	private String body;
-	private Integer belongFloor;
 	private Date createDate;
 
 	public Reply() {
@@ -26,16 +25,17 @@ public class Reply implements java.io.Serializable {
 		this.createDate = createDate;
 	}
 
-	public Reply(Integer id, Tie Tie, TieTitle TieTitle, Integer sendUserId,
-			Integer beSendUserId, String body, Integer belongFloor,
-			Date createDate) {
+
+
+	public Reply(Integer id, Tie tie, TieTitle tieTitle, User sendUser,
+			User beSendUser, String body, Date createDate) {
+		super();
 		this.id = id;
-		this.tie = Tie;
-		this.tieTitle = TieTitle;
-		this.sendUserId = sendUserId;
-		this.beSendUserId = beSendUserId;
+		this.tie = tie;
+		this.tieTitle = tieTitle;
+		this.sendUser = sendUser;
+		this.beSendUser = beSendUser;
 		this.body = body;
-		this.belongFloor = belongFloor;
 		this.createDate = createDate;
 	}
 
@@ -51,32 +51,32 @@ public class Reply implements java.io.Serializable {
 		return this.tie;
 	}
 
-	public void setTie(Tie Tie) {
-		this.tie = Tie;
+	public void setTie(Tie tie) {
+		this.tie = tie;
 	}
 
 	public TieTitle getTieTitle() {
 		return this.tieTitle;
 	}
 
-	public void setTieTitle(TieTitle TieTitle) {
-		this.tieTitle = TieTitle;
+	public void setTieTitle(TieTitle tieTitle) {
+		this.tieTitle = tieTitle;
 	}
 
-	public Integer getSendUserId() {
-		return this.sendUserId;
+	public User getSendUser() {
+		return sendUser;
 	}
 
-	public void setSendUserId(Integer sendUserId) {
-		this.sendUserId = sendUserId;
+	public void setSendUser(User sendUser) {
+		this.sendUser = sendUser;
 	}
 
-	public Integer getBeSendUserId() {
-		return this.beSendUserId;
+	public User getBeSendUser() {
+		return beSendUser;
 	}
 
-	public void setBeSendUserId(Integer beSendUserId) {
-		this.beSendUserId = beSendUserId;
+	public void setBeSendUser(User beSendUser) {
+		this.beSendUser = beSendUser;
 	}
 
 	public String getBody() {
@@ -85,14 +85,6 @@ public class Reply implements java.io.Serializable {
 
 	public void setBody(String body) {
 		this.body = body;
-	}
-
-	public Integer getBelongFloor() {
-		return this.belongFloor;
-	}
-
-	public void setBelongFloor(Integer belongFloor) {
-		this.belongFloor = belongFloor;
 	}
 
 	public Date getCreateDate() {

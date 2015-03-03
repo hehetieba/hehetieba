@@ -14,20 +14,17 @@
         <many-to-one name="tieTitle" class="TieTitle" fetch="select">
             <column name="tieTitleId" />
         </many-to-one>
-        <property name="sendUserId" type="java.lang.Integer">
+        <many-to-one name="sendUser" class="User" fetch="select">
             <column name="sendUserId" />
-        </property>
-        <property name="beSendUserId" type="java.lang.Integer">
+        </many-to-one>
+        <many-to-one name="beSendUser" class="User" fetch="select">
             <column name="beSendUserId" />
-        </property>
+        </many-to-one>
         <property name="body" type="string">
             <column name="body" length="100" />
         </property>
-        <property name="belongFloor" type="java.lang.Integer">
-            <column name="belongFloor" />
-        </property>
         <property name="createDate" type="timestamp">
-            <column name="createDate" length="19" not-null="true" />
+            <column name="createDate" length="19" />
         </property>
     </class>
 </hibernate-mapping>
