@@ -17,19 +17,15 @@ public class TiebaApply implements java.io.Serializable {
 	public TiebaApply() {
 	}
 
-	public TiebaApply(Integer id, String tiebarName, Date applyDate) {
-		this.id = id;
-		this.tiebaName = tiebarName;
-		this.applyDate = applyDate;
-	}
-
-	public TiebaApply(Integer id, String tiebarName, Byte handleStatus,
+	public TiebaApply(Integer id, String tiebaName, Byte handleStatus,
 			Date applyDate) {
+		super();
 		this.id = id;
-		this.tiebaName = tiebarName;
+		this.tiebaName = tiebaName;
 		this.handleStatus = handleStatus;
 		this.applyDate = applyDate;
 	}
+
 
 	public Integer getId() {
 		return this.id;
@@ -39,12 +35,12 @@ public class TiebaApply implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public String getTiebarName() {
-		return this.tiebaName;
+	public String getTiebaName() {
+		return tiebaName;
 	}
 
-	public void setTiebarName(String tiebarName) {
-		this.tiebaName = tiebarName;
+	public void setTiebaName(String tiebaName) {
+		this.tiebaName = tiebaName;
 	}
 
 	public Byte getHandleStatus() {
