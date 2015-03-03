@@ -44,6 +44,8 @@
 	<include file="struts2/struts-user.xml"></include>
 	<include file="struts2/struts-tieba.xml"></include>
 	<include file="struts2/struts-tieTitle.xml"></include>
+	<include file="struts2/struts-tie.xml"></include>
+	<include file="struts2/struts-reply.xml"></include>
 
 
 </struts>
