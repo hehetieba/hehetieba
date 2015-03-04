@@ -1,19 +1,18 @@
 package hehetieba.service.impl;
 
-import java.util.List;
-import java.util.Set;
-
-import org.hibernate.Hibernate;
-
 import hehetieba.basic.Pager;
+import hehetieba.dao.ITiebaApplyDao;
 import hehetieba.dao.ITiebaDao;
 import hehetieba.domain.Tieba;
-import hehetieba.domain.UserTieba;
+import hehetieba.domain.TiebaApply;
 import hehetieba.dto.TiebaDto;
 import hehetieba.service.ITiebaService;
 
+import java.util.List;
+
 public class TiebaService implements ITiebaService {
 	private ITiebaDao iTiebaDao;
+	private ITiebaApplyDao iTiebaApplyDao;
 
 	public ITiebaDao getiTiebaDao() {
 		return iTiebaDao;
@@ -21,6 +20,14 @@ public class TiebaService implements ITiebaService {
 
 	public void setiTiebaDao(ITiebaDao iTiebaDao) {
 		this.iTiebaDao = iTiebaDao;
+	}
+
+	public ITiebaApplyDao getiTiebaApplyDao() {
+		return iTiebaApplyDao;
+	}
+
+	public void setiTiebaApplyDao(ITiebaApplyDao iTiebaApplyDao) {
+		this.iTiebaApplyDao = iTiebaApplyDao;
 	}
 
 	@Override
@@ -56,5 +63,36 @@ public class TiebaService implements ITiebaService {
 		return iTiebaDao.getDtoById(id);
 	}
 
+	@Override
+	public void saveTieba(String tiebaName,Integer tiebaApplyId) {
+		// TODO Auto-generated method stub
+		//1、新建一个贴吧
+		Tieba tieba = this.newAnDefaultTieba();
+		tieba.setTiebaName(tiebaName);
+		iTiebaDao.save(tieba);
+		//2、更新tiebaApply.handStatus状态
+		TiebaApply tiebaApply = iTiebaApplyDao.load(tiebaApplyId);
+		tiebaApply.setHandleStatus((byte)1);
+		iTiebaApplyDao.update(tiebaApply);
+	}
+	
+	@Override
+	public void notSaveTieba(String tiebaName, Integer tiebaApplyId) {
+		// TODO Auto-generated method stub
+		TiebaApply tiebaApply = iTiebaApplyDao.load(tiebaApplyId);
+		tiebaApply.setHandleStatus((byte)2);
+		iTiebaApplyDao.update(tiebaApply);
+	}
 
+	private Tieba newAnDefaultTieba() {
+		Tieba tieba = new Tieba();
+		tieba.setBgImg(null);
+		tieba.setHeadImg(null);
+		tieba.setEnabled((byte)1);
+		tieba.setIntruduction(null);
+		return tieba;
+	}
+
+	
+	
 }

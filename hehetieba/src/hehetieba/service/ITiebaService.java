@@ -36,4 +36,15 @@ public interface ITiebaService {
 	 * @return
 	 */
 	public TiebaDto getDtoById(Integer id);
+	/**
+	 * 在后台页面新建一个贴吧
+	 * @param tiebaName
+	 */
+	public void saveTieba(String tiebaName,Integer tiebaApplyId);
+	/**
+	 * 在后台页面，不创建贴吧，更新tiebaApply.handleStatus为2
+	 * @param tiebaName
+	 * @param tiebaApplyId
+	 */
+	public void notSaveTieba(String tiebaName,Integer tiebaApplyId);
 }

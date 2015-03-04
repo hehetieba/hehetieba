@@ -15,7 +15,7 @@
             <column name="handleStatus" />
         </property>
         <property name="applyDate" type="timestamp">
-            <column name="applyDate" length="19" not-null="true" />
+            <column name="applyDate" length="19"/>
         </property>
     </class>
 </hibernate-mapping>
