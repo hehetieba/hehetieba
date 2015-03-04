@@ -20,129 +20,18 @@
 <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css">
 <link rel="stylesheet" href="css/app.css" type="text/css">
 <link rel="stylesheet" href="css/default.css">
-<link rel="stylesheet" href="css/pagination.css" />
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/app.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/app_002.js"></script>
 <script src="js/jquery_002.js"></script>
-<script src="js/jquery.pagination.js"></script>
-<script type="text/javascript">
-	function pageselectCallback(page_index, jq) {
-		var items_per_page = 10;
-		var max_elem = Math.min((page_index + 1) * items_per_page, $(
-				"#totalRecord").val());
-		var pageindex = page_index + 1;
-		if ($("#totalRecord").val() % 10 == 0) {
-			var pages = parseInt($("#totalRecord").val() / 10);
-		} else {
-			var pages = parseInt($("#totalRecord").val() / 10 + 1);
-		}
+<script src="js/extendPagination.js"></script>
 
-		var newcontent = '';
-		$.ajax({
-					type : "post",
-					url : "hehetieba/tieTitleAction_listInTiebaPage",
-					data : {
-						tiebaId : $("#tiebaId").val(),
-						index : pageindex,
-						size : items_per_page
-					},
-					dataType : "json",
-					success : function(data) {
-						if ($("#totalRecord").val() % 10 == 0) {
-							for (var i = 0; i < items_per_page; i++) {
-								newcontent += "<li><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"
-										+ data.pager.datas[i].maxFloor
-										+ "</span></div><div class='tie-content'><p><a href='#'>"
-										+ data.pager.datas[i].title
-										+ "</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"
-										+ data.pager.datas[i].user.nickname
-										+ "</i><i class='icon-comment icon-last-author'><span>&nbsp;"
-										+ data.pager.datas[i].lastPostUserName
-										+ "</span><span>"
-										+ data.pager.datas[i].lastPostTime
-												.substring(11, 16)
-										+ "</span></i></div><p><span class='tie-text'></span></p></div></li>";
-							}
-							$('#Tieresult').html(newcontent);
-						} else {
-							if (pageindex < pages) {
-
-								for (var i = 0; i < items_per_page; i++) {
-									newcontent += "<li><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"
-											+ data.pager.datas[i].maxFloor
-											+ "</span></div><div class='tie-content'><p><a href='#'>"
-											+ data.pager.datas[i].title
-											+ "</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"
-											+ data.pager.datas[i].user.nickname
-											+ "</i><i class='icon-comment icon-last-author'><span>&nbsp;"
-											+ data.pager.datas[i].lastPostUserName
-											+ "</span><span>"
-											+ data.pager.datas[i].lastPostTime
-													.substring(11, 16)
-											+ "</span></i></div><p><span class='tie-text'></span></p></div></li>";
-								}
-								$('#Tieresult').html(newcontent);
-							} else if (pageindex = pages) {
-								for (var i = 0; i < $("#totalRecord").val() % 10; i++) {
-									newcontent += "<li><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"
-											+ data.pager.datas[i].maxFloor
-											+ "</span></div><div class='tie-content'><p><a href='#'>"
-											+ data.pager.datas[i].title
-											+ "</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"
-											+ data.pager.datas[i].user.nickname
-											+ "</i><i class='icon-comment icon-last-author'><span>&nbsp;"
-											+ data.pager.datas[i].lastPostUserName
-											+ "</span><span>"
-											+ data.pager.datas[i].lastPostTime
-													.substring(11, 16)
-											+ "</span></i></div><p><span class='tie-text'></span></p></div></li>";
-								}
-								$('#Tieresult').html(newcontent);
-
-							}
-
-						}
-
-					},
-					error : function() {
-						alert("拉取数据失败！");
-					}
-				});
-		return false;
-	}
-	function getOptionsFromForm() {
-		var opt = {
-			callback : pageselectCallback
-		};
-		$.ajax({
-			type : "post",
-			url : "hehetieba/tieTitleAction_listInTiebaPage",
-			data : {
-				tiebaId : $("#tiebaId").val(),
-				index : "1",
-				size : "1"
-			},
-			dataType : "json",
-			success : function(data) {
-				var tielength = data.pager.totalRecord;
-				$("#totalRecord").val(tielength);
-			},
-			error : function() {
-				alert("拉取数据失败！");
-			}
-		});
-		return opt;
-	}
-</script>
 </head>
 <body>
-	<input id="tiebaId" type="hidden"
-		value='<%=request.getParameter("tiebaId")%>'>
-	<input id="totalRecord" type="hidden" value=''>
-	<input id="totalPage" type="hidden" value=''>
+<input id="tiebaId" type="hidden"  value='<%=request.getParameter("tiebaId")%>' >
+<input id="totalRecord" type="hidden"  value='' >
 	<section class="vbox">
 		<header
 			class="bg-white-only header header-md navbar navbar-fixed-top-xs">
@@ -317,11 +206,14 @@
 										<p style="margin-left: 20%;">我掉这个是吧的个性签名吗？是的！</p>
 									</div>
 									<div style="background-color: #3a2; width: 100%; height: 50px;">看帖</div>
-									<div class="tie-main">
+									<div class="tie-main">		
 										<ul id="Tieresult">
-
+											
 										</ul>
-										<div id="Pagination" class="pagination"></div>
+								
+<!--Todo -->
+									
+									<div id="callBackPager"></div>
 									</div>
 									<aside class="hidden-xs"
 										style="float: right; width: 30%; background: #000; height: 500px;">
@@ -374,10 +266,42 @@
 
 	<script>
 		$(document).ready(function(e) {
-
-			var optInit = getOptionsFromForm();
-			$("#Pagination").pagination($("#totalRecord").val(), optInit);
-
+			 function callBackPagination() {
+			        var totalCount = Number(12) || 252, showCount =10,
+			                limit = Number(10) || 10;
+			        createTable(1, limit, totalCount);
+			        $('#callBackPager').extendPagination({
+			            totalCount: totalCount,
+			            showCount: showCount,
+			            limit: limit,
+			            callback: function (curr, limit, totalCount) {
+			                createTable(curr, limit, totalCount);
+			            }
+			        });
+			    }
+			    function createTable(currPage, limit, total) {
+			        var html = '', showNum = limit;
+			        if (total - (currPage * limit) < 0) showNum = total - ((currPage - 1) * limit);
+					$.ajax({
+						type:"post",
+						url:"hehetieba/tieTitleAction_listInTiebaPage",
+						data:{
+							tiebaId:$("#tiebaId").val(),
+							index:currPage,
+							size:limit
+							},
+							dataType : "json",
+							success : function(data) {
+								  for (var i = 0; i < showNum; i++) {
+									  html+="<li><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"+data.pager.datas[i].maxFloor+"</span></div><div class='tie-content'><p><a href='#'>"+data.pager.datas[i].title+"</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"+data.pager.datas[i].user.nickname+"</i><i class='icon-comment icon-last-author'><span>&nbsp;"+data.pager.datas[i].lastPostUserName+"</span><span>"+data.pager.datas[i].lastPostTime.substring(11,16)+"</span></i></div><p><span class='tie-text'></span></p></div></li>";
+							        }
+								  $('#Tieresult').html(html);
+							},
+							error : function() {alert("拉取数据失败！");}	
+						});     
+			    }
+			    callBackPagination();
+			
 			$("#logout-btn").click(function() {
 				$.ajax({
 					type : "POST",
@@ -408,6 +332,7 @@
 			});
 
 		});
+		
 	</script>
 </body>
 </html>

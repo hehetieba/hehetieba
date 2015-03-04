@@ -81,7 +81,7 @@
 		.tie-main{ width:100%;}
     }
     .tie-main ul{list-style:none; padding:0;}
-   .tie-main ul li{padding: 15px 20px 10px 20px; display:table; border-bottom:1px solid #EBEBEB;} 
+   #Tieresult li{padding: 15px 20px 10px 20px; display:table; border-bottom:1px solid #EBEBEB;} 
    .tie-wrapper{display:table-cell;}
    .tie-content{display:table-cell; width:100%; padding-left:10px;}
    .tie-content p:first-child a{vertical-align: -3px; font-size:16px; color:#00a2ea; }
