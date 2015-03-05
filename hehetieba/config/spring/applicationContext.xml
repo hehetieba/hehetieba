@@ -13,5 +13,7 @@
 	<import resource="applicationContext-tie.xml"/>
 	<import resource="applicationContext-reply.xml"/>
 	<import resource="applicationContext-tiebaApply.xml"/>
+	<import resource="applicationContext-tiebaOwnerApply.xml"/>
 	<import resource="applicationContext-manager.xml"/>
+	<import resource="applicationContext-userTieba.xml"/>
 </beans>

@@ -11,13 +11,25 @@
 		</property>
 	</bean> -->
 
-	<bean id="managerService" class="hehetieba.service.impl.ManagerService">
+	<bean id="tiebaOwnerApplyService" class="hehetieba.service.impl.TiebaOwnerApplyService">
+		<property name="iTiebaOwnerApplyDao">
+			<ref bean="tiebaOwnerApplyDao"/>
+		</property>
+		<property name="iUserDao">
+			<ref bean="userDao"/>
+		</property>
+		<property name="iTiebaDao">
+			<ref bean="tiebaDao"/>
+		</property>
+		<property name="iUserTiebaDao">
+			<ref bean="userTiebaDao"/>
+		</property>
 		<property name="iManagerDao">
 			<ref bean="managerDao"/>
 		</property>
 	</bean>
 
-	<bean id="managerDao" class="hehetieba.dao.impl.ManagerDao">
+	<bean id="tiebaOwnerApplyDao" class="hehetieba.dao.impl.TiebaOwnerApplyDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory"/>
 		</property>

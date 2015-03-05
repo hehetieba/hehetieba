@@ -30,7 +30,7 @@ public class TiebaApplyService implements ITiebaApplyService  {
 	@Override
 	public Pager<TiebaApply> listAll(Integer index, Integer size) {
 		// TODO Auto-generated method stub
-		String hql = "from TiebaApply ta order by ta.applyDate";
+		String hql = "from TiebaApply ta order by ta.applyDate desc";
 		Pager<TiebaApply> pager = iTiebaApplyDao.find(hql, index, size);
 		return pager;
 	}
@@ -38,7 +38,7 @@ public class TiebaApplyService implements ITiebaApplyService  {
 	@Override
 	public Pager<TiebaApply> listHandled(Integer index, Integer size) {
 		// TODO Auto-generated method stub
-		String hql = "from TiebaApply ta where ta.handleStatus!=0 order by ta.applyDate";
+		String hql = "from TiebaApply ta where ta.handleStatus!=0 order by ta.applyDate desc";
 		Pager<TiebaApply> pager = iTiebaApplyDao.find(hql, index, size);
 		return pager;
 	}
@@ -46,7 +46,7 @@ public class TiebaApplyService implements ITiebaApplyService  {
 	@Override
 	public Pager<TiebaApply> listUnhandled(Integer index, Integer size) {
 		// TODO Auto-generated method stub
-		String hql = "from TiebaApply ta where ta.handleStatus>0 order by ta.applyDate";
+		String hql = "from TiebaApply ta where ta.handleStatus=0 order by ta.applyDate desc";
 		Pager<TiebaApply> pager = iTiebaApplyDao.find(hql, index, size);
 		return pager;
 	}
@@ -74,7 +74,7 @@ public class TiebaApplyService implements ITiebaApplyService  {
 		tiebaApply.setTiebaName(tiebaName);
 		iTiebaApplyDao.save(tiebaApply);
 		//更新管理员未读消息
-		iManagerDao.updateTiabaApplyRead_All();
+		iManagerDao.updateTiabaApplyReadToHave_All();
 		return true;
 	}
 	

@@ -12,6 +12,7 @@ public class TiebaOwnerApply implements java.io.Serializable {
 	private Integer id;
 	private Integer userId;
 	private Integer tiebaId;
+	private String username;
 	private String tiebaName;
 	private Byte handleStatus;
 	private Date applyDate;
@@ -19,17 +20,13 @@ public class TiebaOwnerApply implements java.io.Serializable {
 	public TiebaOwnerApply() {
 	}
 
-	public TiebaOwnerApply(Integer id, Integer userId, Date applyDate) {
-		this.id = id;
-		this.userId = userId;
-		this.applyDate = applyDate;
-	}
-
 	public TiebaOwnerApply(Integer id, Integer userId, Integer tiebaId,
-			String tiebaName, Byte handleStatus, Date applyDate) {
+			String username, String tiebaName, Byte handleStatus, Date applyDate) {
+		super();
 		this.id = id;
 		this.userId = userId;
 		this.tiebaId = tiebaId;
+		this.username = username;
 		this.tiebaName = tiebaName;
 		this.handleStatus = handleStatus;
 		this.applyDate = applyDate;
@@ -57,6 +54,14 @@ public class TiebaOwnerApply implements java.io.Serializable {
 
 	public void setTiebaId(Integer tiebaId) {
 		this.tiebaId = tiebaId;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getTiebaName() {
