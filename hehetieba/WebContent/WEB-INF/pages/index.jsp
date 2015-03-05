@@ -27,7 +27,8 @@
 <script src="js/app_002.js"></script>
 <script src="js/jquery_002.js"></script>
 <script src="js/extendPagination.js"></script>
-
+<script src="ueditor/ueditor.config.js"></script>
+<script src="ueditor/ueditor.all.min.js"></script>
 </head>
 <body>
 <input id="tiebaId" type="hidden"  value='<%=request.getParameter("tiebaId")%>' >
@@ -214,6 +215,8 @@
 <!--Todo -->
 									
 									<div id="callBackPager"></div>
+									 <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+									
 									</div>
 									<aside class="hidden-xs"
 										style="float: right; width: 30%; background: #000; height: 500px;">
@@ -332,7 +335,7 @@
 			});
 
 		});
-		
+		UE.getEditor('editor');
 	</script>
 </body>
 </html>
