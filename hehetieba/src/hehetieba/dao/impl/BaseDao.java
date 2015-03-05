@@ -1,18 +1,17 @@
 package hehetieba.dao.impl;
 
+import hehetieba.basic.Pager;
+import hehetieba.dao.IBaseDao;
+
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.aspectj.org.eclipse.jdt.core.dom.ThisExpression;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-import hehetieba.basic.Pager;
-import hehetieba.dao.IBaseDao;
 
 public class BaseDao<T> implements IBaseDao<T> {
 	private SessionFactory sessionFactory;

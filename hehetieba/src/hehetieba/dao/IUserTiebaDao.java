@@ -12,4 +12,11 @@ public interface IUserTiebaDao extends IBaseDao<UserTieba> {
 	 * @return
 	 */
 	public Integer checkFocused(User user,Tieba tieba);
+	/**
+	 * 根据User,Tieba得到UserTieba
+	 * @param userId
+	 * @param tiebaId
+	 * @return
+	 */
+	public UserTieba loadByUser_Tieba(User user,Tieba tieba);
 }

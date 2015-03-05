@@ -9,7 +9,7 @@ public class ApplyOwnerResult implements java.io.Serializable {
 
 	private Integer id;
 	private Integer userId;
-	private Integer tiebaName;
+	private String tiebaName;
 	private Byte result;
 
 	public ApplyOwnerResult() {
@@ -19,8 +19,9 @@ public class ApplyOwnerResult implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public ApplyOwnerResult(Integer id, Integer userId, Integer tiebaName,
+	public ApplyOwnerResult(Integer id, Integer userId, String tiebaName,
 			Byte result) {
+		super();
 		this.id = id;
 		this.userId = userId;
 		this.tiebaName = tiebaName;
@@ -43,11 +44,11 @@ public class ApplyOwnerResult implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	public Integer getTiebaName() {
-		return this.tiebaName;
+	public String getTiebaName() {
+		return tiebaName;
 	}
 
-	public void setTiebaName(Integer tiebaName) {
+	public void setTiebaName(String tiebaName) {
 		this.tiebaName = tiebaName;
 	}
 

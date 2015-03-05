@@ -11,7 +11,7 @@
         <property name="userId" type="java.lang.Integer">
             <column name="userId" />
         </property>
-        <property name="tiebaName" type="java.lang.Integer">
+        <property name="tiebaName" type="string">
             <column name="tiebaName" />
         </property>
         <property name="result" type="java.lang.Byte">

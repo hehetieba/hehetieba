@@ -16,4 +16,5 @@
 	<import resource="applicationContext-tiebaOwnerApply.xml"/>
 	<import resource="applicationContext-manager.xml"/>
 	<import resource="applicationContext-userTieba.xml"/>
+	<import resource="applicationContext-applyOwnerResult.xml"/>
 </beans>

@@ -30,4 +30,20 @@ public interface ITiebaOwnerApplyService {
 	 * @return
 	 */
 	public Pager<TiebaOwnerApply> listUnhandled(Integer index,Integer size);
+	/**
+	 * 同意该用户成为吧主
+	 * @param tiebaOwnerApplyId
+	 * @param userId
+	 * @param tiebaId
+	 * @return
+	 */
+	public boolean agree(Integer tiebaOwnerApplyId,Integer userId,Integer tiebaId,String tiebaName);
+	/**
+	 * 不同意该用户成为吧主
+	 * @param tiebaOwnerApplyId
+	 * @param userId
+	 * @param tiebaId
+	 * @return
+	 */
+	public boolean disAgree(Integer tiebaOwnerApplyId,Integer userId,Integer tiebaId,String tiebaName);
 }
