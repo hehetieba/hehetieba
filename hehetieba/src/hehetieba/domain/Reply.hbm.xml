@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-30 21:05:08 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="hehetieba.domain">
+    <class name="Reply" table="t_reply" catalog="hehetieba">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tie" class="Tie" fetch="select">
+            <column name="tieId" />
+        </many-to-one>
+        <many-to-one name="tieTitle" class="TieTitle" fetch="select">
+            <column name="tieTitleId" />
+        </many-to-one>
+        <many-to-one name="sendUser" class="User" fetch="select">
+            <column name="sendUserId" />
+        </many-to-one>
+        <many-to-one name="beSendUser" class="User" fetch="select">
+            <column name="beSendUserId" />
+        </many-to-one>
+        <property name="body" type="string">
+            <column name="body" length="100" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="createDate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

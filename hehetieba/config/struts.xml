@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.locale" value="zh_CN" />
+
+
+	<!-- 设置url请求后缀 -->
+	<!-- <constant name="struts.action.extension" value="do,action,html,htm"></constant> -->
+
+	<!-- 指定Web应用的默认编码集,相当于调用HttpServletRequest的setCharacterEncoding方法 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+
+	<!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+
+	<!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下使用),开发阶段最好打开 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+
+	<!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="true" />
+
+	<package name="struts-global" namespace="/" extends="struts-default">
+		<global-results>
+			<result name="errHandler" type="chain">
+				<param name="actionName">errorProcessor</param>
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="errHandler" />
+		</global-exception-mappings>
+
+		<action name="errorProcessor" class="hehetieba.exception.ErrorProcessor">
+			<result>/pages/error.jsp</result>
+		</action>
+	</package>
+
+	<include file="struts2/struts-ui.xml"></include>
+	<include file="struts2/struts-user.xml"></include>
+	<include file="struts2/struts-tieba.xml"></include>
+	<include file="struts2/struts-tieTitle.xml"></include>
+	<include file="struts2/struts-tie.xml"></include>
+	<include file="struts2/struts-reply.xml"></include>
+
+
+</struts>
