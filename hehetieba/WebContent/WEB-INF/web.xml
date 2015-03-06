@@ -66,13 +66,13 @@
 	</filter-mapping>  
 
 	<!-- Struts2 Filter -->
-	<filter>
+	<!-- <filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*Action*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 </web-app>

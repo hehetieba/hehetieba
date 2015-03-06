@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter;
 
 public class UEditorFilter extends StrutsPrepareAndExecuteFilter {
-	@Override
 	public void doFilter(ServletRequest req, ServletResponse res,
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
@@ -27,10 +26,11 @@ public class UEditorFilter extends StrutsPrepareAndExecuteFilter {
 //        System.out.println("getServletPath："+url4);
 //        System.out.println("getPathInfo："+url5);
         try{    
-            if (url2.endsWith("controller.jsp")) {    
+            if (url2.endsWith("controller.jsp")) {
+            	System.out.println("使用自定义的过滤器");
                 chain.doFilter(req, res);
-                System.out.println("进入方法了");
-            } else {    
+            } else {
+            	System.out.println("使用默认的过滤器");
                 super.doFilter(req, res, chain);    
             }    
         }catch(Exception e){    
