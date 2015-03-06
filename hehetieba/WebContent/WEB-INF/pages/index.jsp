@@ -208,7 +208,7 @@
 									</div>
 									<div style="background-color: #3a2; width: 100%; height: 50px;">看帖</div>
 									<div class="tie-main">		
-										<ul id="Tieresult">
+										<ul id="tieresult">
 											
 										</ul>
 								
@@ -270,9 +270,27 @@
 	<script>
 		$(document).ready(function(e) {
 			 function callBackPagination() {
-			        var totalCount = Number(12) || 252, showCount =10,
-			                limit = Number(10) || 10;
-			        createTable(1, limit, totalCount);
+				 $.ajax({
+						type:"post",
+						url:"hehetieba/tieTitleAction_listInTiebaPage",
+						data:{
+							tiebaId:$("#tiebaId").val(),
+							index:1,
+							size:1
+							},
+							dataType : "json",
+							success : function(data) {
+								$("#totalRecord").val(data.pager.totalRecord);
+							    createTable(1, 10,data.pager.totalRecord);
+								},
+							error : function() {
+								alert("未知错误");
+							}
+				 });
+			        var totalCount = Number($("#totalRecord").val()),
+			               showCount =10,
+			                limit = 10;
+			    
 			        $('#callBackPager').extendPagination({
 			            totalCount: totalCount,
 			            showCount: showCount,
@@ -295,10 +313,11 @@
 							},
 							dataType : "json",
 							success : function(data) {
-								  for (var i = 0; i < showNum; i++) {
+								alert("total->"+total);
+								  for (var i = 0; i <showNum; i++) {
 									  html+="<li><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"+data.pager.datas[i].replyCount+"</span></div><div class='tie-content'><p><a href='#'>"+data.pager.datas[i].title+"</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"+data.pager.datas[i].user.nickname+"</i><i class='icon-comment icon-last-author'><span>&nbsp;"+data.pager.datas[i].lastPostUserName+"</span><span>"+data.pager.datas[i].lastPostTime.substring(11,16)+"</span></i></div><p><span class='tie-text'></span></p></div></li>";
 							        }
-								  $('#Tieresult').html(html);
+								  $('#tieresult').html(html);
 							},
 							error : function() {alert("拉取数据失败！");}	
 						});     
