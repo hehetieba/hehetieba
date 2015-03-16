@@ -115,7 +115,7 @@ public class TiebaServiceTest extends SpringInit {
 		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
 		Integer index = 1;
 		Integer size = 2;
-		String tiebaName = "hehe";
+		String tiebaName = "中文";
 		Pager<Tieba> pager = iTiebaService.findByTiebaName(index, size, tiebaName);
 //		System.out.println(pager);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -204,6 +204,16 @@ public class TiebaServiceTest extends SpringInit {
 	    .serializeNulls()
 	    .create();
 		System.out.println(gson.toJson(map));
+	}
+	
+	@Test
+	public void adaf() {
+		System.out.printf("Math.round(12.0):%d%n",Math.round(12.0));
+		System.out.printf("Math.round(12.5):%d%n",Math.round(12.5));
+		System.out.printf("Math.round(-12.0):%d%n",Math.round(-12.0));
+		System.out.printf("Math.round(-12.4):%d%n",Math.round(-12.4));
+		System.out.printf("Math.round(-12.5):%d%n",Math.round(-12.5));
+		System.out.printf("Math.round(-12.6):%d%n",Math.round(-12.6));
 	}
 }
 

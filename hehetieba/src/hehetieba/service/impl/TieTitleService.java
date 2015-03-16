@@ -1,9 +1,5 @@
 package hehetieba.service.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import hehetieba.basic.Pager;
 import hehetieba.dao.ITieDao;
 import hehetieba.dao.ITieTitleDao;
@@ -14,6 +10,9 @@ import hehetieba.domain.TieTitle;
 import hehetieba.domain.Tieba;
 import hehetieba.domain.User;
 import hehetieba.service.ITieTitleService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TieTitleService implements ITieTitleService {
 	ITieTitleDao iTieTitleDao;

@@ -27,10 +27,10 @@ public class UEditorFilter extends StrutsPrepareAndExecuteFilter {
 //        System.out.println("getPathInfo："+url5);
         try{    
             if (url2.endsWith("controller.jsp")) {
-            	System.out.println("使用自定义的过滤器");
+//            	System.out.println("使用自定义的过滤器");
                 chain.doFilter(req, res);
             } else {
-            	System.out.println("使用默认的过滤器");
+//            	System.out.println("使用默认的过滤器");
                 super.doFilter(req, res, chain);    
             }    
         }catch(Exception e){    

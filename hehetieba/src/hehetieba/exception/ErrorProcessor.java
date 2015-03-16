@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ErrorProcessor extends ActionSupport{

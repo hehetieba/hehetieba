@@ -1,14 +1,14 @@
 package hehetieba.action;
 
+import hehetieba.basic.Pager;
+import hehetieba.domain.Tieba;
+import hehetieba.service.ITiebaService;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import hehetieba.basic.Pager;
-import hehetieba.domain.Tieba;
-import hehetieba.service.ITiebaService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -57,6 +57,47 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		Integer size = Integer.valueOf(request.getParameter("size"));
 		
 		Pager<Tieba> pager = iTiebaService.list(index, size);
+//		System.out.println(pager);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+	    .setExclusionStrategies(new ExclusionStrategy() {
+
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	            return (clazz == Set.class);
+	        }
+
+	        /**
+	          * Custom field exclusion goes here
+	          */
+	        public boolean shouldSkipField(FieldAttributes f) {
+	            return false;
+	        }
+
+	     })
+	    /**
+	      * Use serializeNulls method if you want To serialize null values 
+	      * By default, Gson does not serialize null values
+	      */
+	    .serializeNulls()
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
+	
+	public String findByTiebaName() throws IOException {
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		String tiebaName = request.getParameter("tiebaName");
+		System.out.println(request.getMethod()+"-----------------");
+		if("GET".equalsIgnoreCase(request.getMethod()))
+			tiebaName = new String(tiebaName.getBytes("iso8859-1"),"utf-8");
+		
+		Pager<Tieba> pager = iTiebaService.findByTiebaName(index, size, tiebaName);
 //		System.out.println(pager);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);

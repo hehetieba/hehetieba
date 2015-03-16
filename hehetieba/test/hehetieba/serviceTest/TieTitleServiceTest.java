@@ -1,15 +1,13 @@
 package hehetieba.serviceTest;
 
+import hehetieba.basic.Pager;
+import hehetieba.domain.TieTitle;
+import hehetieba.domain.Tieba;
+import hehetieba.service.ITieTitleService;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import hehetieba.basic.Pager;
-import hehetieba.dao.ITiebaDao;
-import hehetieba.domain.TieTitle;
-import hehetieba.domain.Tieba;
-import hehetieba.domain.User;
-import hehetieba.service.ITieTitleService;
 
 import org.junit.Test;
 
@@ -61,8 +59,8 @@ public class TieTitleServiceTest extends SpringInit {
 		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
 		Integer userId = 1;
 		Integer tiebaId = 1;
-		String title = "title";
-		String body = "body";
+		String title = "title...";
+		String body = "body...";
 		
 		iTieTitleService.faTie(userId, tiebaId, title, body);
 	}
