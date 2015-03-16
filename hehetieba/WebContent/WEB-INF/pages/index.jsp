@@ -215,8 +215,9 @@
 <!--Todo -->
 									
 									<div id="callBackPager"></div>
+									<input type="text" id="tie-title">
 									 <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
-									
+									<a  id="submit-btn" style="display: block;  padding: 5px 10px; background: #000;">发帖</a>
 									</div>
 									<aside class="hidden-xs"
 										style="float: right; width: 30%; background: #000; height: 500px;">
@@ -314,6 +315,7 @@
 							dataType : "json",
 							success : function(data) {
 								  for (var i = 0; i <showNum; i++) {
+									  if(data.pager.datas[i].lastPostTime==null){data.pager.datas[i].lastPostTime=''}
 									  html+="<li><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"+data.pager.datas[i].replyCount+"</span></div><div class='tie-content'><p><a href='#'>"+data.pager.datas[i].title+"</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"+data.pager.datas[i].user.nickname+"</i><i class='icon-comment icon-last-author'><span>&nbsp;"+data.pager.datas[i].lastPostUserName+"</span><span>"+data.pager.datas[i].lastPostTime.substring(11,16)+"</span></i></div><p><span class='tie-text'></span></p></div></li>";
 							        }
 								  $('#tieresult').html(html);
@@ -354,6 +356,30 @@
 
 		});
 		UE.getEditor('editor');
+
+$("#submit-btn").click(function(){
+			var main_html=UE.getEditor('editor').getContent();		
+				$.ajax({
+					type:'post',
+					url:'hehetieba/tieTitleAction_faTie',
+					data:{
+						userId:'${user.id}',
+						tiebaId:$("#tiebaId").val(),
+						title:$("#tie-title").val(),
+						body:main_html
+						},
+				success:function(){
+					alert("发帖成果")
+					}
+
+					});
+
+
+
+
+	
+})
+		
 	</script>
 </body>
 </html>
