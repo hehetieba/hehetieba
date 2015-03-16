@@ -207,7 +207,7 @@
 										<p style="margin-left: 20%;">我掉这个是吧的个性签名吗？是的！</p>
 									</div>
 									<div style="background-color: #3a2; width: 100%; height: 50px;">看帖</div>
-									<div class="tie-main">		
+									<div class="tie-main" style="padding: 10px 0 0 30px;">		
 										<ul id="tieresult">
 											
 										</ul>
@@ -269,6 +269,9 @@
 	</div>
 
 	<script>
+	function location_tie(e){
+ 			window.location="hehetieba/tieAction_listInTiePage?index=1&size=10&tieTitleId="+e
+		}
 		$(document).ready(function(e) {
 			 function callBackPagination() {
 				 $.ajax({
@@ -316,7 +319,7 @@
 							success : function(data) {
 								  for (var i = 0; i <showNum; i++) {
 									  if(data.pager.datas[i].lastPostTime==null){data.pager.datas[i].lastPostTime=''}
-									  html+="<li><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"+data.pager.datas[i].replyCount+"</span></div><div class='tie-content'><p><a href='#'>"+data.pager.datas[i].title+"</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"+data.pager.datas[i].user.nickname+"</i><i class='icon-comment icon-last-author'><span>&nbsp;"+data.pager.datas[i].lastPostUserName+"</span><span>"+data.pager.datas[i].lastPostTime.substring(11,16)+"</span></i></div><p><span class='tie-text'></span></p></div></li>";
+									  html+="<li onClick='location_tie("+data.pager.datas[i].id+")'><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"+data.pager.datas[i].replyCount+"</span></div><div class='tie-content'><p><a href='#'>"+data.pager.datas[i].title+"</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"+data.pager.datas[i].user.nickname+"</i><i class='icon-comment icon-last-author'><span>&nbsp;"+data.pager.datas[i].lastPostUserName+"</span><span>"+data.pager.datas[i].lastPostTime.substring(11,16)+"</span></i></div><p><span class='tie-text'></span></p></div></li>";
 							        }
 								  $('#tieresult').html(html);
 							},
@@ -374,7 +377,7 @@ $("#submit-btn").click(function(){
 
 					});
 
-
+		
 
 
 	
