@@ -1,21 +1,24 @@
 package hehetieba.action;
 
+import hehetieba.domain.User;
+import hehetieba.service.IUserService;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import hehetieba.domain.User;
-import hehetieba.service.IUserService;
-
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport implements ServletRequestAware,
@@ -226,6 +229,31 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 	
-	
+	public String getUserById() throws IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		User user = (User)iUserService.getUserById(id);
+//		System.out.println(user);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user", user);
+		Gson gson = new GsonBuilder()
+		.setExclusionStrategies(new ExclusionStrategy() {
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	        	if(clazz == Set.class)
+	        		return true;
+	            return false;
+	        }
+	        public boolean shouldSkipField(FieldAttributes f) {
+	            return false;
+	        }
+
+	     })
+	    .serializeNulls()
+	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+	    .create();
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
 
 }

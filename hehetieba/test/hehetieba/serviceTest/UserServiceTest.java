@@ -1,20 +1,50 @@
 package hehetieba.serviceTest;
 
-import java.io.File;
-
+import hehetieba.domain.Tieba;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 import org.junit.Test;
+
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class UserServiceTest extends SpringInit {
 	
 	@Test
-	public void testUserLoad() {
+	public void testGetUserById() {
 		IUserService iUserService = (IUserService)context.getBean("userService");
 		User user = (User)iUserService.getUserById(1);
 //		System.out.println(user);
-		System.out.println("111");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user", user);
+		Gson gson = new GsonBuilder()
+		.setExclusionStrategies(new ExclusionStrategy() {
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	        	if(clazz == Set.class)
+	        		return true;
+	            return false;
+	        }
+	        public boolean shouldSkipField(FieldAttributes f) {
+	            return false;
+	        }
+
+	     })
+	    /**
+	      * Use serializeNulls method if you want To serialize null values 
+	      * By default, Gson does not serialize null values
+	      */
+	    .serializeNulls()
+	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+	    .create();
+		System.out.println(gson.toJson(map));
 	}
 	
 	/**

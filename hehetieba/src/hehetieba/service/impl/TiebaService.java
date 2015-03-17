@@ -43,7 +43,7 @@ public class TiebaService implements ITiebaService {
 	}
 
 	@Override
-	public Tieba getById(Integer id) {
+	public Tieba getTiebaById(Integer id) {
 		Tieba tieba = iTiebaDao.get(id);
 //		Hibernate.initialize(tieba.getTieTitles());
 //		Hibernate.initialize(tieba.getUserTiebas());

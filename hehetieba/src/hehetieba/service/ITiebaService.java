@@ -23,7 +23,7 @@ public interface ITiebaService {
 	 * @param id
 	 * @return
 	 */
-	public Tieba getById(Integer id);
+	public Tieba getTiebaById(Integer id);
 	/**
 	 * 返回爱逛的吧
 	 * @param userId

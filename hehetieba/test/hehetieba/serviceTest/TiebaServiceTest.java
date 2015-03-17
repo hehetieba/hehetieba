@@ -19,16 +19,24 @@ import com.google.gson.GsonBuilder;
 
 public class TiebaServiceTest extends SpringInit {
 	@Test
-	public void testTiebaLoad() {
+	public void testTiebaById() {
 		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
 		Integer id=1;
-		Tieba tieba = iTiebaService.getById(id);
-		tieba.setUserTiebas(null);
-		tieba.setTieTitles(null);
+		Tieba tieba = iTiebaService.getTiebaById(id);
 //		System.out.println(tieba.toString());
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("tieba", tieba);
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder()
+		.setExclusionStrategies(new ExclusionStrategy() {
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	            return (clazz == Set.class);
+	        }
+	        public boolean shouldSkipField(FieldAttributes f) {
+	            return false;
+	        }
+	     })
+	    .serializeNulls()
+	    .create();
 		System.out.println(gson.toJson(map));
 	}
 	
@@ -36,7 +44,7 @@ public class TiebaServiceTest extends SpringInit {
 	public void testTiebaLoad2() {
 		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
 		Integer id=1;
-		Tieba tieba = iTiebaService.getById(id);
+		Tieba tieba = iTiebaService.getTiebaById(id);
 //		tieba.setUserTiebas(null);
 //		tieba.setTieTitles(null);
 //		System.out.println(tieba.toString());
@@ -148,7 +156,7 @@ public class TiebaServiceTest extends SpringInit {
 	public void testGetById() {
 		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
 		Integer id = 1;
-		Tieba tieba = iTiebaService.getById(id);
+		Tieba tieba = iTiebaService.getTiebaById(id);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("tieba", tieba);
 		Gson gson = new GsonBuilder()

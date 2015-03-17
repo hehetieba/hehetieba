@@ -6,6 +6,12 @@ import hehetieba.domain.TieTitle;
 import hehetieba.domain.User;
 import hehetieba.service.ITieService;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -88,7 +94,7 @@ public class TieServiceTest extends SpringInit {
 		System.out.println(gson.toJson(map));
 	}
 	
-	
+		
 }
 
 

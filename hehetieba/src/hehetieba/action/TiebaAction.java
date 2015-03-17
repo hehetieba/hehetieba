@@ -7,6 +7,7 @@ import hehetieba.service.ITiebaService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -130,6 +131,53 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 	
+	public String listFavoriteTiebas() throws IOException {
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		List<Tieba> listTiebas = iTiebaService.listFavoriteTiebas(userId);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("FavoriteTiebas", listTiebas);
+		Gson gson = new GsonBuilder()
+	    .setExclusionStrategies(new ExclusionStrategy() {
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	            return (clazz == Set.class);
+	        }
+	        public boolean shouldSkipField(FieldAttributes f) {
+	            return false;
+	        }
+
+	     })
+	    .serializeNulls()
+	    .create();
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
+	
+	public String getTiebaById() throws IOException {
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		Tieba tieba = iTiebaService.getTiebaById(tiebaId);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tieba", tieba);
+		Gson gson = new GsonBuilder()
+	    .setExclusionStrategies(new ExclusionStrategy() {
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	            return (clazz == Set.class);
+	        }
+	        public boolean shouldSkipField(FieldAttributes f) {
+	            return false;
+	        }
+
+	     })
+	    .serializeNulls()
+	    .create();
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
 }
 
 

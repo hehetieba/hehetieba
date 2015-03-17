@@ -1,14 +1,11 @@
 package hehetieba.service.impl;
 
-import java.io.File;
-import java.util.List;
-
-import org.apache.jasper.tagplugins.jstl.core.If;
-
 import hehetieba.dao.IUserDao;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
 import hehetieba.util.UploadUtils;
+
+import java.io.File;
 
 public class UserService implements IUserService {
 	
