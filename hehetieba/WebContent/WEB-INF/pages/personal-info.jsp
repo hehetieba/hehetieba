@@ -109,7 +109,7 @@
                       Discover
                     </li>
                     <li>
-                      <a href="#">
+                 <a href="tie?tiebaId=<%=request.getParameter("tiebaId")%>">
                         <i class="icon-refresh icon text-success"></i>
                         <span class="font-bold">What's new</span>
                       </a>

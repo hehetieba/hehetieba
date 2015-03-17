@@ -40,7 +40,7 @@
 				<a class="btn btn-link visible-xs"
 					data-toggle="class:nav-off-screen,open" data-target="#nav,html">
 					<i class="icon-list"></i>
-				</a> <a href="" class="navbar-brand text-lt"> <i
+				</a> <a href="all-tieba" class="navbar-brand text-lt"> <i
 					class="icon-emoticon-smile"></i> <img src="images/logo.png" alt="."
 					class="hide"> <span class="hidden-nav-xs m-l-sm">HeHe</span>
 				</a> <a class="btn btn-link visible-xs" data-toggle="dropdown"
@@ -121,7 +121,7 @@
 											<li
 												class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
 												Discover</li>
-											<li><a href="#"> <i
+											<li><a href="tie?tiebaId=<%=request.getParameter("tiebaId")%>"> <i
 													class="icon-refresh icon text-success"></i> <span
 													class="font-bold">What's new</span>
 											</a></li>
@@ -193,18 +193,18 @@
 							<section class="vbox">
 								<section style="padding: 0; overflow: auto;">
 									<div>
-										<img src="images/bg.jpg" style="width: 100%;"><img
+										<img  src="images/bg.jpg" style="width: 100%;"><img class="tieba-headImg"
 											src="images/barhead.jpg"
 											style="width: 14%; margin-left: 3%; margin-top: -8%;">
 										<p
 											style="margin-left: 20%; margin-top: -6%; color: #000; position: relative;">
-											<span class="bar-title">电影吧</span> <span
+											<span class="bar-title"></span> <span
 												class="blue-btn-wrapper"><a class="blue-btn" href="#">取消</a></span>
 										</p>
-										<span class="fallow-wrapper">关注：<span
-											style="color: #FF773C;">2222222</span></span> <span
-											class="post-wrapper">帖子：<span style="color: #FF773C;">2222222</span></span>
-										<p style="margin-left: 20%;">我掉这个是吧的个性签名吗？是的！</p>
+										<span class="fallow-wrapper">关注：<span class="tieba-member"
+											style="color: #FF773C;"></span></span> <span
+											class="post-wrapper">帖子：<span class="tieba-count" style="color: #FF773C;"></span></span>
+										<p class="tieba-intruduction" style="margin-left: 20%;"></p>
 									</div>
 									<div style="background-color: #3a2; width: 100%; height: 50px;">看帖</div>
 									<div class="tie-main" style="padding: 10px 0 0 30px;">		
@@ -216,8 +216,8 @@
 									
 									<div id="callBackPager"></div>
 									<input type="text" id="tie-title">
-									 <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
-									<a  id="submit-btn" style="display: block;  padding: 5px 10px; background: #000;">发帖</a>
+									 <script id="editor" type="text/plain" style="width:100%;height:200px;"></script>
+									<a  id="submit-btn" class="btn btn-success" style="float: right;">发帖</a>
 									</div>
 									<aside class="hidden-xs"
 										style="float: right; width: 30%; background: #000; height: 500px;">
@@ -269,11 +269,33 @@
 	</div>
 
 	<script>
-	function location_tie(e){
- 			window.location="hehetieba/tieAction_listInTiePage?index=1&size=10&tieTitleId="+e
+
+	$.ajax({
+		type : "post",
+		url : "hehetieba/tiebaAction_getTiebaById?tiebaId="+<%=request.getParameter("tiebaId")%>,
+		dataType : "json",
+		success : function(data) {
+	$(".bar-title").html(data.tieba.tiebaName+"吧");
+	if(data.tieba.headImg==null){
+		data.tieba.headImg="unknow.png"
 		}
+	$(".tieba-headImg").attr("src","images/"+data.tieba.headImg);
+	$(".tieba-intruduction").html(data.tieba.intruduction);
+	$(".tieba-member").html(data.tieba.memberCount);
+	$(".tieba-count").html(data.tieba.tieCount);
+		},
+		error : function() {
+			alert("未知错误");
+		}
+	})
+	function location_tie(e){
+ 			window.location="tiezi?tieTitleId="+e
+		}
+
+
 		$(document).ready(function(e) {
 			 function callBackPagination() {
+
 				 $.ajax({
 						type:"post",
 						url:"hehetieba/tieTitleAction_listInTiebaPage",
@@ -372,17 +394,15 @@ $("#submit-btn").click(function(){
 						body:main_html
 						},
 				success:function(){
-					alert("发帖成果")
+					alert("发帖成功")
 					}
 
 					});
-
-		
-
-
 	
 })
+
+
 		
-	</script>
+</script>
 </body>
 </html>

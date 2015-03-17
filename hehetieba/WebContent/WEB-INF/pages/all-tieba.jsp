@@ -105,7 +105,7 @@ img {
 								//	alert(data.pager.datas[i].tiebaName);
 								if(data.pager.datas[i].bgImg==null){data.pager.datas[i].bgImg="unknow.png"}
 								$(".clear").before(
-							"<li><a href='/hehetieba/index?tiebaId="+data.pager.datas[i].id+"'><img src='images/"+data.pager.datas[i].bgImg+"' /> <p><span>"+data.pager.datas[i].tiebaName+"吧</span><i class='icon-comment'>&nbsp;"+data.pager.datas[i].tieCount+"</i><i class='icon-user'>&nbsp;"+data.pager.datas[i].memberCount+"</i></p></a></li>");
+							"<li><a href='/hehetieba/tie?tiebaId="+data.pager.datas[i].id+"'><img src='images/"+data.pager.datas[i].bgImg+"' /> <p><span>"+data.pager.datas[i].tiebaName+"吧</span><i class='icon-comment'>&nbsp;"+data.pager.datas[i].tieCount+"</i><i class='icon-user'>&nbsp;"+data.pager.datas[i].memberCount+"</i></p></a></li>");
 
 							}
 							var spotlight = {
