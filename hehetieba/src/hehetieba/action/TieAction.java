@@ -54,8 +54,7 @@ public class TieAction extends ActionSupport implements ServletRequestAware,
 	public String listInTiePage() throws IOException {
 		Integer index = Integer.valueOf(request.getParameter("index"));
 		Integer size = Integer.valueOf(request.getParameter("size"));
-		Integer tieTitleId = Integer
-				.valueOf(request.getParameter("tieTitleId"));
+		Integer tieTitleId = Integer.valueOf(request.getParameter("tieTitleId"));
 
 		Pager<Tie> pager = iTieService.listInTiePage(tieTitleId, index, size);
 		// tie.getTieTitle().setUser(null);
