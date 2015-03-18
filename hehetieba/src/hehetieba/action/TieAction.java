@@ -1,9 +1,11 @@
 package hehetieba.action;
 
 import hehetieba.basic.Pager;
+import hehetieba.dao.ITieTitleDao;
 import hehetieba.domain.Tie;
 import hehetieba.domain.TieTitle;
 import hehetieba.service.ITieService;
+import hehetieba.service.ITieTitleService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,6 +42,7 @@ public class TieAction extends ActionSupport implements ServletRequestAware,
 	}
 
 	private ITieService iTieService;
+	private ITieTitleService iTieTitleService;
 
 	public ITieService getiTieService() {
 		return iTieService;
@@ -49,7 +52,15 @@ public class TieAction extends ActionSupport implements ServletRequestAware,
 		this.iTieService = iTieService;
 	}
 
+	public ITieTitleService getiTieTitleService() {
+		return iTieTitleService;
+	}
+
+	public void setiTieTitleService(ITieTitleService iTieTitleService) {
+		this.iTieTitleService = iTieTitleService;
+	}
 	// --------------------华丽的分割线-------------------------------------
+
 
 	public String listInTiePage() throws IOException {
 		Integer index = Integer.valueOf(request.getParameter("index"));
@@ -57,10 +68,13 @@ public class TieAction extends ActionSupport implements ServletRequestAware,
 		Integer tieTitleId = Integer.valueOf(request.getParameter("tieTitleId"));
 
 		Pager<Tie> pager = iTieService.listInTiePage(tieTitleId, index, size);
+		TieTitle tieTitle = iTieTitleService.getTieTitleById(tieTitleId);
+		String title = tieTitle.getTitle();
 		// tie.getTieTitle().setUser(null);
 		// 输出
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);
+		map.put("title", title);
 		Gson gson = new GsonBuilder()
 				.setExclusionStrategies(new ExclusionStrategy() {
 					public boolean shouldSkipClass(Class<?> clazz) {

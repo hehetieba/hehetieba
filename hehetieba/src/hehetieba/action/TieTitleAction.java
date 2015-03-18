@@ -56,32 +56,24 @@ public class TieTitleAction extends ActionSupport implements
 		Integer size = Integer.valueOf(request.getParameter("size"));
 		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
 
-		Pager<TieTitle> pager = iTieTitleService.listInTiebaPage(index, size, tiebaId);
+		Pager<TieTitle> pager = iTieTitleService.listInTiebaPage(index, size,
+				tiebaId);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);
 		Gson gson = new GsonBuilder()
 				.setExclusionStrategies(new ExclusionStrategy() {
-
 					public boolean shouldSkipClass(Class<?> clazz) {
 						if (clazz == Tieba.class || clazz == Set.class)
 							return true;
 						return false;
 					}
 
-					/**
-					 * Custom field exclusion goes here
-					 */
 					public boolean shouldSkipField(FieldAttributes f) {
 						return false;
 					}
 
-				})
-				/**
-				 * Use serializeNulls method if you want To serialize null
-				 * values By default, Gson does not serialize null values
-				 */
-				.serializeNulls().setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+				}).serializeNulls().setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
 				.create();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -91,12 +83,43 @@ public class TieTitleAction extends ActionSupport implements
 		return null;
 	}
 	
+	public String listJingPin() throws IOException {
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+
+		Pager<TieTitle> pager = iTieTitleService.listJingPin(index, size, tiebaId);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+				.setExclusionStrategies(new ExclusionStrategy() {
+					public boolean shouldSkipClass(Class<?> clazz) {
+						if (clazz == Tieba.class || clazz == Set.class)
+							return true;
+						return false;
+					}
+
+					public boolean shouldSkipField(FieldAttributes f) {
+						return false;
+					}
+
+				}).serializeNulls().setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+				.create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+
+		return null;
+	}
+
 	public String faTie() throws IOException {
 		Integer userId = Integer.valueOf(request.getParameter("userId"));
 		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
-		
+
 		iTieTitleService.faTie(userId, tiebaId, title, body);
 
 		return null;

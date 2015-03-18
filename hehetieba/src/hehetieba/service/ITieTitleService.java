@@ -12,6 +12,14 @@ public interface ITieTitleService {
 	 */
 	public Pager<TieTitle> listInTiebaPage(Integer index,Integer size,Integer tiebaId);
 	/**
+	 * 列出加精的帖子，按时间排序，分页
+	 * @param index
+	 * @param size
+	 * @param tiebaId
+	 * @return
+	 */
+	public Pager<TieTitle> listJingPin(Integer index,Integer size,Integer tiebaId);
+	/**
 	 * 发帖，包括Tie的操作
 	 * @return
 	 */
@@ -22,4 +30,10 @@ public interface ITieTitleService {
 	 * @return
 	 */
 	public boolean setTop(Integer id);
+	/**
+	 * 根据tieTitleId获取TieTitle
+	 * @param tieTitleId
+	 * @return
+	 */
+	public TieTitle getTieTitleById(Integer tieTitleId);
 }

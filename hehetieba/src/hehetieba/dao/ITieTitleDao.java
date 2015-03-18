@@ -2,8 +2,17 @@ package hehetieba.dao;
 
 import hehetieba.basic.Pager;
 import hehetieba.domain.TieTitle;
+import hehetieba.domain.Tieba;
 
 public interface ITieTitleDao extends IBaseDao<TieTitle> {
+	/**
+	 * 列出加精的帖子，按时间排序，分页
+	 * @param index
+	 * @param size
+	 * @param tiebaId
+	 * @return
+	 */
+	public Pager<TieTitle> listJingPin(Integer index,Integer size,Tieba tieba);
 }
 
 

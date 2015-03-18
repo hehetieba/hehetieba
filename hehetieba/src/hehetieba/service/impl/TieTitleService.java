@@ -64,6 +64,14 @@ public class TieTitleService implements ITieTitleService {
 	}
 
 	@Override
+	public Pager<TieTitle> listJingPin(Integer index, Integer size,
+			Integer tiebaId) {
+		// TODO Auto-generated method stub
+		Tieba tieba = iTiebaDao.load(tiebaId);
+		return iTieTitleDao.listJingPin(index, size, tieba);
+	}
+
+	@Override
 	public boolean faTie(Integer userId,Integer tiebaId,String title,String body) {
 		// TODO Auto-generated method stub
 		User user = iUserDao.load(userId);
@@ -107,5 +115,13 @@ public class TieTitleService implements ITieTitleService {
 		Tie tie = new Tie();
 		return tie;
 	}
+
+	@Override
+	public TieTitle getTieTitleById(Integer tieTitleId) {
+		// TODO Auto-generated method stub
+		TieTitle tieTitle = iTieTitleDao.get(tieTitleId);
+		return tieTitle;
+	}
+
 	
 }

@@ -29,25 +29,15 @@ public class TieTitleServiceTest extends SpringInit {
 		map.put("pager", pager);
 		Gson gson = new GsonBuilder()
 	    .setExclusionStrategies(new ExclusionStrategy() {
-
 	        public boolean shouldSkipClass(Class<?> clazz) {
 	        	if(clazz==Tieba.class || clazz == Set.class)
 	        		return true;
 	            return false;
 	        }
-
-	        /**
-	          * Custom field exclusion goes here
-	          */
 	        public boolean shouldSkipField(FieldAttributes f) {
 	            return false;
 	        }
-
 	     })
-	    /**
-	      * Use serializeNulls method if you want To serialize null values 
-	      * By default, Gson does not serialize null values
-	      */
 	    .serializeNulls()
 	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
 	    .create();
@@ -64,4 +54,61 @@ public class TieTitleServiceTest extends SpringInit {
 		
 		iTieTitleService.faTie(userId, tiebaId, title, body);
 	}
+	
+	@Test
+	public void testListJingPin() {
+		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
+		Integer index = 1;
+		Integer size = 10;
+		Integer tiebaId = 1;
+		Pager<TieTitle> pager = iTieTitleService.listJingPin(index, size, tiebaId);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+	    .setExclusionStrategies(new ExclusionStrategy() {
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	        	if(clazz==Tieba.class || clazz == Set.class)
+	        		return true;
+	            return false;
+	        }
+	        public boolean shouldSkipField(FieldAttributes f) {
+	            return false;
+	        }
+
+	     })
+	    .serializeNulls()
+	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+	    .create();
+		System.out.println(gson.toJson(map));
+	}
+	
+	@Test
+	public void testGetTieTitleById() {
+		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
+		Integer tieTitleId = 1;
+		TieTitle tieTitle = iTieTitleService.getTieTitleById(tieTitleId);
+		String title = tieTitle.getTitle();
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("title", title);
+		Gson gson = new Gson();
+		System.out.println(gson.toJson(map));
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

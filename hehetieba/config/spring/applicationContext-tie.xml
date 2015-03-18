@@ -9,6 +9,9 @@
 		<property name="iTieService">
 			<ref bean="tieService"/>
 		</property>
+		<property name="iTieTitleService">
+			<ref bean="tieTitleService"/>
+		</property>
 	</bean>
 
 	<bean id="tieService" class="hehetieba.service.impl.TieService">
