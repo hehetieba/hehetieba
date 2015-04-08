@@ -206,7 +206,7 @@
 											class="post-wrapper">帖子：<span class="tieba-count" style="color: #FF773C;"></span></span>
 										<p class="tieba-intruduction" style="margin-left: 20%;"></p>
 									</div>
-									<div style="background-color: #3a2; width: 100%; height: 50px;">看帖</div>
+
 									<div class="tie-main" style="padding: 10px 0 0 30px;">		
 										<ul id="tieresult">
 											
