@@ -334,37 +334,42 @@ img {
 					success : function(data) {
 						var str="";
 						  for (var i = 0; i <showNum; i++) {
-							  str += "<div id='"+data.pager.datas[i][0].id+"' class='post-item'><div class='caption wrapper-lg'>"
+							  str= "<div id='"+data.pager.datas[i][0].id+"' class='post-item'><div class='caption wrapper-lg'>"
 									+ data.pager.datas[i][0].body
 									+ "<i class='fa fa-user icon-muted'></i><a href='#' class='m-r-sm'>"
 									+ data.pager.datas[i][0].sendUser.nickname
 									+ "</a><i class='fa fa-clock-o icon-muted'></i>"
 									+ data.pager.datas[i][0].createdDate
 									+ "<button class='btn-success btn reply-btn' onClick='reply($(this));'>回复</button></div></div></div>"
-
+									  $(".blog-post").append(str);
+									  
+									var qq=data.pager.datas[i][0].id;	
+														 
 				 					$.ajax({
 				 					type:"post",
+				 					async:false,  
 									url:"replyAction_listInTiePage",
 									data:{
 										index:1,
 										size:999,
 										tieId:data.pager.datas[i][0].id
-										}	,
+										},
 										dataType:"json",
 									success:function(result){
 										var replyStr="";
 										  for (var i = 0; i <result.pager2.totalRecord; i++) {
-											  replyStr += result.pager2.datas[i][0].body;
-											  alert()
+											  replyStr +="<div class='reply-list'>" +result.pager2.datas[i][0].sendUser.nickname+":回复"+result.pager2.datas[i][0].body+"</div><br>";
+											
 												  }
-									$("#"+data.pager.datas[i][0].id).append(replyStr);
+	
+										$("#"+qq).append(replyStr);	
+									
 
 										}
-
-											  });
-							
+								 });
+				 					
 					        }
-						  $(".blog-post").html(str);
+						
 			
 					
 					},
