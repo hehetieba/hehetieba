@@ -151,6 +151,7 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 	    .create();
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));
+		System.out.println("2222222222222222222222222222222222222222222222222222222222222222222222222222222222222");
 		System.out.println(gson.toJson(map));
 		return null;
 	}

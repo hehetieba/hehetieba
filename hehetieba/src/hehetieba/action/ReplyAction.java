@@ -65,7 +65,7 @@ public class ReplyAction extends ActionSupport implements ServletRequestAware,
 		// tie.getTieTitle().setUser(null);
 		// 输出
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pager", pager);
+		map.put("pager2", pager);
 		Gson gson = new GsonBuilder()
 				.setExclusionStrategies(new ExclusionStrategy() {
 					public boolean shouldSkipClass(Class<?> clazz) {
@@ -74,7 +74,6 @@ public class ReplyAction extends ActionSupport implements ServletRequestAware,
 							return true;
 						return false;
 					}
-
 					public boolean shouldSkipField(FieldAttributes f) {
 						if (f.getName().equals("beSendUser"))
 							return true;

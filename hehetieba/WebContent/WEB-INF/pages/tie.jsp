@@ -219,8 +219,7 @@
 									 <script id="editor" type="text/plain" style="width:100%;height:200px;"></script>
 									<a  id="submit-btn" class="btn btn-success" style="float: right;">发帖</a>
 									</div>
-									<aside class="hidden-xs"
-										style="float: right; width: 30%; background: #000; height: 500px;">
+									<aside class="hidden-xs myfavourite" style="float: right; width: 30%; background: #e8e8e8; height: 500px;">
 
 									</aside>
 
@@ -288,13 +287,28 @@
 			alert("未知错误");
 		}
 	})
+	
+	$.ajax({
+			type:"POST",
+			url:"hehetieba/tiebaAction_listFavoriteTiebas",
+			data:{userId:'${user.id}'},
+			dataType:"json",
+			success:function(data){
+				var favStr="";
+				for(var i=0;i<data.FavoriteTiebas.length;i++){					
+					favStr+="<p>"+data.FavoriteTiebas[i].tiebaName+"吧</p>"
+					}
+           $(".myfavourite").html(favStr);
+				}			
+
+		});
 	function location_tie(e){
  			window.location="tiezi?tieTitleId="+e
 		}
 
 
 		$(document).ready(function(e) {
-			 function callBackPagination() {
+			function callBackPagination() {
 
 				 $.ajax({
 						type:"post",
@@ -313,7 +327,7 @@
 								alert("未知错误");
 							}
 				 });
-			        var totalCount = Number($("#totalRecord").val()),
+			        var totalCount = parseInt($("#totalRecord").val()),
 			               showCount =10,
 			                limit = 10;
 			    
@@ -382,6 +396,7 @@
 		});
 		UE.getEditor('editor');
 
+		
 $("#submit-btn").click(function(){
 			var main_html=UE.getEditor('editor').getContent();		
 				$.ajax({
@@ -396,9 +411,7 @@ $("#submit-btn").click(function(){
 				success:function(){
 					alert("发帖成功")
 					}
-
 					});
-	
 })
 
 

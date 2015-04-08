@@ -186,7 +186,7 @@ public class TiebaServiceTest extends SpringInit {
 	@Test
 	public void testListFavoriteTiebas() {
 		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
-		Integer userId = 3;
+		Integer userId = 1;
 		List<Tieba> listTiebas = iTiebaService.listFavoriteTiebas(userId);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("FavoriteTiebas", listTiebas);
