@@ -8,4 +8,9 @@ public interface IUserTiebaService {
 	 * @return
 	 */
 	public boolean checkFocused(Integer userId,Integer tiebaId);
+	/**
+	 * 根据userId和tiebaId查找UserTieba
+	 * @return
+	 */
+	public boolean checkBaZhu(Integer userId,Integer tiebaId);
 }

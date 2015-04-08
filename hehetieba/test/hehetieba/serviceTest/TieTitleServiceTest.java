@@ -95,6 +95,33 @@ public class TieTitleServiceTest extends SpringInit {
 		Gson gson = new Gson();
 		System.out.println(gson.toJson(map));
 	}
+	
+	@Test
+	public void testSetTop() {
+		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
+		Integer id = 1;
+		iTieTitleService.setTop(id);
+
+		System.out.println("已顶置");
+	}
+	
+	@Test
+	public void testJiajing() {
+		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
+		Integer id = 1;
+		iTieTitleService.jiajing(id);
+
+		System.out.println("已加精华");
+	}
+	
+	@Test
+	public void testDeleteByTieTitleId() {
+		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
+		Integer tieTitleId = 2;
+		iTieTitleService.deleteByTieTitleId(tieTitleId);
+
+		System.out.println("执行完毕");
+	}
 }
 
 

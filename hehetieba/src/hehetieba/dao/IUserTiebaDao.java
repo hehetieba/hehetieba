@@ -9,7 +9,7 @@ public interface IUserTiebaDao extends IBaseDao<UserTieba> {
 	 * 检查用户跟贴吧是否关注
 	 * @param userId
 	 * @param tiebaId
-	 * @return
+	 * @return >0表示用户有关注
 	 */
 	public Integer checkFocused(User user,Tieba tieba);
 	/**

@@ -187,6 +187,31 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return pages;
 	}
 	
+	//增删改的操作
+	public Integer updateByHql(String hql) {
+		return this.updateByHql(hql,null,null);
+	}
+	
+	public Integer updateByHql(String hql, Object arg) {
+		return this.updateByHql(hql,new Object[]{arg},null);
+	}
+	
+	public Integer updateByHql(String hql, Object[] args) {
+		return this.updateByHql(hql,args,null);
+	}
+	public Integer updateByHql(String hql, Map<String, Object> alias) {
+		
+		return this.updateByHql(hql,null,alias);
+	}
+	
+	public Integer updateByHql(String hql, Object[] args, Map<String, Object> alias) {
+		Query query = getSession().createQuery(hql);
+		setParameter(query, args);
+		setAliasParameter(query, alias);
+		return query.executeUpdate();
+	}
+	
+	//-----------华丽分割线-------------
 	private void setPagers(Query query,Pager pages,int index,int size) {
 		int beginRow = (index-1)*size;
 		pages.setBeginRow(beginRow);

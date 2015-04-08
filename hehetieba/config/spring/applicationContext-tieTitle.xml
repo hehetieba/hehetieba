@@ -24,6 +24,9 @@
 		<property name="iTieDao">
 			<ref bean="tieDao"/>
 		</property>
+		<property name="iReplyDao">
+			<ref bean="replyDao"/>
+		</property>
 	</bean>
 
 	<bean id="tieTitleDao" class="hehetieba.dao.impl.TieTitleDao">
