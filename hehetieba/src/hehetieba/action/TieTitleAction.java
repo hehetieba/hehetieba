@@ -124,5 +124,59 @@ public class TieTitleAction extends ActionSupport implements
 
 		return null;
 	}
+	
+	/**
+	 * 根据tieTitle的id顶置
+	 * @return
+	 * @throws IOException
+	 */
+	public String setTop() throws IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		iTieTitleService.setTop(id);
+		
+		Gson gson = new Gson();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", "已顶置");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println("已顶置");
+		return null;
+	}
+	
+	/**
+	 * 根据tieTitle的id加精
+	 * @return
+	 * @throws IOException
+	 */
+	public String jiajing() throws IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		iTieTitleService.jiajing(id);
+		
+		Gson gson = new Gson();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", "已加精华");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println("已加精华");
+		return null;
+	}
+	
+	/**
+	 * 根据tieTitleId删除tieTitle，并且同时删除对应的tie和reply
+	 * @return
+	 * @throws IOException
+	 */
+	public String delete() throws IOException {
+		Integer tieTitleId = Integer.valueOf(request.getParameter("tieTitleId"));
+		iTieTitleService.deleteByTieTitleId(tieTitleId);
+		
+		Gson gson = new Gson();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", "删除完毕");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println("删除完毕");
+		return null;
+	}
 
 }

@@ -32,7 +32,7 @@ public class ReplyServiceTest extends SpringInit {
 		Integer tieId = 2;
 		Integer sendUserId = 2;
 		Integer beSendUserId = 1;
-		String body = "reply";
+		String body = "reply222";
 		Reply reply = iReplyService.reply(tieTitleId, tieId, sendUserId, beSendUserId, body);
 //		tie.getTieTitle().setUser(null);
 		//输出 

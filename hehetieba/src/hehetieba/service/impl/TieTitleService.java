@@ -1,6 +1,7 @@
 package hehetieba.service.impl;
 
 import hehetieba.basic.Pager;
+import hehetieba.dao.IReplyDao;
 import hehetieba.dao.ITieDao;
 import hehetieba.dao.ITieTitleDao;
 import hehetieba.dao.ITiebaDao;
@@ -19,6 +20,7 @@ public class TieTitleService implements ITieTitleService {
 	IUserDao iUserDao;
 	ITiebaDao iTiebaDao;
 	ITieDao iTieDao;
+	IReplyDao iReplyDao;
 
 	public ITieTitleDao getiTieTitleDao() {
 		return iTieTitleDao;
@@ -52,7 +54,15 @@ public class TieTitleService implements ITieTitleService {
 		this.iTieDao = iTieDao;
 	}
 
-	/*--华丽分割线--*/
+	public IReplyDao getiReplyDao() {
+		return iReplyDao;
+	}
+
+	public void setiReplyDao(IReplyDao iReplyDao) {
+		this.iReplyDao = iReplyDao;
+	}
+
+	/*-----------------------华丽分割线-------------------*/
 	@Override
 	public Pager<TieTitle> listInTiebaPage(Integer index, Integer size,Integer tiebaId) {
 		Tieba tieba = iTiebaDao.load(tiebaId);
@@ -100,7 +110,17 @@ public class TieTitleService implements ITieTitleService {
 	@Override
 	public boolean setTop(Integer id) {
 		// TODO Auto-generated method stub
-		return false;
+		TieTitle tieTitle = iTieTitleDao.get(id);
+		tieTitle.setTop((byte)1);
+		return true;
+	}
+	
+	@Override
+	public boolean jiajing(Integer id) {
+		// TODO Auto-generated method stub
+		TieTitle tieTitle = iTieTitleDao.get(id);
+		tieTitle.setJiajing((byte)1);
+		return true;
 	}
 
 	public TieTitle newAnDefaultTieTitle() {
@@ -122,6 +142,20 @@ public class TieTitleService implements ITieTitleService {
 		TieTitle tieTitle = iTieTitleDao.get(tieTitleId);
 		return tieTitle;
 	}
+
+	@Override
+	public Integer deleteByTieTitleId(Integer tieTitleId) {
+		// TODO Auto-generated method stub
+		TieTitle tieTitle = iTieTitleDao.load(tieTitleId);
+		if(tieTitle==null)
+			System.out.println("null");
+		iReplyDao.deleteByTieTitle(tieTitle);
+		iTieDao.deleteByTieTitle(tieTitle);
+		iTieTitleDao.delete(tieTitleId);
+		return null;
+	}
+
+
 
 	
 }

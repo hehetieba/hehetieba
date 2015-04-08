@@ -31,9 +31,21 @@ public interface ITieTitleService {
 	 */
 	public boolean setTop(Integer id);
 	/**
+	 * 对tieTitle加精
+	 * @param id
+	 * @return
+	 */
+	public boolean jiajing(Integer id);
+	/**
 	 * 根据tieTitleId获取TieTitle
 	 * @param tieTitleId
 	 * @return
 	 */
 	public TieTitle getTieTitleById(Integer tieTitleId);
+	/**
+	 * 根据tieTitleId删除tieTitle，并且同时删除对应的tie和reply
+	 * @param tieTitleId
+	 * @return
+	 */
+	public Integer deleteByTieTitleId(Integer tieTitleId);
 }

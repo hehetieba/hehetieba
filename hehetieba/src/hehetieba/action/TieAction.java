@@ -111,6 +111,7 @@ public class TieAction extends ActionSupport implements ServletRequestAware,
 		Integer beSendUserId = Integer.valueOf(request.getParameter("beSendUserId"));
 		String body = request.getParameter("body");
 
+		System.out.printf("%d+%d+%d+%s%n",tieTitleId,sendUserId,beSendUserId,body);
 		iTieService.post(tieTitleId, sendUserId, beSendUserId, body);
 
 		return null;
