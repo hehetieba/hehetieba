@@ -33,5 +33,17 @@ public class UserTiebaDao extends BaseDao<UserTieba> implements IUserTiebaDao{
 		return (UserTieba) super.queryObjectByAlias(hql, alias);
 	}
 
+	@Override
+	public Integer calCountByUser_Tieba(User user, Tieba tieba) {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from UserTieba ut "
+				+ "where ut.user=:user and ut.tieba=:tieba";
+		Map<String, Object> alias = new HashMap<String, Object>();
+		alias.put("user", user);
+		alias.put("tieba", tieba);
+		Integer count = ((Number)super.queryObject(hql, null, alias)).intValue();
+		return count;
+	}
+
 
 }

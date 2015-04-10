@@ -1,5 +1,8 @@
 package hehetieba.service;
 
+import hehetieba.domain.Tieba;
+import hehetieba.domain.User;
+
 public interface IUserTiebaService {
 	/**
 	 * 检查用户跟贴吧是否关注
@@ -8,6 +11,12 @@ public interface IUserTiebaService {
 	 * @return
 	 */
 	public boolean checkFocused(Integer userId,Integer tiebaId);
+	/**
+	 * 关注贴吧
+	 * @param userId
+	 * @param tiebaId
+	 */
+	public void focus(Integer userId,Integer tiebaId);
 	/**
 	 * 根据userId和tiebaId查找UserTieba
 	 * @return
