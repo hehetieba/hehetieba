@@ -144,6 +144,24 @@ public class TieTitleAction extends ActionSupport implements
 	}
 	
 	/**
+	 * 根据tieTitle的id取消顶置
+	 * @return
+	 * @throws IOException
+	 */
+	public String cancelSetTop() throws IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		iTieTitleService.cancelSetTop(id);
+		
+		Gson gson = new Gson();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", "已取消顶置");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println("已取消顶置");
+		return null;
+	}
+	
+	/**
 	 * 根据tieTitle的id加精
 	 * @return
 	 * @throws IOException
@@ -158,6 +176,23 @@ public class TieTitleAction extends ActionSupport implements
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));
 		System.out.println("已加精华");
+		return null;
+	}
+	/**
+	 * 根据tieTitle的id取消加精
+	 * @return
+	 * @throws IOException
+	 */
+	public String cancelJiajing() throws IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
+		iTieTitleService.cancelJiajing(id);
+		
+		Gson gson = new Gson();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", "已取消精华");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println("已取消精华");
 		return null;
 	}
 	

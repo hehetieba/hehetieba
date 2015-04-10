@@ -31,11 +31,23 @@ public interface ITieTitleService {
 	 */
 	public boolean setTop(Integer id);
 	/**
+	 * 设置tieTitle取消顶置
+	 * @param tieId
+	 * @return
+	 */
+	public boolean cancelSetTop(Integer id);
+	/**
 	 * 对tieTitle加精
 	 * @param id
 	 * @return
 	 */
 	public boolean jiajing(Integer id);
+	/**
+	 * 对tieTitle取消加精
+	 * @param id
+	 * @return
+	 */
+	public boolean cancelJiajing(Integer id);
 	/**
 	 * 根据tieTitleId获取TieTitle
 	 * @param tieTitleId

@@ -123,6 +123,22 @@ public class TieTitleService implements ITieTitleService {
 		return true;
 	}
 
+	@Override
+	public boolean cancelSetTop(Integer id) {
+		// TODO Auto-generated method stub
+		TieTitle tieTitle = iTieTitleDao.get(id);
+		tieTitle.setTop((byte)0);
+		return true;
+	}
+
+	@Override
+	public boolean cancelJiajing(Integer id) {
+		// TODO Auto-generated method stub
+		TieTitle tieTitle = iTieTitleDao.get(id);
+		tieTitle.setJiajing((byte)0);
+		return true;
+	}
+
 	public TieTitle newAnDefaultTieTitle() {
 		TieTitle tieTitle = new TieTitle();
 		tieTitle.setTop((byte)0);
@@ -154,6 +170,7 @@ public class TieTitleService implements ITieTitleService {
 		iTieTitleDao.delete(tieTitleId);
 		return null;
 	}
+
 
 
 
