@@ -73,6 +73,19 @@ public class UserTiebaServiceTest extends SpringInit {
 		System.out.println(gson.toJson(map));
 	}
 	
+	@Test
+	public void testFocus() {
+		IUserTiebaService iUserTiebaService = (IUserTiebaService)context.getBean("userTiebaService");
+		Integer userId = 2;
+		Integer tiebaId = 3; 
+		iUserTiebaService.focus(userId, tiebaId);
+//		System.out.println(user);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", "已关注");
+		Gson gson = new Gson();
+		System.out.println(gson.toJson(map));
+	}
+	
 }
 
 

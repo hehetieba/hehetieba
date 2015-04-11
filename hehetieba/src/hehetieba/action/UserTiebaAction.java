@@ -81,6 +81,21 @@ public class UserTiebaAction extends ActionSupport implements ServletRequestAwar
 		
 		return null;
 	}
+	
+	public String focus() throws IOException {
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		
+		iUserTiebaService.focus(userId, tiebaId);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg", "已关注");
+		Gson gson = new Gson();
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
 
 }
 
