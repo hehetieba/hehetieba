@@ -3,6 +3,7 @@ package hehetieba.action;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -54,6 +55,8 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 
 	// --------------------华丽的分割线-------------------------------------
 
+	File headImg;
+	
 	/**
 	 * 检查Username是否存在
 	 * @return
@@ -253,6 +256,37 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));
 		System.out.println(gson.toJson(map));
+		return null;
+	}
+	
+	public String changeMessage() throws IOException {
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		String nickname = request.getParameter("userId");
+		String introduction = request.getParameter("introduction");
+		Byte gender = Byte.valueOf(request.getParameter("gender"));
+		String birthday = request.getParameter("birthday");;
+		iUserService.changeMessage(userId, nickname, introduction, gender, birthday);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("msg", "已修改");
+		Gson gson = new Gson();
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		
+		return null;
+	}
+	
+	public String uploadHeadImg() throws IOException {
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		String ext=request.getParameter("ext");
+		iUserService.uploadHeadImg(userId, headImg, ext);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("msg", "已上传");
+		Gson gson = new Gson();
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		
 		return null;
 	}
 

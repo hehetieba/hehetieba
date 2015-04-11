@@ -62,11 +62,11 @@ public interface IUserService {
 	public boolean changePwd(Integer id,String oldPwd,String newPwd);
 	/**
 	 * 上传头像
-	 * @param id
+	 * @param userId
 	 * @param file
 	 * @param ext
 	 */
-	public void uploadHeadImg(Integer id,File file,String ext);
+	public void uploadHeadImg(Integer userId,File file,String ext);
 	/**
 	 * 修改信息
 	 * @param user

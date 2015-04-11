@@ -127,9 +127,9 @@ public class UserService implements IUserService {
 	 * 上传头像
 	 */
 	@Override
-	public void uploadHeadImg(Integer id, File file,String ext) {
+	public void uploadHeadImg(Integer userId, File file,String ext) {
 		String headImg = UploadUtils.saveUploadFile(file, ext);
-		User user = (User)iUserDao.load(id);
+		User user = (User)iUserDao.load(userId);
 		user.setHeadImg(headImg);
 		iUserDao.update(user);
 	}

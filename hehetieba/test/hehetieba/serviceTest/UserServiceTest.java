@@ -1,6 +1,5 @@
 package hehetieba.serviceTest;
 
-import hehetieba.domain.Tieba;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
 

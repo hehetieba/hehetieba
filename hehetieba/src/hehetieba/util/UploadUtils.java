@@ -30,10 +30,11 @@ public class UploadUtils {
 		}
 		//String path = basePath+"/"+this.uploadFileName;
 		//UUID.randomUUID().toString()能够保证名字的唯一性
-		String path = basePath+subPath+UUID.randomUUID().toString()+ext;
+		String randomPath = UUID.randomUUID().toString();
+		String path = basePath+subPath+randomPath+ext;
 		File dest = new File(path);
 		//把文件移动到dest处
 		upload.renameTo(dest);
-		return subPath+UUID.randomUUID().toString()+ext;
+		return subPath+randomPath+ext;
 	}
 }
