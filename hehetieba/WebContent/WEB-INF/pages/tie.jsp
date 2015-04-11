@@ -269,6 +269,7 @@
 
 	<script>
 
+
 	$.ajax({
 		type : "post",
 		url : "hehetieba/tiebaAction_getTiebaById?tiebaId="+<%=request.getParameter("tiebaId")%>,
@@ -303,7 +304,7 @@
 
 		});
 	function location_tie(e){
- 			window.location="tiezi?tieTitleId="+e
+ 			window.location="tiezi?tiebaId="+<%=request.getParameter("tiebaId")%>+"&tieTitleId="+e
 		}
 
 
@@ -353,9 +354,12 @@
 							},
 							dataType : "json",
 							success : function(data) {
+								
 								  for (var i = 0; i <showNum; i++) {
-									  if(data.pager.datas[i].lastPostTime==null){data.pager.datas[i].lastPostTime=''}
-									  html+="<li onClick='location_tie("+data.pager.datas[i].id+")'><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"+data.pager.datas[i].replyCount+"</span></div><div class='tie-content'><p><a href='#'>"+data.pager.datas[i].title+"</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"+data.pager.datas[i].user.nickname+"</i><i class='icon-comment icon-last-author'><span>&nbsp;"+data.pager.datas[i].lastPostUserName+"</span><span>"+data.pager.datas[i].lastPostTime.substring(11,16)+"</span></i></div><p><span class='tie-text'></span></p></div></li>";
+									  if(data.pager.datas[i].jiajing==1){ var jiajing="jiajing"; var jing="<span style='padding:0 5px; background:#AE1D2C;border-radius:5px; color:#fff;'>精</span>"}else{ var jiajing=""; var jing=""}
+									  if(data.pager.datas[i].top==1){ var top="<span style='padding:0 5px; background:#F6C100;border-radius:5px; color:#fff;'>置顶</span>"}else{  var top=""}
+										  if(data.pager.datas[i].lastPostTime==null){data.pager.datas[i].lastPostTime=''}
+									  html+="<li onClick='location_tie("+data.pager.datas[i].id+")'><div class='tie-wrapper'><span class='rank-num btn btn-warning'>"+data.pager.datas[i].replyCount+"</span></div><div class='tie-content'><p>"+jing+top+"<a href='#' class="+jiajing+">"+data.pager.datas[i].title+"</a></p><div style='width: 150px; float: right; margin-top: -30px;'><i class='icon-user icon-author'>&nbsp;"+data.pager.datas[i].user.nickname+"</i><i class='icon-comment icon-last-author'><span>&nbsp;"+data.pager.datas[i].lastPostUserName+"</span><span>"+data.pager.datas[i].lastPostTime.substring(11,16)+"</span></i></div><p><span class='tie-text'></span></p></div></li>";
 							        }
 								  $('#tieresult').html(html);
 							},
