@@ -4,6 +4,7 @@ import hehetieba.basic.Pager;
 import hehetieba.domain.Tieba;
 import hehetieba.service.ITiebaService;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -49,6 +50,10 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		this.iTiebaService = iTiebaService;
 	}
 
+	
+	// --------------------一些参数-------------------------------------
+	File headImg;
+	File bgImg;
 	
 	// --------------------华丽的分割线-------------------------------------
 
@@ -177,6 +182,54 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));
 		System.out.println(gson.toJson(map));
+		return null;
+	}
+	
+	public String changeIntroduction() throws IOException {
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		String introduction = request.getParameter("introduction");
+		iTiebaService.changeIntroduction(tiebaId, introduction);
+		
+		Gson gson = new Gson();
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("msg", "修改完成");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println("修改完成");
+		return null;
+	}
+	
+	/**
+	 * 吧主上传贴吧头像
+	 */
+	public String uploadHeadImg() throws IOException {
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		String ext = request.getParameter("ext");
+		iTiebaService.uploadHeadImg(tiebaId, headImg, ext);
+		
+		Gson gson = new Gson();
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("msg", "上传完毕");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println("修改完成");
+		return null;
+	}
+	
+	/**
+	 * 吧主上传贴吧头像
+	 */
+	public String uploadBgImg() throws IOException {
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		String ext = request.getParameter("ext");
+		iTiebaService.uploadBgImg(tiebaId, bgImg, ext);
+		
+		Gson gson = new Gson();
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("msg", "修改完成");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println("上传完毕");
 		return null;
 	}
 }

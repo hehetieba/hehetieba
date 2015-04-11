@@ -5,6 +5,7 @@ import hehetieba.domain.Tieba;
 import hehetieba.dto.TiebaDto;
 import hehetieba.service.ITiebaService;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -215,14 +216,37 @@ public class TiebaServiceTest extends SpringInit {
 	}
 	
 	@Test
-	public void adaf() {
-		System.out.printf("Math.round(12.0):%d%n",Math.round(12.0));
-		System.out.printf("Math.round(12.5):%d%n",Math.round(12.5));
-		System.out.printf("Math.round(-12.0):%d%n",Math.round(-12.0));
-		System.out.printf("Math.round(-12.4):%d%n",Math.round(-12.4));
-		System.out.printf("Math.round(-12.5):%d%n",Math.round(-12.5));
-		System.out.printf("Math.round(-12.6):%d%n",Math.round(-12.6));
+	public void testChangeIntroduction() {
+		// TODO Auto-generated method stub
+		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
+		Integer tiebaId = 1;
+		String introduction = "修改后的贴吧信息";
+		iTiebaService.changeIntroduction(tiebaId, introduction);
+		System.out.println("修改完成");
 	}
+	
+	@Test
+	public void testUploadHeadImg() {
+		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
+		Integer tiebaId = 1;
+		File headImg = new File("C:\\Users\\Administrator\\Desktop\\asd.txt");
+		String ext = ".txt";
+		iTiebaService.uploadHeadImg(tiebaId, headImg, ext);
+		
+		System.out.println("上传完毕");
+	}
+	
+	@Test
+	public void testUploadBgImg() {
+		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
+		Integer tiebaId = 1;
+		File bgImg = new File("C:\\Users\\Administrator\\Desktop\\asd.txt");
+		String ext = ".txt";
+		iTiebaService.uploadBgImg(tiebaId, bgImg, ext);
+		
+		System.out.println("上传完毕");
+	}
+	
 }
 
 

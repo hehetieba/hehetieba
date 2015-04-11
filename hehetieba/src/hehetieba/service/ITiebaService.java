@@ -1,5 +1,6 @@
 package hehetieba.service;
 
+import java.io.File;
 import java.util.List;
 
 import hehetieba.basic.Pager;
@@ -47,4 +48,23 @@ public interface ITiebaService {
 	 * @param tiebaApplyId
 	 */
 	public void notSaveTieba(String tiebaName,Integer tiebaApplyId);
+	/**
+	 * 贴吧吧主修改贴吧简介
+	 * @param tiebaId
+	 * @param introduction
+	 * @return
+	 */
+	public void changeIntroduction(Integer tiebaId,String introduction);
+	/**
+	 * 贴吧吧主修改贴吧头像
+	 * @param tiebaId
+	 * @return
+	 */
+	public void uploadHeadImg(Integer tiebaId,File headImg,String ext);
+	/**
+	 * 贴吧吧主修改背景图像
+	 * @param tiebaId
+	 * @return
+	 */
+	public void uploadBgImg(Integer tiebaId,File bgImg,String ext);
 }

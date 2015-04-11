@@ -7,7 +7,9 @@ import hehetieba.domain.Tieba;
 import hehetieba.domain.TiebaApply;
 import hehetieba.dto.TiebaDto;
 import hehetieba.service.ITiebaService;
+import hehetieba.util.UploadUtils;
 
+import java.io.File;
 import java.util.List;
 
 public class TiebaService implements ITiebaService {
@@ -29,6 +31,8 @@ public class TiebaService implements ITiebaService {
 	public void setiTiebaApplyDao(ITiebaApplyDao iTiebaApplyDao) {
 		this.iTiebaApplyDao = iTiebaApplyDao;
 	}
+	
+	//--------------华丽 分割线-------------
 
 	@Override
 	public Pager<Tieba> list(Integer index, Integer size) {
@@ -93,6 +97,29 @@ public class TiebaService implements ITiebaService {
 		return tieba;
 	}
 
-	
+	@Override
+	public void changeIntroduction(Integer tiebaId, String introduction) {
+		// TODO Auto-generated method stub
+		Tieba tieba = iTiebaDao.get(tiebaId);
+		tieba.setIntruduction(introduction);
+	}
+
+	@Override
+	public void uploadHeadImg(Integer tiebaId, File headImg,String ext) {
+		// TODO Auto-generated method stub
+		String headImgPath = UploadUtils.saveUploadFile(headImg, ext);
+		System.out.println(headImgPath);
+		Tieba tieba = iTiebaDao.load(tiebaId);
+		tieba.setHeadImg(headImgPath);
+	}
+
+	@Override
+	public void uploadBgImg(Integer tiebaId, File bgImg,String ext) {
+		// TODO Auto-generated method stub
+		String bgImgPath = UploadUtils.saveUploadFile(bgImg, ext);
+		Tieba tieba = iTiebaDao.load(tiebaId);
+		tieba.setBgImg(bgImgPath);
+	}
+
 	
 }
