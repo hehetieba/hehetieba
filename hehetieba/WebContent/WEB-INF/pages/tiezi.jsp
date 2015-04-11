@@ -205,7 +205,19 @@ img {
 						<section class="scrollable wrapper-lg">
 							<div class="row">
 								<div class="col-sm-9">
+									<div style="margin-bottom: 20px;"><h1 class=" title"></h1><span  class="tie-manager" style="position:relative;float: right;cursor: pointer; text-decoration:underline;">帖子管理
+									<ul style="list-style:none;position: absolute; right: 0; top:20px; background: #fff; width: 100px;display: none;">
+									<li><a onclick="deltie();">删除</a></li>
+									<li><a onclick="jiajing();">加精</a></li>
+									<li><a onclick="cancelJiajing()">取消加精</a></li>
+									<li><a onclick="settop()">置顶</a></li>
+									<li><a onclick="cancelSettop()">置顶</a></li>
+									</ul></span>
+									<div style="clear: both;"></div>
+									
+									</div>
 									<div class="blog-post"></div>
+								
 									<div id="callBackPager"></div>
 									<script id="editor" type="text/plain"
 										style="width: 100%; height: 200px;"></script>
@@ -301,6 +313,7 @@ img {
 							success : function(data) {
 								$("#totalRecord").val(data.pager.totalRecord);		
 								$("#louzhu").val(data.pager.datas[0][1].id);
+								$(".title").html(data.title)
 							    createTable(1, 10,data.pager.totalRecord);
 								},
 							error : function() {
@@ -333,7 +346,7 @@ img {
 					dataType : "json",
 					success : function(data) {
 						var str="";
-						  for (var i = 0; i <showNum; i++) {
+						  for (var i = 0; i <showNum; i++) {		
 							  str= "<div id='"+data.pager.datas[i][0].id+"' class='post-item'><div class='caption wrapper-lg'>"
 									+ data.pager.datas[i][0].body
 									+ "<i class='fa fa-user icon-muted'></i><a href='#' class='m-r-sm'>"
@@ -425,9 +438,81 @@ img {
 				})
 			});
 
-			
+			$.ajax({
+				type:"POST",
+				url:"userTiebaAction_checkBaZhu",
+				data:{userId:'${user.id}',
+					tiebaId:'<%=request.getParameter("tiebaId")%>'
+					},
+				dataType:"json",
+				success:function(data){
+					if(data.flag=true){
+						$(".tie-manager").css("display","block");
+						}
 
+					}
+				});
+			$(".tie-manager").mouseover(function(){
+				$(".tie-manager").children().css("display","block");
+				})
+
+					$(".tie-manager").mouseleave(function(){
+				$(".tie-manager").children().css("display","none");
+				})			
 		});
+		function deltie(){
+		$.ajax({
+			type:"post",
+			url:"tieTitleAction_delete?tieTitleId="+<%=request.getParameter("tieTitleId")%>,
+			success:function(){
+              alert("删除成功");
+				}
+			});
+			}
+		function jiajing(){
+
+			$.ajax({
+				type:"post",
+				url:"tieTitleAction_jiajing?id="+<%=request.getParameter("tieTitleId")%>,
+				success:function(){
+	              alert("加精成功");
+					}
+				});
+
+			}
+		function cancelJiajing(){
+
+			$.ajax({
+				type:"post",
+				url:"tieTitleAction_cancelJiajing?id="+<%=request.getParameter("tieTitleId")%>,
+				success:function(){
+	              alert("取消加精成功");
+					}
+				});
+
+			}
+		function settop(){
+
+			$.ajax({
+				type:"post",
+				url:"tieTitleAction_setTop?id="+<%=request.getParameter("tieTitleId")%>,
+				success:function(){
+	              alert("置顶成功");
+					}
+				});
+
+			}
+		function cancelSettop(){
+
+			$.ajax({
+				type:"post",
+				url:"tieTitleAction_cancelSetTop?id="+<%=request.getParameter("tieTitleId")%>,
+				success:function(){
+	              alert("取消置顶成功");
+					}
+				});
+
+			}
 	</script>
 </body>
 </html>
