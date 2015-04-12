@@ -17,4 +17,20 @@ public interface IReplyService {
 	 * @return
 	 */
 	public Pager<Reply> listInTiePage(Integer tieId,Integer index,Integer size);
+	/**
+	 * 个人中心中，用户查找自己的回复
+	 * @param sendUserId
+	 * @param index
+	 * @param size
+	 * @return
+	 */
+	public Pager<Reply> findMyReply(Integer sendUserId,Integer index,Integer size);
+	/**
+	 * 个人中心中，用户查找别人回复自己的回复
+	 * @param sendUserId
+	 * @param index
+	 * @param size
+	 * @return
+	 */
+	public Pager<Reply> findOtherSendToMeReply(Integer beSendUserId,Integer index,Integer size);
 }

@@ -17,19 +17,27 @@ public class Tie implements java.io.Serializable {
 	private User beSendUser;
 	private Integer floor;
 	private String body;
-	private Date createdDate;
+	private Date createDate;
 	private Set replies = new HashSet();
-
+	
 	public Tie() {
 	}
+	
+	public Tie(String body,String title,String sendUsername) {
+		this.body=body;
+		this.tieTitle = new TieTitle();
+		this.tieTitle.setTitle(title);
+		this.sendUser = new User();
+		this.sendUser.setUsername(sendUsername);
+	}
 
-	public Tie(Integer id, Date createdDate) {
+	public Tie(Integer id, Date createDate) {
 		this.id = id;
-		this.createdDate = createdDate;
+		this.createDate = createDate;
 	}
 
 	public Tie(Integer id, TieTitle tieTitle, User sendUser, User beSendUser,
-			Integer floor, String body, Date createdDate, Set replies) {
+			Integer floor, String body, Date createDate, Set replies) {
 		super();
 		this.id = id;
 		this.tieTitle = tieTitle;
@@ -37,7 +45,7 @@ public class Tie implements java.io.Serializable {
 		this.beSendUser = beSendUser;
 		this.floor = floor;
 		this.body = body;
-		this.createdDate = createdDate;
+		this.createDate = createDate;
 		this.replies = replies;
 	}
 
@@ -90,13 +98,6 @@ public class Tie implements java.io.Serializable {
 		this.body = body;
 	}
 
-	public Date getCreatedDate() {
-		return this.createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
 
 	public Set getReplies() {
 		return this.replies;
@@ -104,6 +105,14 @@ public class Tie implements java.io.Serializable {
 
 	public void setReplies(Set Replies) {
 		this.replies = Replies;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 }

@@ -3,6 +3,7 @@ package hehetieba.serviceTest;
 import hehetieba.basic.Pager;
 import hehetieba.domain.TieTitle;
 import hehetieba.domain.Tieba;
+import hehetieba.domain.User;
 import hehetieba.service.ITieTitleService;
 
 import java.util.HashMap;
@@ -122,6 +123,37 @@ public class TieTitleServiceTest extends SpringInit {
 
 		System.out.println("执行完毕");
 	}
+	
+	@Test
+	public void testFindUserTieTitle() {
+		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
+		Integer userId = 1;
+		Integer index = 1;
+		Integer size = 11;
+		Pager<TieTitle> pager = iTieTitleService.findUserTieTitle(userId, index, size);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setExclusionStrategies(new ExclusionStrategy() {
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	            return (clazz == Set.class);
+	        }
+
+	        public boolean shouldSkipField(FieldAttributes f) {
+	        	String field = f.getName();
+	        	if("user".equals(field) || "tieba".equals(field) || "top".equals(field) || "jiajing".equals(field) || "maxFloor".equals(field))
+	        		return true;
+	        	return false;
+	        }
+
+	     })
+		.serializeNulls()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+		.create();
+		System.out.println(gson.toJson(map));
+	}
+	
 }
 
 

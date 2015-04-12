@@ -3,6 +3,7 @@ package hehetieba.dao;
 import hehetieba.basic.Pager;
 import hehetieba.domain.TieTitle;
 import hehetieba.domain.Tieba;
+import hehetieba.domain.User;
 
 public interface ITieTitleDao extends IBaseDao<TieTitle> {
 	/**
@@ -13,6 +14,12 @@ public interface ITieTitleDao extends IBaseDao<TieTitle> {
 	 * @return
 	 */
 	public Pager<TieTitle> listJingPin(Integer index,Integer size,Tieba tieba);
+	/**
+	 * 根据userId查找tietitle
+	 * @param userId
+	 * @return
+	 */
+	public Pager<TieTitle> getByUserId(User user,Integer index,Integer size);
 }
 
 

@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.aspectj.ajdt.ajc.BuildArgParser;
 import org.junit.Test;
 
 import com.google.gson.ExclusionStrategy;
@@ -59,7 +60,7 @@ public class TieServiceTest extends SpringInit {
 	}
 	
 	@Test
-	public void listInTiePage() {
+	public void testListInTiePage() {
 		ITieService iTieService = (ITieService)context.getBean("tieService");
 		Integer tieTitleId = 1;
 		Integer index = 1;
@@ -94,6 +95,37 @@ public class TieServiceTest extends SpringInit {
 		System.out.println(gson.toJson(map));
 	}
 	
+	@Test
+	public void testFindMyTie() {
+		ITieService iTieService = (ITieService)context.getBean("tieService");
+		Integer sendUserId = 1;
+		Integer index = 1;
+		Integer size = 10;
+		Pager<Tie> pager = iTieService.findMyTie(sendUserId, index, size);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+//		.serializeNulls()
+	    .create();
+		System.out.println(gson.toJson(map));
+	}
+	
+	@Test
+	public void testFindOtherSendToMeTie() {
+		ITieService iTieService = (ITieService)context.getBean("tieService");
+		Integer beSendUserId = 1;
+		Integer index = 1;
+		Integer size = 10;
+		Pager<Tie> pager = iTieService.findOtherSendToMeTie(beSendUserId, index, size);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+//		.serializeNulls()
+	    .create();
+		System.out.println(gson.toJson(map));
+	}
 		
 }
 

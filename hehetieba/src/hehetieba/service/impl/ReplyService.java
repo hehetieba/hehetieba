@@ -97,4 +97,21 @@ public class ReplyService implements IReplyService {
 		return reply;
 	}
 
+	@Override
+	public Pager<Reply> findMyReply(Integer sendUserId, Integer index,
+			Integer size) {
+		// TODO Auto-generated method stub
+		User sendUser = iUserDao.load(sendUserId);
+		return iReplyDao.findBySendUser(sendUser, index, size);
+	}
+
+	@Override
+	public Pager<Reply> findOtherSendToMeReply(Integer beSendUserId,
+			Integer index, Integer size) {
+		// TODO Auto-generated method stub
+		User beSendUser = iUserDao.load(beSendUserId);
+		return iReplyDao.findByBeSendUser(beSendUser, index, size);
+	}
+
+
 }

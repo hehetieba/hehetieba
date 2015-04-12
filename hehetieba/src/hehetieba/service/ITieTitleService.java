@@ -60,4 +60,11 @@ public interface ITieTitleService {
 	 * @return
 	 */
 	public Integer deleteByTieTitleId(Integer tieTitleId);
+	/**
+	 * 查找用户发的帖
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public Pager<TieTitle> findUserTieTitle(Integer userId,Integer index,Integer size);
 }

@@ -88,4 +88,19 @@ public class TieService implements ITieService {
 		return tie;
 	}
 
+	@Override
+	public Pager<Tie> findMyTie(Integer sendUserId, Integer index, Integer size) {
+		// TODO Auto-generated method stub
+		User sendUser = iUserDao.load(sendUserId);
+		return iTieDao.findBySendUser(sendUser, index, size);
+	}
+
+	@Override
+	public Pager<Tie> findOtherSendToMeTie(Integer beSendUserId, Integer index,
+			Integer size) {
+		// TODO Auto-generated method stub
+		User beSendUser = iUserDao.load(beSendUserId);
+		return iTieDao.findByBeSendUser(beSendUser, index, size);
+	}
+
 }

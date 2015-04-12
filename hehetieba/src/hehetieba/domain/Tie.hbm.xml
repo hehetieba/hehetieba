@@ -23,8 +23,8 @@
         <property name="body" type="string">
             <column name="body" length="500" />
         </property>
-        <property name="createdDate" type="timestamp">
-            <column name="createdDate" length="19" />
+        <property name="createDate" type="timestamp">
+            <column name="createDate" length="19" />
         </property>
         <set name="replies" table="t_reply" inverse="true" lazy="true" fetch="select">
             <key>

@@ -171,6 +171,13 @@ public class TieTitleService implements ITieTitleService {
 		return null;
 	}
 
+	@Override
+	public Pager<TieTitle> findUserTieTitle(Integer userId,Integer index,Integer size) {
+		// TODO Auto-generated method stub
+		User user = iUserDao.load(userId);
+		return iTieTitleDao.getByUserId(user, index, size);
+	}
+
 
 
 

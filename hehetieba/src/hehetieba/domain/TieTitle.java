@@ -29,6 +29,10 @@ public class TieTitle implements java.io.Serializable {
 
 	public TieTitle() {
 	}
+	
+	public TieTitle(String title) {
+		this.title = title;
+	}
 
 	public TieTitle(Integer id, Date lastPostTime, Date createDate) {
 		this.id = id;

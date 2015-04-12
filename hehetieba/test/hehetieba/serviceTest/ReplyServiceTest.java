@@ -94,6 +94,39 @@ public class ReplyServiceTest extends SpringInit {
 	    .create();
 		System.out.println(gson.toJson(map));
 	}
+	
+	@Test
+	public void testFindMyReply() {
+		IReplyService iReplyService = (IReplyService)context.getBean("replyService");
+		Integer sendUserId = 1;
+		Integer index = 1;
+		Integer size = 10;
+		Pager<Reply> pager = iReplyService.findMyReply(sendUserId, index, size);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+//		.serializeNulls()
+	    .create();
+		System.out.println(gson.toJson(map));
+	}
+
+	@Test
+	public void testFindOtherSendToMeReply() {
+		IReplyService iReplyService = (IReplyService)context.getBean("replyService");
+		Integer beSendUserId = 1;
+		Integer index = 1;
+		Integer size = 20;
+		Pager<Reply> pager = iReplyService.findOtherSendToMeReply(beSendUserId, index, size);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+//		.serializeNulls()
+	    .create();
+		System.out.println(gson.toJson(map));
+	}
+	
 }
 
 
