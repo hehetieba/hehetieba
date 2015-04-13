@@ -25,7 +25,7 @@ public class TieTitleDao extends BaseDao<TieTitle> implements ITieTitleDao {
 	@Override
 	public Pager<TieTitle> getByUserId(User user,Integer index,Integer size) {
 		// TODO Auto-generated method stub
-		String hql = "from TieTitle tt where tt.user=:user";
+		String hql = "from TieTitle tt where tt.user=:user order by tt.createDate desc";
 		Map<String, Object> alias = new HashMap<>();
 		alias.put("user", user);
 		Pager<TieTitle> pager = super.findByAlias(hql, index, size, alias);

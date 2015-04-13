@@ -103,5 +103,45 @@ public class ReplyAction extends ActionSupport implements ServletRequestAware,
 
 		return null;
 	}
+	
+	public String findMyReply() throws IOException {
+		Integer sendUserId = Integer.valueOf(request.getParameter("sendUserId"));
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Pager<Reply> pager = iReplyService.findMyReply(sendUserId, index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+//		.serializeNulls()
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
+	
+	public String findOtherSendToMeReply() throws IOException {
+		Integer beSendUserId = Integer.valueOf(request.getParameter("sendUserId"));
+		Integer index = Integer.valueOf(request.getParameter("sendUserId"));
+		Integer size = Integer.valueOf(request.getParameter("sendUserId"));
+		Pager<Reply> pager = iReplyService.findOtherSendToMeReply(beSendUserId, index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+//		.serializeNulls()
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
 
 }

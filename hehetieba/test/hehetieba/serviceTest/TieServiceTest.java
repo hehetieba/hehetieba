@@ -6,17 +6,10 @@ import hehetieba.domain.TieTitle;
 import hehetieba.domain.User;
 import hehetieba.service.ITieService;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.aspectj.ajdt.ajc.BuildArgParser;
 import org.junit.Test;
 
 import com.google.gson.ExclusionStrategy;
@@ -31,7 +24,7 @@ public class TieServiceTest extends SpringInit {
 		Integer tieTitleId = 1;
 		Integer sendUserId = 2;
 		Integer beSendUserId = 1;
-		String body = "中文";
+		String body = "发帖";
 		Tie tie = iTieService.post(tieTitleId, sendUserId, beSendUserId, body);
 //		tie.getTieTitle().setUser(null);
 		//输出 

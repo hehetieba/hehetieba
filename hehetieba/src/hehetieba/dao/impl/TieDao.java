@@ -34,7 +34,8 @@ public class TieDao extends BaseDao<Tie> implements ITieDao {
 				+ "from Tie t "
 				+ "left join t.tieTitle tt "
 				+ "left join t.tieTitle.tieba tb "
-				+ "where t.sendUser=:sendUser";
+				+ "where t.sendUser=:sendUser "
+				+ "order by t.createDate desc";
 		Map<String, Object> alias = new HashMap<>();
 		alias.put("sendUser", sendUser);
 		return super.findByAlias(hql, index, size, alias);
@@ -52,7 +53,8 @@ public class TieDao extends BaseDao<Tie> implements ITieDao {
 				+ "left join t.sendUser su "
 				+ "left join t.tieTitle tt "
 				+ "left join t.tieTitle.tieba tb "
-				+ "where t.beSendUser=:beSendUser";
+				+ "where t.beSendUser=:beSendUser "
+				+ "order by t.createDate desc";
 		Map<String, Object> alias = new HashMap<>();
 		alias.put("beSendUser", beSendUser);
 		return super.findByAlias(hql, index, size, alias);

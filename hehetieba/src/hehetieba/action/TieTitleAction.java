@@ -213,5 +213,37 @@ public class TieTitleAction extends ActionSupport implements
 		System.out.println("删除完毕");
 		return null;
 	}
+	
+	public String findUserTieTitle() throws IOException {
+		Integer userId = Integer.valueOf(request.getParameter("userID"));
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Pager<TieTitle> pager = iTieTitleService.findUserTieTitle(userId, index, size);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setExclusionStrategies(new ExclusionStrategy() {
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	            return (clazz == Set.class);
+	        }
+
+	        public boolean shouldSkipField(FieldAttributes f) {
+	        	String field = f.getName();
+	        	if("user".equals(field) || "tieba".equals(field) || "top".equals(field) || "jiajing".equals(field) || "maxFloor".equals(field))
+	        		return true;
+	        	return false;
+	        }
+
+	     })
+		.serializeNulls()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+		.create();
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
 
 }

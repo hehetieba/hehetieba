@@ -116,5 +116,45 @@ public class TieAction extends ActionSupport implements ServletRequestAware,
 
 		return null;
 	}
+	
+	public String findMyTie() throws IOException {
+		Integer sendUserId = Integer.valueOf(request.getParameter("sendUserId"));
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Pager<Tie> pager = iTieService.findMyTie(sendUserId, index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+//		.serializeNulls()
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
+	
+	public String findOtherSendToMeTie() throws IOException {
+		Integer beSendUserId = Integer.valueOf(request.getParameter("beSendUserId"));
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Pager<Tie> pager = iTieService.findOtherSendToMeTie(beSendUserId, index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+//		.serializeNulls()
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
 
 }

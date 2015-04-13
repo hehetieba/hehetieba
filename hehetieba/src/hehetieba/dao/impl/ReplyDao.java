@@ -30,7 +30,8 @@ public class ReplyDao extends BaseDao<Reply> implements IReplyDao {
 				+ "from Reply r "
 				+ "left join r.tieTitle tt "
 				+ "left join r.tieTitle.tieba tb "
-				+ "where r.sendUser=:sendUser";
+				+ "where r.sendUser=:sendUser "
+				+ "order by r.createDate desc";
 		Map<String, Object> alias = new HashMap<>();
 		alias.put("sendUser", sendUser);
 		return super.findByAlias(hql, index, size, alias);
