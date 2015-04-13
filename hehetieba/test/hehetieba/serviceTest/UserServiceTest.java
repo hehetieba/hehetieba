@@ -1,5 +1,6 @@
 package hehetieba.serviceTest;
 
+import hehetieba.basic.Pager;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
 
@@ -166,6 +167,23 @@ public class UserServiceTest extends SpringInit {
 			System.out.println("有未读吧主申请反馈");
 		else
 			System.out.println("木有未读吧主申请反馈");
+	}
+	
+	@Test
+	public void testFindByUsernameOrNickname() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		String name = "张三1";
+		Integer index = 1;
+		Integer size = 10;
+		Pager<User> pager = iUserService.findByUsernameOrNickname(name, index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+	    .serializeNulls()
+	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+	    .create();
+		System.out.println(gson.toJson(map));
 	}
 	
 }

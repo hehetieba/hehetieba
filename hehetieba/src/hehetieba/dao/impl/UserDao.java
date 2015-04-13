@@ -1,5 +1,8 @@
 package hehetieba.dao.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.hibernate.Hibernate;
 
 import hehetieba.basic.Pager;
@@ -50,12 +53,6 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 //		Hibernate.initialize(user);
 		if(user!=null)
 			return user;
-		return null;
-	}
-
-	@Override
-	public Pager<User> findByUsername(String username) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -115,6 +112,29 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 		if(user.getApplyResultRead()==(byte)1)
 			return true;
 		return false;
+	}
+
+	@Override
+	public Pager<User> findByUsernameOrNickname(String name,Integer index,Integer size) {
+		// TODO Auto-generated method stub
+		String hql = "select new map(u.username as username,u.nickname as nickname,u.headImg as headImg,"
+				+ "u.introduction as introduction,u.gender as gender,"
+				+ "u.birthday as birthday,u.createDate as createDate) "
+				+ "from User u "
+				+ "where u.username like :name or u.nickname like :name";
+		Map<String, Object> alias = new HashMap<String, Object>();
+		alias.put("name", "%"+name+"%");
+		return super.findByAlias(hql, index, size, alias);
+	}
+
+	@Override
+	public Pager<User> findAll(Integer index, Integer size) {
+		// TODO Auto-generated method stub
+		String hql = "select new map(u.username as username,u.nickname as nickname,u.headImg as headImg,"
+				+ "u.introduction as introduction,u.gender as gender,"
+				+ "u.birthday as birthday,u.createDate as createDate) "
+				+ "from User u";
+		return super.find(hql, index, size);
 	}
 
 }

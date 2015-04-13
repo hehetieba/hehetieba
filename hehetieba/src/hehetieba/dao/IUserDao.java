@@ -29,12 +29,6 @@ public interface IUserDao extends IBaseDao<User> {
 	
 	public User getByUsername(String username);
 	
-	/**
-	 * 后台分页模糊查找用户
-	 * @param username
-	 * @return
-	 */
-	public Pager<User> findByUsername(String username);
 	
 	/**
 	 * 检查用户是否激活状态
@@ -79,6 +73,19 @@ public interface IUserDao extends IBaseDao<User> {
 	 * @return true：有未读反馈
 	 */
 	public boolean checkAllpyResultRead(Integer id);
+	/**
+	 * 后台分页模糊查找用户,根据username(用户名)或nickname(昵称)查找用户信息
+	 * @param name
+	 * @return
+	 */
+	public Pager<User> findByUsernameOrNickname(String name,Integer index,Integer size);
+	/**
+	 * 后台列出所有用户
+	 * @param index
+	 * @param size
+	 * @return
+	 */
+	public Pager<User> findAll(Integer index,Integer size);
 }
 
 

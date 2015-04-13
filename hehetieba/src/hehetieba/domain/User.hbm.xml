@@ -37,8 +37,8 @@
 					FROM t_tie t
 					WHERE t.sendUserId=id)">
         </property>
-        <property name="createdDate" type="timestamp">
-            <column name="createdDate" length="19" />
+        <property name="createDate" type="timestamp">
+            <column name="createDate" length="19" />
         </property>
         <property name="tieRead" type="java.lang.Byte">
             <column name="tieRead" />

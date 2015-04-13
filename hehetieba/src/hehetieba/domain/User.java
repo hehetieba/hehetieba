@@ -20,7 +20,7 @@ public class User implements java.io.Serializable {
 	private Byte gender;
 	private String birthday;
 	private Integer tieCount;	//派生属性
-	private Date createdDate;
+	private Date createDate;
 	private Byte tieRead;
 	private Byte replyRead;
 	private Byte applyResultRead;
@@ -28,15 +28,13 @@ public class User implements java.io.Serializable {
 	private Set userTiebas = new HashSet();
 	private Set tieTitles = new HashSet();
 	
-	
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", nickname="
 				+ nickname + ", pwd=" + pwd + ", headImg=" + headImg
 				+ ", introduction=" + introduction + ", gender=" + gender
 				+ ", birthday=" + birthday + ", tieCount=" + tieCount
-				+ ", createdDate=" + createdDate + ", tieRead=" + tieRead
+				+ ", createDate=" + createDate + ", tieRead=" + tieRead
 				+ ", replyRead=" + replyRead + ", applyResultRead="
 				+ applyResultRead + ", enabled=" + enabled + ", userTiebas="
 				+ userTiebas + ", tieTitles=" + tieTitles + "]";
@@ -45,15 +43,15 @@ public class User implements java.io.Serializable {
 	public User() {
 	}
 
-	public User(Integer id, String username, Date createdDate) {
+	public User(Integer id, String username, Date createDate) {
 		this.id = id;
 		this.username = username;
-		this.createdDate = createdDate;
+		this.createDate = createDate;
 	}
 
 	public User(Integer id, String username, String nickname, String password,
 			String headImg, String introduction, Byte gender, String birthday,
-			Integer tieCount, Date createdDate, Byte tieRead, Byte replyRead,
+			Integer tieCount, Date createDate, Byte tieRead, Byte replyRead,
 			Byte applyResultRead, Byte enabled, Set TUserTiebas,
 			Set TTietitles) {
 		this.id = id;
@@ -65,7 +63,7 @@ public class User implements java.io.Serializable {
 		this.gender = gender;
 		this.birthday = birthday;
 		this.tieCount = tieCount;
-		this.createdDate = createdDate;
+		this.createDate = createDate;
 		this.tieRead = tieRead;
 		this.replyRead = replyRead;
 		this.applyResultRead = applyResultRead;
@@ -146,12 +144,13 @@ public class User implements java.io.Serializable {
 		this.tieCount = tieCount;
 	}
 
-	public Date getCreatedDate() {
-		return this.createdDate;
+
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public Byte getTieRead() {

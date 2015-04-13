@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.text.DefaultEditorKit.BeepAction;
 
+import hehetieba.basic.Pager;
 import hehetieba.domain.User;
 
 public interface IUserService {
@@ -105,6 +106,18 @@ public interface IUserService {
 	 * @param id
 	 */
 	public void enableUser(Integer id);
+	/**
+	 * 根据username(用户名)或nickname(昵称)查找用户信息
+	 * @param username
+	 */
+	public Pager<User> findByUsernameOrNickname(String name,Integer index,Integer size);
+	/**
+	 * 分页查找所有用户
+	 * @param index
+	 * @param size
+	 * @return
+	 */
+	public Pager<User> findAll(Integer index,Integer size);
 	
 }
 

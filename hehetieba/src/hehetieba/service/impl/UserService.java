@@ -1,5 +1,6 @@
 package hehetieba.service.impl;
 
+import hehetieba.basic.Pager;
 import hehetieba.dao.IUserDao;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
@@ -185,5 +186,18 @@ public class UserService implements IUserService {
 	public void enableUser(Integer id) {
 		iUserDao.enableUser(id);
 	}
+
+	@Override
+	public Pager<User> findByUsernameOrNickname(String name,Integer index,Integer size) {
+		// TODO Auto-generated method stub
+		return iUserDao.findByUsernameOrNickname(name,index,size);
+	}
+
+	@Override
+	public Pager<User> findAll(Integer index, Integer size) {
+		// TODO Auto-generated method stub
+		return iUserDao.findAll(index, size);
+	}
+
 
 }
