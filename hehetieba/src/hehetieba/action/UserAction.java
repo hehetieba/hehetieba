@@ -1,5 +1,6 @@
 package hehetieba.action;
 
+import hehetieba.basic.Pager;
 import hehetieba.domain.User;
 import hehetieba.service.IUserService;
 
@@ -290,6 +291,53 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 	
+	/**
+	 * 后台根据用户的username或者nickname查找用户
+	 * @return
+	 * @throws IOException
+	 */
+	public String findByUsernameOrNickname() throws IOException {
+		String name = request.getParameter("name");
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Pager<User> pager = iUserService.findByUsernameOrNickname(name, index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+	    .serializeNulls()
+	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
 	
+	/**
+	 * 后台列出所有用户的一些信息
+	 * @return
+	 * @throws IOException
+	 */
+	public String findAll() throws IOException {
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Pager<User> pager = iUserService.findAll(index, size);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+	    .serializeNulls()
+	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
 
 }

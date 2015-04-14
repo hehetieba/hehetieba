@@ -186,6 +186,22 @@ public class UserServiceTest extends SpringInit {
 		System.out.println(gson.toJson(map));
 	}
 	
+	@Test
+	public void testFindAll() {
+		IUserService iUserService = (IUserService)context.getBean("userService");
+		Integer index = 1;
+		Integer size = 20;
+		Pager<User> pager = iUserService.findAll(index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.serializeNulls()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+		.create();
+		System.out.println(gson.toJson(map));
+	}
+	
 }
 
 
