@@ -293,8 +293,14 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("msg", "已上传");
 		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));
+		
+		User user = (User)request.getSession().getAttribute("user");
+		request.getSession().setAttribute("user", iUserService.getUserById(user.getId()));
+		response.sendRedirect("myindex");
+//		response.sendRedirect("/hehetieba/myindex");
 		
 		return null;
 	}
