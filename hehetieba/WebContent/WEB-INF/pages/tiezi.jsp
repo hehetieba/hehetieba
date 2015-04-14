@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css">
 <link rel="stylesheet" href="css/app.css" type="text/css">
 <link rel="stylesheet" href="css/default.css">
+	<link href="css/toastr.css" rel="stylesheet" type="text/css"/>
 <!--[if lt IE 9]>
     <script src="js/ie/html5shiv.js"></script>
     <script src="js/ie/respond.min.js"></script>
@@ -35,6 +36,7 @@
 	<script src="ueditor/ueditor.config.js"></script>
 	<script src="ueditor/ueditor.all.min.js"></script>
 	<script src="js/extendPagination.js"></script>
+	<script type="text/javascript" src="js/toastr.js"></script>
 </head>
 <style>
 img {
@@ -45,14 +47,14 @@ img {
 <body class="">
 <input type="hidden" id="louzhu">
 <input id="totalRecord" type="hidden"  value='' >
-	<section class="vbox">
+		<section class="vbox">
 		<header
 			class="bg-white-only header header-md navbar navbar-fixed-top-xs">
 			<div class="navbar-header aside bg-info nav-xs">
 				<a class="btn btn-link visible-xs"
 					data-toggle="class:nav-off-screen,open" data-target="#nav,html">
 					<i class="icon-list"></i>
-				</a> <a href="" class="navbar-brand text-lt"> <i
+				</a> <a href="all-tieba" class="navbar-brand text-lt"> <i
 					class="icon-emoticon-smile"></i> <img src="images/logo.png" alt="."
 					class="hide"> <span class="hidden-nav-xs m-l-sm">HeHe</span>
 				</a> <a class="btn btn-link visible-xs" data-toggle="dropdown"
@@ -65,26 +67,13 @@ img {
 						class="icon-indent-right"></i>
 				</a></li>
 			</ul>
-			<form
-				class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs"
-				role="search">
-				<div class="form-group">
-					<div class="input-group">
-						<span class="input-group-btn">
-							<button type="submit"
-								class="btn btn-sm bg-white btn-icon rounded">
-								<i class=" icon-search"></i>
-							</button>
-						</span> <input class="form-control input-sm no-border rounded"
-							placeholder="本吧搜索" type="text">
-					</div>
-				</div>
-			</form>
 			<div class="navbar-right ">
 				<c:if test="${empty user}">
+
 					<a id="modal-login" href="#modal-container-login" role="button"
-						class="btn" data-toggle="modal">登录</a>
-					<a href="register" class="btn">注册</a>
+						class="btn m1" data-toggle="modal">登录</a>
+					<a href="register" class="btn m1">注册</a>
+					<span style="line-height: 34px; float: right;" class="visible-xs">请先登录哦！</span>
 				</c:if>
 				<c:if test="${not empty user}">
 					<ul class="nav navbar-nav m-n hidden-xs nav-user user">
@@ -92,21 +81,20 @@ img {
 						<li class="dropdown"><a href="#"
 							class="dropdown-toggle bg clear" data-toggle="dropdown"> <span
 								class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-									<img src="images/a0.png" alt="..."> <%--                 <c:if test="${not empty user.img}"></c:if> --%>
+									<c:if test="${not empty user.headImg}">
+										<img class="'myhead'" src='${user.headImg}' alt='...'>
+									</c:if> <c:if test="${empty user.headImg}">
+										<img class="'myhead'" src='images/unknow.png' alt='...'>
+									</c:if>
 							</span> ${user.nickname}<b class="caret"></b>
 						</a>
-							        <ul class="dropdown-menu animated fadeInRight">            
-              <li>
-                <span class="arrow top"></span>
-                     <a href="myindex">个人中心</a>
-              </li>       
-              <li class="divider"></li>
-              <li>
-                <a  id="logout-btn">注销</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+							<ul class="dropdown-menu animated fadeInRight">
+								<li><span class="arrow top"></span> <a href="myindex">个人中心</a>
+								</li>
+								<li class="divider"></li>
+								<li><a id="logout-btn">注销</a></li>
+							</ul></li>
+					</ul>
 				</c:if>
 
 			</div>
@@ -124,63 +112,39 @@ img {
 									class="slim-scroll" data-height="auto"
 									data-disable-fade-out="true" data-distance="0" data-size="10px"
 									data-railopacity="0.2">
-
-
-
 									<!-- nav -->
 									<nav class="nav-primary hidden-xs">
 										<ul class="nav bg clearfix">
+											<li><a href="all-tieba"> <i class=" icon-home icon"></i>
+													<span class="font-bold">主页</span>
+											</a></li>
 											<li
 												class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-												Discover</li>
+												发现</li>
 											<li><a
 												href="tie?tiebaId=<%=request.getParameter("tiebaId")%>">
 													<i class="icon-refresh icon text-success"></i> <span
-													class="font-bold">What's new</span>
+													class="font-bold">刷新</span>
 											</a></li>
-											<li><a href="#"> <i class=" icon-envelope icon"></i>
-													<b class="badge bg-danger pull-right">6</b> <span
-													class="font-bold">Message</span>
-											</a></li>
-											<li><a href="#"> <i
-													class="icon-drawer icon text-primary-lter"></i> <b
-													class="badge bg-primary pull-right">6</b> <span
-													class="font-bold">Events</span>
-											</a></li>
-											<li><a href="#"> <i
-													class="icon-list icon  text-info-dker"></i> <span
-													class="font-bold">Listen</span>
-											</a></li>
-											<li><a href="#" data-target="#content"
-												data-el="#bjax-el" data-replace="true"> <i
-													class="icon-social-youtube icon  text-primary"></i> <span
-													class="font-bold">Video</span>
-											</a></li>
+
+											<li><c:if test="${not empty user}">
+													<a href="myindex">
+												</c:if> <c:if test="${empty user}">
+													<a onclick="toastr['error']('请先登录！')">
+												</c:if> <i class="icon-user icon text-primary-lter"></i> <span
+												class="font-bold">个人中心</span> </a></li>
 											<li class="m-b hidden-nav-xs"></li>
 										</ul>
 										<ul class="nav" data-ride="collapse">
-											<li
-												class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-												Interface</li>
+
 											<li><a href="#" class="auto"> <span
 													class="pull-right text-muted"> <i
 														class="fa fa-angle-left text"></i> <i
 														class="fa fa-angle-down text-active"></i>
-												</span> <i class="icon-screen-desktop icon"> </i> <span>Layouts</span>
+												</span> <i class="icon-heart icon"> </i> <span>爱逛的吧</span>
 											</a>
-												<ul class="nav dk text-sm">
-													<li><a href="#" class="auto"> <i
-															class="fa fa-angle-right text-xs"></i> <span>Color
-																option</span>
-													</a></li>
-													<li><a href="#" class="auto"> <i
-															class="fa fa-angle-right text-xs"></i> <span>Boxed
-																layout</span>
-													</a></li>
-													<li><a href="#" class="auto"> <i
-															class="fa fa-angle-right text-xs"></i> <span>Fluid
-																layout</span>
-													</a></li>
+												<ul class="nav dk text-sm myfa">
+													<li><a class='auto'>请先登录</a></li>
 												</ul></li>
 
 
@@ -205,13 +169,13 @@ img {
 						<section class="scrollable wrapper-lg">
 							<div class="row">
 								<div class="col-sm-9">
-									<div style="margin-bottom: 20px;"><h1 class=" title"></h1><span  class="tie-manager" style="position:relative;float: right;cursor: pointer; text-decoration:underline;">帖子管理
-									<ul style="list-style:none;position: absolute; right: 0; top:20px; background: #fff; width: 100px;display: none;">
+									<div style="margin-bottom: 20px;"><h1 class=" title"></h1><span  class="tie-manager btn btn-primary" style="position:relative;margin-right: 15px;float: right;cursor: pointer;display: none;">帖子管理
+									<ul class="dlist">
 									<li><a onclick="deltie();">删除</a></li>
 									<li><a onclick="jiajing();">加精</a></li>
 									<li><a onclick="cancelJiajing()">取消加精</a></li>
 									<li><a onclick="settop()">置顶</a></li>
-									<li><a onclick="cancelSettop()">置顶</a></li>
+									<li><a onclick="cancelSettop()">取消置顶</a></li>
 									</ul></span>
 									<div style="clear: both;"></div>
 									
@@ -221,8 +185,10 @@ img {
 									<div id="callBackPager"></div>
 									<script id="editor" type="text/plain"
 										style="width: 100%; height: 200px;"></script>
-									<a id="submit-btn" class="btn btn-success"
-										style="float: right;">发帖</a>
+									<a <c:if test="${not empty user}">id="submit-btn"</c:if>
+												<c:if test="${empty user}">onclick="toastr['error']('请先登录！')"</c:if>
+												class="btn btn-success"
+												style="float: right; margin-top: 10px; margin-bottom: 10px;">发帖</a>
 
 								</div>
 							</div>
@@ -249,10 +215,10 @@ img {
 				<div class="modal-body">
 
 					<p>
-						<label>用户名</label> <input id="username" type="text">
+						<label>用户名</label> <input id="username" type="text" class="form-control">
 					</p>
 					<p>
-						<label>密码</label><input id="pwd" type="password">
+						<label>密码</label><input id="pwd" type="password" class="form-control">
 					</p>
 
 				</div>
@@ -267,6 +233,27 @@ img {
 
 	</div>
 	<script>
+	$.ajax({
+		type : "POST",
+		url : "hehetieba/tiebaAction_listFavoriteTiebas",
+		data : {
+			userId : '${user.id}'
+		},
+		dataType : "json",
+		success : function(data) {
+			var favStr = "";
+			var favStr1 = "";
+			for (var i = 0; i < data.FavoriteTiebas.length; i++) {
+				favStr1 += "<li><a class='auto' href='tie?tiebaId="
+						+ data.FavoriteTiebas[i].id + "'>"
+						+ data.FavoriteTiebas[i].tiebaName + "吧</a></li>"
+			}
+			$(".myfa").html(favStr1);
+			// <li><a class='auto'></a></li>
+
+		}
+
+	});
 	UE.getEditor('editor');
 	function reply(e){
 			if(e.hasClass("on")){
@@ -276,11 +263,16 @@ img {
 				}
 			else{
 		e.html("收起回复")
-		e.parent().append("<div><input type='text'><button class='btn btn-default' onclick='replyInTie($(this));'>回复</button></div>");
+		e.parent().append("<div><input type='text' class='form-control xhh'><button class='btn btn-default' onclick='replyInTie($(this));'>回复</button></div>");
 		e.addClass("on");
 			}		
 	}	
 	function replyInTie(e){
+	
+		if('${user.id}'==""){
+toastr['error']("请先登录！");
+
+			}else{
 		tieId=e.parent().parent().parent().attr("id")
 		body=e.prev().val();
  		$.ajax({
@@ -294,11 +286,11 @@ img {
  					body:body
 					},
 				dataType:"json",
-				success:function(data){alert(data)}
+				success:function(data){toastr['success']("回复成功！")}
 
  			})
 		}
-
+	}
 
 
 		$(document).ready(function(e) {
@@ -317,7 +309,7 @@ img {
 							    createTable(1, 10,data.pager.totalRecord);
 								},
 							error : function() {
-								alert("未知错误");
+								toastr['error']("未知错误");
 							}
 				 }); 
         var totalCount = parseInt($("#totalRecord").val()), showCount =10,
@@ -386,7 +378,7 @@ img {
 			
 					
 					},
-					error : function() {alert("拉取数据失败！");}	
+					error : function() {toastr['error']("拉取数据失败！");}	
 				});     
     }
 	callBackPagination(); 			
@@ -404,7 +396,10 @@ img {
 							body:main_html
 							},
 					success:function(){
-						alert("回复成功")
+						toastr['success']("回复成功")
+						setTimeout(function() {
+							window.top.location.reload()
+						}, 500);
 						}
 
 						});
@@ -414,7 +409,8 @@ img {
 					type : "POST",
 					url : "hehetieba/userAction_logout"
 				})
-
+					window.top.location.reload()
+			
 			});
 			$(".login-btn").click(function() {
 				$.ajax({
@@ -427,13 +423,16 @@ img {
 					dataType : "json",
 					success : function(data) {
 						if (data.flag == true) {
-							alert("登录成功");
+							toastr['success']("登录成功");
+							setTimeout(function() {
+								window.top.location.reload()
+							}, 500);
 						} else {
-							alert("账号或密码错误");
+							toastr['error']("账号或密码错误");
 						}
 					},
 					error : function() {
-						alert("未知错误");
+						toastr['error']("未知错误");
 					}
 				})
 			});
@@ -465,7 +464,7 @@ img {
 			type:"post",
 			url:"tieTitleAction_delete?tieTitleId="+<%=request.getParameter("tieTitleId")%>,
 			success:function(){
-              alert("删除成功");
+              toastr['success']("删除成功");
 				}
 			});
 			}
@@ -475,7 +474,7 @@ img {
 				type:"post",
 				url:"tieTitleAction_jiajing?id="+<%=request.getParameter("tieTitleId")%>,
 				success:function(){
-	              alert("加精成功");
+	              toastr['success']("加精成功");
 					}
 				});
 
@@ -486,7 +485,7 @@ img {
 				type:"post",
 				url:"tieTitleAction_cancelJiajing?id="+<%=request.getParameter("tieTitleId")%>,
 				success:function(){
-	              alert("取消加精成功");
+	              toastr['success']("取消加精成功");
 					}
 				});
 
@@ -497,7 +496,7 @@ img {
 				type:"post",
 				url:"tieTitleAction_setTop?id="+<%=request.getParameter("tieTitleId")%>,
 				success:function(){
-	              alert("置顶成功");
+	              toastr['success']("置顶成功");
 					}
 				});
 
@@ -508,10 +507,24 @@ img {
 				type:"post",
 				url:"tieTitleAction_cancelSetTop?id="+<%=request.getParameter("tieTitleId")%>,
 				success:function(){
-	              alert("取消置顶成功");
+	              toastr['success']("取消置顶成功");
 					}
 				});
 
+			}
+		toastr.options = {
+				"closeButton" : true,
+				"debug" : false,
+				"positionClass" : "toast-top-full-width",
+				"onclick" : null,
+				"showDuration" : "30",
+				"hideDuration" : "5000",
+				"timeOut" : "5000",
+				"extendedTimeOut" : "1000",
+				"showEasing" : "swing",
+				"hideEasing" : "swing",
+				"showMethod" : "show",
+				"hideMethod" : "hide"
 			}
 	</script>
 </body>
