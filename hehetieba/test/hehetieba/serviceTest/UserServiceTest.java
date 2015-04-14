@@ -98,9 +98,13 @@ public class UserServiceTest extends SpringInit {
 	@Test
 	public void testLogin() {
 		IUserService iUserService = (IUserService)context.getBean("userService");
-		String username= "zhangsan";
-		String pwd = "zhangsan1";
+		String username= "qianqi";
+		String pwd = "qianqi";
 		boolean flag = iUserService.login(username,pwd);
+		if(flag==true)
+			System.out.println("登陆成功");
+		else
+			System.out.println("登录失败");
 		System.out.println(flag);
 	}
 	

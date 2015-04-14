@@ -121,5 +121,17 @@ public class TiebaService implements ITiebaService {
 		tieba.setBgImg(bgImgPath);
 	}
 
+	@Override
+	public void enableTieba(Integer tiebaId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableTieba(Integer tiebaId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

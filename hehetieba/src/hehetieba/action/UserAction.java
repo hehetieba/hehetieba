@@ -58,6 +58,14 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 
 	File headImg;
 	
+	public File getHeadImg() {
+		return headImg;
+	}
+
+	public void setHeadImg(File headImg) {
+		this.headImg = headImg;
+	}
+
 	/**
 	 * 检查Username是否存在
 	 * @return

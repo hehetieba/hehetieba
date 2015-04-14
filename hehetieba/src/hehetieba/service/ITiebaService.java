@@ -67,4 +67,14 @@ public interface ITiebaService {
 	 * @return
 	 */
 	public void uploadBgImg(Integer tiebaId,File bgImg,String ext);
+	/**
+	 * 恢复贴吧
+	 * @param tiebaId
+	 */
+	public void enableTieba(Integer tiebaId);
+	/**
+	 * 禁用贴吧
+	 * @param tiebaId
+	 */
+	public void disableTieba(Integer tiebaId);
 }

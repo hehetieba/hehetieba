@@ -76,7 +76,7 @@ public class UserService implements IUserService {
 		user.setTieRead((byte) 0);
 		user.setReplyRead((byte) 0);
 		user.setApplyResultRead((byte) 0);
-		user.setEnabled((byte) 0);
+		user.setEnabled((byte) 1);
 		return user;
 	}
 
