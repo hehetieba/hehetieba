@@ -45,5 +45,17 @@ public class UserTiebaDao extends BaseDao<UserTieba> implements IUserTiebaDao{
 		return count;
 	}
 
+	@Override
+	public Integer updateEnableToZero(User user, Tieba tieba) {
+		// TODO Auto-generated method stub
+		String hql = "update UserTieba ut "
+				+ "set ut.enabled=0 "
+				+ "where ut.user=:user and ut.tieba=:tieba";
+		Map<String, Object> alias = new HashMap<>();
+		alias.put("user", user);
+		alias.put("tieba", tieba);
+		return super.updateByHql(hql, alias);
+	}
+
 
 }

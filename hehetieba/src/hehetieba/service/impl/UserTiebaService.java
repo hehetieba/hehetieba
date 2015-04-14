@@ -94,5 +94,13 @@ public class UserTiebaService implements IUserTiebaService {
 		return userTieba;
 	}
 
+	@Override
+	public Integer cancelFosus(Integer userId, Integer tiebaId) {
+		// TODO Auto-generated method stub
+		User user = iUserDao.load(userId);
+		Tieba tieba = iTiebaDao.load(tiebaId);
+		return iUserTiebaDao.updateEnableToZero(user, tieba);
+	}
+
 
 }

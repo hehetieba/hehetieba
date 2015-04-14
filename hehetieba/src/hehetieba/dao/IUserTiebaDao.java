@@ -26,4 +26,12 @@ public interface IUserTiebaDao extends IBaseDao<UserTieba> {
 	 * @return
 	 */
 	public UserTieba loadByUser_Tieba(User user,Tieba tieba);
+	/**
+	 * 更新UserTieba的enabled
+	 * @param user
+	 * @param tieba
+	 * @return
+	 */
+	public Integer updateEnableToZero(User user,Tieba tieba);
+	
 }

@@ -1,12 +1,9 @@
 package hehetieba.service;
 
-import java.io.File;
-import java.util.List;
-
-import javax.swing.text.DefaultEditorKit.BeepAction;
-
 import hehetieba.basic.Pager;
 import hehetieba.domain.User;
+
+import java.io.File;
 
 public interface IUserService {
 	

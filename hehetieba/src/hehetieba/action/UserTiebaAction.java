@@ -96,6 +96,28 @@ public class UserTiebaAction extends ActionSupport implements ServletRequestAwar
 		
 		return null;
 	}
+	
+	public String cancelFocus() throws IOException {
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		
+		Integer cnt = iUserTiebaService.cancelFosus(userId, tiebaId);
+		Map<String, Object> map = new HashMap<String, Object>();
+		String msg;
+		if(cnt>0) {
+			msg="取消关注成功";
+		}
+		else {
+			msg="取消关注失败";
+		}
+		map.put("msg", msg);
+		Gson gson = new Gson();
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
 
 }
 

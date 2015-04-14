@@ -22,4 +22,11 @@ public interface IUserTiebaService {
 	 * @return
 	 */
 	public boolean checkBaZhu(Integer userId,Integer tiebaId);
+	/**
+	 * 用户取消对某贴吧的关注
+	 * @param userId
+	 * @param tiebaId
+	 * @return
+	 */
+	public Integer cancelFosus(Integer userId,Integer tiebaId);
 }

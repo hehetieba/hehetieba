@@ -86,6 +86,24 @@ public class UserTiebaServiceTest extends SpringInit {
 		System.out.println(gson.toJson(map));
 	}
 	
+	@Test
+	public void testCancelFocus() {
+		IUserTiebaService iUserTiebaService = (IUserTiebaService)context.getBean("userTiebaService");
+		Integer userId = 1;
+		Integer tiebaId = 1; 
+		Integer cnt = iUserTiebaService.cancelFosus(userId, tiebaId);
+//		System.out.println(user);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cnt", cnt);
+		Gson gson = new Gson();
+		System.out.println("更新数量："+gson.toJson(map));
+		if(cnt>0)
+			System.out.println("更新成功");
+		else {
+			System.out.println("更新失败");
+		}
+	}
+	
 }
 
 
