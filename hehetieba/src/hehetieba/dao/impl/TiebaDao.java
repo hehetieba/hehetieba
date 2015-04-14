@@ -60,4 +60,5 @@ public class TiebaDao extends BaseDao<Tieba> implements ITiebaDao  {
 	}
 
 
+
 }

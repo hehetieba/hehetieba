@@ -154,6 +154,39 @@ public class TieTitleServiceTest extends SpringInit {
 		System.out.println(gson.toJson(map));
 	}
 	
+	@Test
+	public void testSearchByTitle() {
+		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
+		String title = "title";
+		Integer index = 1;
+		Integer size = 11;
+		Pager<TieTitle> pager = iTieTitleService.searchByTitle(title, index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.serializeNulls()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+		.create();
+		System.out.println(gson.toJson(map));
+	}
+	
+	@Test
+	public void testFindAll() {
+		ITieTitleService iTieTitleService = (ITieTitleService)context.getBean("tieTitleService");
+		Integer index = 1;
+		Integer size = 11;
+		Pager<TieTitle> pager = iTieTitleService.findAll(index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+		.serializeNulls()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+		.create();
+		System.out.println(gson.toJson(map));
+	}
+	
 }
 
 

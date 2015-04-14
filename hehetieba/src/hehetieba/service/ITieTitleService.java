@@ -67,4 +67,20 @@ public interface ITieTitleService {
 	 * @return
 	 */
 	public Pager<TieTitle> findUserTieTitle(Integer userId,Integer index,Integer size);
+	/**
+	 * 后台根据帖子的标题搜索帖子
+	 * @param title
+	 * @param index
+	 * @param size
+	 * @return
+	 */
+	public Pager<TieTitle> searchByTitle(String title,Integer index,Integer size);
+	/**
+	 * 后台分页显示所有帖子(不包含内容)
+	 * @param title
+	 * @param index
+	 * @param size
+	 * @return
+	 */
+	public Pager<TieTitle> findAll(Integer index,Integer size);
 }

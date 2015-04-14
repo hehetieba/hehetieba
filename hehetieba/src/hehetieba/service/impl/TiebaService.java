@@ -3,6 +3,7 @@ package hehetieba.service.impl;
 import hehetieba.basic.Pager;
 import hehetieba.dao.ITiebaApplyDao;
 import hehetieba.dao.ITiebaDao;
+import hehetieba.dao.IUserTiebaDao;
 import hehetieba.domain.Tieba;
 import hehetieba.domain.TiebaApply;
 import hehetieba.dto.TiebaDto;
@@ -124,13 +125,15 @@ public class TiebaService implements ITiebaService {
 	@Override
 	public void enableTieba(Integer tiebaId) {
 		// TODO Auto-generated method stub
-		
+		Tieba tieba = iTiebaDao.load(tiebaId);
+		tieba.setEnabled((byte)1);
 	}
 
 	@Override
 	public void disableTieba(Integer tiebaId) {
 		// TODO Auto-generated method stub
-		
+		Tieba tieba = iTiebaDao.load(tiebaId);
+		tieba.setEnabled((byte)0);
 	}
 
 	

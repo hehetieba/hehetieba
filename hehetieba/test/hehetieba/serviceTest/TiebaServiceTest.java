@@ -247,6 +247,24 @@ public class TiebaServiceTest extends SpringInit {
 		System.out.println("上传完毕");
 	}
 	
+	@Test
+	public void testEnableTieba() {
+		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
+		Integer tiebaId = 1;
+		iTiebaService.enableTieba(tiebaId);
+		
+		System.out.println("已经恢复该贴吧");
+	}
+	
+	@Test
+	public void testDisableTieba() {
+		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
+		Integer tiebaId = 1;
+		iTiebaService.disableTieba(tiebaId);
+		
+		System.out.println("已经禁用该贴吧");
+	}
+	
 }
 
 

@@ -32,4 +32,31 @@ public class TieTitleDao extends BaseDao<TieTitle> implements ITieTitleDao {
 		return pager;
 	}
 
+	@Override
+	public Pager<TieTitle> findByTitle(String title, Integer index, Integer size) {
+		// TODO Auto-generated method stub
+		String hql = "select new map(tt.id as tieTitleId,tt.title as title,"
+				+ "u.username as username,tb.tiebaName as tiebaName,tt.createDate as createDate) "
+				+ "from TieTitle tt "
+				+ "left join tt.user u "
+				+ "left join tt.tieba tb "
+				+ "where tt.title like :title";
+		Map<String, Object> alias = new HashMap<>();
+		alias.put("title", title);
+		return super.findByAlias(hql, index, size, alias);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

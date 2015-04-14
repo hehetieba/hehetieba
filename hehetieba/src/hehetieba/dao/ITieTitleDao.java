@@ -20,6 +20,14 @@ public interface ITieTitleDao extends IBaseDao<TieTitle> {
 	 * @return
 	 */
 	public Pager<TieTitle> getByUserId(User user,Integer index,Integer size);
+	/**
+	 * 根据title分页查找tietitle表
+	 * @param title
+	 * @param index
+	 * @param size
+	 * @return
+	 */
+	public Pager<TieTitle> findByTitle(String title,Integer index,Integer size);
 }
 
 

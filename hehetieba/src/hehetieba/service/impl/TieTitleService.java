@@ -178,6 +178,24 @@ public class TieTitleService implements ITieTitleService {
 		return iTieTitleDao.getByUserId(user, index, size);
 	}
 
+	@Override
+	public Pager<TieTitle> searchByTitle(String title, Integer index,
+			Integer size) {
+		// TODO Auto-generated method stub
+		return iTieTitleDao.findByTitle(title, index, size);
+	}
+
+	@Override
+	public Pager<TieTitle> findAll(Integer index, Integer size) {
+		// TODO Auto-generated method stub
+		String hql = "select new map(tt.id as tieTitleId,tt.title as title,"
+				+ "u.username as username,tb.tiebaName as tiebaName,tt.createDate as createDate) "
+				+ "from TieTitle tt "
+				+ "left join tt.user u "
+				+ "left join tt.tieba tb";
+		return iTieTitleDao.find(hql, index, size);
+	}
+
 
 
 
