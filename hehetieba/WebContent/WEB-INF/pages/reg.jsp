@@ -8,19 +8,17 @@
 <title>注册</title>
 <link rel="icon" type="image/x-icon" href="<%=path%>/img/favicon.ico"/>
 <link rel="stylesheet" href="<%=path%>/css/login.min.css" type='text/css' />
+	<link href="css/toastr.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript"  src="<%=path%>/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/toastr.js"></script>
 <script type="text/javascript">
-if('${successMsg}'!=''){
-	alert("注册成功，请登录");
-}
-
 	function checkReg() {
 		if ($("#username").val() != '' && $("#nickname").val() != ''
 				&& $("#password1").val() != '' && $("#password2").val() != ''
 				&& $("#password1").val() == $("#password2").val()
 				&& $("#password1").val().length > 5) {
 			$(".reg_btn").css("display", "block");
-			$(".message").css("display", "none");
+
 		}
 		if (!($("#username").val() != '' && $("#nickname").val() != ''
 				&& $("#password1").val() != '' && $("#password2").val() != ''
@@ -41,7 +39,7 @@ if('${successMsg}'!=''){
 					dataType : "json",
 				success:function(data){ 
 					if(data.flag){
-					$(".message span").html("该用户已存在！");
+					toastr['error']("该用户已存在！");
 					}else{
 						$(".message").css("display", "none");
 						}
@@ -51,7 +49,7 @@ if('${successMsg}'!=''){
 		}
 		if ($("#username").val() == '') {
 			$(".message").css("display", "block");
-			$(".message span").html("请输入正确的用户名（英文数字下划线）。");
+			toastr['error']("请输入正确的用户名（英文数字下划线）。");
 		}
 	}
 	function checkNickname() {
@@ -65,7 +63,7 @@ if('${successMsg}'!=''){
 					dataType : "json",
 					success:function(data){ 
 					if(data.flag){
-					$(".message span").html("该昵称已存在！");
+					toastr['error']("该昵称已存在！");
 					}else{
 						$(".message").css("display", "none");
 						}
@@ -75,7 +73,7 @@ if('${successMsg}'!=''){
 		}
 		if ($("#nickname").val()=='') {		
 			$(".message").css("display", "block");
-			$(".message span").html("请输入用户昵称！");
+			toastr['error']("请输入用户昵称！");
 		}
 	}
 	function checkPas() {
@@ -86,7 +84,7 @@ if('${successMsg}'!=''){
 		}
 		if ($("#password1").val().length<6) {
 			$(".message").css("display", "block");
-			$(".message span").html("密码必须6位以上！");
+			toastr['error']("密码必须6位以上！");
 		}
 	}
 
@@ -98,11 +96,24 @@ if('${successMsg}'!=''){
 		}
 		if ($("#password1").val() != $("#password2").val()) {
 			$(".message").css("display", "block");
-			$(".message span").html("密码和确认密码不一致！请从新输入！");
+			toastr['error']("密码和确认密码不一致！请从新输入！");
 		}
 
 	}
-	
+	toastr.options = {
+			"closeButton" : true,
+			"debug" : false,
+			"positionClass" : "toast-top-full-width",
+			"onclick" : null,
+			"showDuration" : "30",
+			"hideDuration" : "5000",
+			"timeOut" : "5000",
+			"extendedTimeOut" : "1000",
+			"showEasing" : "swing",
+			"hideEasing" : "swing",
+			"showMethod" : "show",
+			"hideMethod" : "hide"
+		}
 	
    $(document).ready(function(e) {
 
@@ -117,12 +128,7 @@ if('${successMsg}'!=''){
 		<h1>
 			<a id="logo" href="book.do?method=index" title="">HeHe</a>
 		</h1>
-		<p class="message register" style="display: none;">
-			<strong>错误</strong>：<span><c:if test="${not empty errorMsg}">${errorMsg}<script>
-				$(".message").css("display", "block");
-			</script>
-				</c:if></span>
-		</p>
+
 
 
 		<form action="hehetieba/userAction_register" method="post">
@@ -156,7 +162,7 @@ if('${successMsg}'!=''){
 		</form>
 
 		<p id="nav">
-			<a href="book.do?method=index">返回登录</a>
+			<a href="all-tieba">返回主页</a>
 		</p>
 
 		<p id="backtoblog">
