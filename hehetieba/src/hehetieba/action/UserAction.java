@@ -261,7 +261,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 	
 	public String changeMessage() throws IOException {
 		Integer userId = Integer.valueOf(request.getParameter("userId"));
-		String nickname = request.getParameter("userId");
+		String nickname = request.getParameter("nickname");
 		String introduction = request.getParameter("introduction");
 		Byte gender = Byte.valueOf(request.getParameter("gender"));
 		String birthday = request.getParameter("birthday");;

@@ -23,7 +23,7 @@
 
 	<!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
 	<constant name="struts.devMode" value="true" />
-
+  
 	<package name="struts-global" namespace="/" extends="struts-default">
 		<global-results>
 			<result name="errHandler" type="chain">
@@ -39,7 +39,7 @@
 			<result>/pages/error.jsp</result>
 		</action>
 	</package>
-
+	
 	<include file="struts2/struts-ui.xml"></include>
 	<include file="struts2/struts-user.xml"></include>
 	<include file="struts2/struts-tieba.xml"></include>

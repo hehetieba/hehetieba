@@ -93,3 +93,9 @@
    .tie-text{display:inline-block; width:70%;}
    .reply-btn{ float:right ; margin-right:20px; margin-top: -50px; }
    .jiajing{ color:#AE1D2C !important;}
+   .tab_menu{ margin-top: 80px; margin-left: -50px;}
+   .tab_menu li{float: left; overflow: auto; margin-left: 10px; background: #4CB6CB; color: #fff; padding:5px 10px; cursor:pointer;border-radius:5px; border: 1px solid #fff;}
+   .tab_menu .current{ background: #fff; border: #4cb6cb 1px solid; color: #4cb6cb ; }
+   .tab_box{ padding:10px 20px; border:#4cb6cb 2px solid; border-top: none; overflow: hidden;}
+    .tab_box li{margin-left: -40px;}
+    .shhw img,.wdhf img,.wfdt img,.whdt img{ width: 20px; height: 20px;}

@@ -59,7 +59,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle bg clear" data-toggle="dropdown">
               <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
-                <img src="images/a0.png" alt="...">
+                <img class="myhead" src="images/unknow.png" alt="...">
 <%--                 <c:if test="${not empty user.img}"></c:if> --%>
               </span>
               ${user.nickname}<b class="caret"></b>
@@ -67,23 +67,13 @@
             <ul class="dropdown-menu animated fadeInRight">            
               <li>
                 <span class="arrow top"></span>
-                <a href="#">Settings</a>
-              </li>
-              <li>
-                <a href="#">Profile</a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="badge bg-danger pull-right">3</span>
-                  Notifications
-                </a>
-              </li>
-              <li>
-                <a href="#">Help</a>
-              </li>
+                     <a href="myindex">个人中心</a>
+              </li> 
+ 				 <li class="divider"></li>    
+ 				 <li>  <a   href="#modal-container-xgxx" data-toggle="modal">修改个人信息</a></li> 
               <li class="divider"></li>
               <li>
-                <a  id="logout-btn">Logout</a>
+                <a  id="logout-btn">注销</a>
               </li>
             </ul>
           </li>
@@ -191,10 +181,53 @@
           </section>
         </aside>
         <!-- /.aside -->
-      <section  id="content">
+      <section  id="content" style="background: #fff;">
+     <div style=" background-color:#A2D9E4; height: 120px; padding-top:50px;"> 
+		 <div style=" width:140px; height:140px;   border:5px solid #fff; border-radius:50%;  margin-left:50px; float: left;" ><img  class="myhead" src="images/unknow.png" style="width: 130px;height: 130px; border-radius:50%;"  /></div>
+<span  style="float:left; margin-top:30px;margin-left:20px; font-size: 24px; color: #fff;" class="myname"></span>
+<p style="margin-top: 40px; margin-left: 10px;" class="gxqm" ></p>
+<p style="margin-top: 10px; margin-left: 210px;" class="xbnl"></p>
+      </div>
       
-      
-      
+      <div class="demo2" style="padding: 0 50px;">
+			<ul class="tab_menu" style="list-style: none;">
+				<li class="current">我发的贴</li>
+				<li>我回的贴</li>
+				<li>谁回复我贴</li>
+				<li>我的回复</li>
+				<li>回复我的</li>
+			</ul>
+			<div style="clear: both;"></div>
+			<div style="height: 30px; background: #4cb6cb; border-top-left-radius:5px;border-top-right-radius:5px; margin-top: 10px;"></div>
+			<div class="tab_box" style="overflow: auto;height: 300px;">
+				<div >
+				<ul class="wfdt">
+				
+				</ul>
+					
+				</div>
+				<div class="hide">
+			<ul class="whdt">
+			
+			</ul>
+				</div>
+				<div class="hide">
+				<ul class="shhw">
+				
+				</ul>
+				</div>
+				<div class="hide">
+					<ul class="wdhf">
+					
+					</ul>
+				</div>
+					<div class="hide">
+					<ul class="hfwd">
+					
+					</ul>
+				</div>
+			</div>
+		</div><!--demo2 end-->
       </section>
       </section>
     </section>    
@@ -226,6 +259,38 @@
 				</div>
 				
 			</div>
+			
+			
+		
+			
+			<div class="modal fade" id="modal-container-xgxx" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								修改个人信息
+							</h4>
+						</div>
+					
+						<div class="modal-body">
+          			<form action="userAction_uploadHeadImg" method="post" enctype="multipart/form-data">
+          			<input type="file" id="headImg" name="headImg">
+          			<input name="userId" value=1>
+          			<input name="ext" value=".jpg">
+          			<input type="submit" value="222">
+          			</form>
+                           
+						</div>
+						<div class="modal-footer">
+							 <a type="button" class="btn  btn-warning xgxx-btn" >修改</a> <button type="button" class="btn btn-primary" data-dismiss="modal">返回</button>
+						</div>
+					
+					</div>
+					
+				</div>
+				
+			</div>
  <script src="js/jquery-1.9.1.min.js"></script>
   <!-- Bootstrap -->
   <script src="js/bootstrap.js"></script>
@@ -234,8 +299,140 @@
   <script src="js/jquery.js"></script>
     <script src="js/app_002.js"></script>
   <script type="text/javascript" src="js/jquery_002.js"></script>
+  <script type="text/javascript" src="js/jquery.tabs.js"></script>
+	<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script>
+$.ajax({
+	type:"POST",
+	url:"hehetieba/userAction_getUserById?id="+'${user.id}',
+	dataType:"json",
+	success:function(data){
+$(".myname").html(data.user.nickname);
+if(data.user.headImg==""){}else{
+$(".myhead").attr("src",data.user.headImg);
+}
+$(".gxqm").html(data.user.introduction);
+if(data.user.gender==1){var gender="男"}else{var gender="女"}
+$(".xbnl").html(gender+"　"+data.user.birthday+"　发帖数"+data.user.tieCount);
+		}
+
+
+	
+});
+$.ajax({
+		type:"POST",
+		url:"hehetieba/tieTitleAction_findUserTieTitle",
+		data:{
+			userID:'${user.id}',
+			index:1,
+			size:999
+			},
+		dataType:"json",
+		success:function(data){
+			var str="";
+   	 		for(var i=0;i<data.pager.datas.length;i++){	
+   	 		str+="<li>主题：<a href='tiezi?tieTitleId="+data.pager.datas[i].id+"'>"+data.pager.datas[i].title+"</a>  回复数："+data.pager.datas[i].replyCount+"   最后回复:"+data.pager.datas[0].lastPostUserName+" "+data.pager.datas[0].lastPostTime+"</li>"
+   	   	 		}
+	   	 	$(".wfdt").html(str);	
+			}
+	})
+
+$.ajax({
+		type:"POST",
+		url:"hehetieba/tieAction_findMyTie",
+		data:{
+			sendUserId:'${user.id}',
+			index:1,
+			size:999
+			},
+		dataType:"json",
+		success:function(data){
+			var str="";
+   	 		for(var i=0;i<data.pager.datas.length;i++){	
+   	 		str+="<li>回复 主题："+data.pager.datas[i].title+" 说：“"+data.pager.datas[i].body+"” 来自 "+data.pager.datas[i].tiebaName+"吧</li>"
+   	   	 		}
+	   	 	$(".whdt").html(str);	
+			}
+	})
+	$.ajax({
+		type:"POST",
+		url:"hehetieba/tieAction_findOtherSendToMeTie",
+		data:{
+			beSendUserId:'${user.id}',
+			index:1,
+			size:999
+			},
+		dataType:"json",
+		success:function(data){
+			var str="";
+   	 		for(var i=0;i<data.pager.datas.length;i++){	
+   	 		str+="<li>"+data.pager.datas[i].username+" 回复我的 "+data.pager.datas[i].title+" 说：“"+data.pager.datas[i].body+"” 来自"+data.pager.datas[i].tiebaName+"吧</li>"
+   	   	 		}
+	   	 	$(".shhw").html(str);	
+			}
+	})	
+$.ajax({
+		type:"POST",
+		url:"hehetieba/replyAction_findMyReply",
+		data:{
+			sendUserId:'${user.id}',
+			index:1,
+			size:999
+			},
+		dataType:"json",
+		success:function(data){
+			var str="";
+   	 		for(var i=0;i<data.pager.datas.length;i++){	
+   	 		str+="<li>我回复 "+data.pager.datas[i].title+" 说：“"+data.pager.datas[i].body+"” 来自"+data.pager.datas[i].tiebaName+"吧 "+data.pager.datas[i].createDate+"</li>"
+   	   	 		}
+	   	 	$(".wdhf").html(str);	
+			}
+			//
+	})	
+
+$.ajax({
+		type:"POST",
+		url:"hehetieba/replyAction_findOtherSendToMeReply",
+		data:{
+			sendUserId:'${user.id}',
+			index:1,
+			size:999
+			},
+		dataType:"json",
+		success:function(data){
+			var str="";
+   	 		for(var i=0;i<data.pager.datas.length;i++){	
+   	 		str+="<li>"+data.pager.datas[i].username+"回复 "+data.pager.datas[i].title+" 说：“"+data.pager.datas[i].body+"” 来自"+data.pager.datas[i].tiebaName+"吧 "+data.pager.datas[i].createDate+"</li>"
+   	   	 		}
+	   	 	$(".hfwd").html(str);	
+			}
+	})	
+			
+$("#xgtx-btn").click(function(){
+	var ext="."+$("#headImg").val().split('.').pop().toLowerCase();
+		$.ajaxFileUpload({
+			type:'POST',
+			url:"userAction_uploadHeadImg",
+			fileElementId:'headImg',
+			datatype:'json',
+			data:{
+				userId:'${user.id}',
+				ext:ext
+				},
+			success:function(data){
+			alert(2222);
+			},
+			error:function(xhr, textStatus, error){
+				alert("修改失败");
+			}
+		});		
+	});
+	
    $(document).ready(function(e) {
+	   $('.demo2').Tabs({
+			event:'click'
+		});
+	   
 	   $("#logout-btn").click(function(){
 			$.ajax({
 				type:"POST",
@@ -266,6 +463,8 @@
 		});
     
 });
+
+	   
 
 </script>
 </body></html>

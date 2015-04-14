@@ -36,7 +36,8 @@ img {
 .spotlightWrapper ul li {
 	float: left; /* important: left float */
 	position: relative; /* so we can use top and left positioning */
-	background-color: #fff;
+	background-color: #000;
+	margin-left: 5px;
 }
 
 .spotlightWrapper ul li a img {
@@ -47,11 +48,15 @@ img {
 }
 
 .spotlightWrapper ul li a p {
+background:#fff;
 	position: absolute;
 	font-size:12px;
 	top: 158px;
 	width: 180px;
-	padding: 0px 10px;
+	padding:0 10px;
+	height: 30px;
+	line-height: 30px;
+	
 }
 
 .spotlightWrapper ul li a p span {
@@ -63,16 +68,18 @@ img {
 	float: right;
 	right: 0;
 	margin-left:5px;
+	margin-top: 10px;
 }
 
 .spotlightWrapper ul li a img.active {
-	border: 4px solid white; /* choose whatever you like */
-	z-index: 1;
+	
 	/* show it on top of the other images (they have z-index 0) */
 	left: -4px; /* same as border width but negative */
 	top: -4px; /* same as border width but negative */
+	width: 208px;
+	height: 208px;
 }
-
+.spotlightWrapper img{ width: 200px; height: 200px;} 
 .clear {
 	clear: both;
 } /* to clear the float after the last item */
@@ -83,7 +90,7 @@ img {
 	<div class='spotlightWrapper'>
 		<!-- start unordered list -->
 		<ul>
-			<div class='clear '></div>
+			<div class='clear'></div>
 		</ul>
 		<!-- end unordered list -->
 	</div>
@@ -119,7 +126,7 @@ img {
 
 							$('.spotlightWrapper ul li').css({
 								'width' : spotlight.imgWidth,
-								'height' : spotlight.imgHeight +30
+								'height' : spotlight.imgHeight
 							});
 							$('.spotlightWrapper ul li').hover(function() {
 								$(this).find('img').addClass('active').css({

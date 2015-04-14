@@ -83,18 +83,18 @@
 									<img src="images/a0.png" alt="..."> <%--                 <c:if test="${not empty user.img}"></c:if> --%>
 							</span> ${user.nickname}<b class="caret"></b>
 						</a>
-							<ul class="dropdown-menu animated fadeInRight">
-								<li><span class="arrow top"></span> <a href="#">Settings</a>
-								</li>
-								<li><a href="#">Profile</a></li>
-								<li><a href="#"> <span
-										class="badge bg-danger pull-right">3</span> Notifications
-								</a></li>
-								<li><a href="#">Help</a></li>
-								<li class="divider"></li>
-								<li><a id="logout-btn">Logout</a></li>
-							</ul></li>
-					</ul>
+	        <ul class="dropdown-menu animated fadeInRight">            
+              <li>
+                <span class="arrow top"></span>
+                   <a href="myindex">个人中心</a>
+              </li>       
+              <li class="divider"></li>
+              <li>
+                <a  id="logout-btn">注销</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
 				</c:if>
 
 			</div>
