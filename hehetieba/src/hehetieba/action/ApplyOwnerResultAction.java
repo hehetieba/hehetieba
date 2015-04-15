@@ -2,9 +2,6 @@ package hehetieba.action;
 
 import hehetieba.basic.Pager;
 import hehetieba.domain.ApplyOwnerResult;
-import hehetieba.domain.Reply;
-import hehetieba.domain.Tie;
-import hehetieba.domain.TieTitle;
 import hehetieba.service.IApplyOwnerResultService;
 import hehetieba.service.IReplyService;
 
@@ -12,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,10 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ApplyOwnerResultAction extends ActionSupport implements ServletRequestAware,
