@@ -24,5 +24,8 @@
 		<action name="tiezi"  class="hehetieba.ui.TieUI">
 			<result>WEB-INF/pages/tiezi.jsp</result>
 		</action>
+		<action name="userhoutai"  class="hehetieba.ui.TieUI">
+			<result>WEB-INF/pages/userhoutai.jsp</result>
+		</action>	
 	</package>
 </struts>	

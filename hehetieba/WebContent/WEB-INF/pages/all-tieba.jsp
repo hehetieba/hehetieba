@@ -9,8 +9,11 @@
 <meta charset="utf-8">
 <title>呵呵贴吧</title>
 <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+	<link href="css/toastr.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" charset="utf-8"
 	src="<%=path%>/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/toastr.js">
+		</script>
 <script type="text/javascript" charset="utf-8">
 	$(window).load(function() {
 
@@ -86,16 +89,109 @@ background:#fff;
 </style>
 </head>
 <body>
-	<!-- start spotlightWrapper div -->
+	<div style="height: 100px;width: 100%;">
+	<input  class="sb-input" type="text" style="  padding:5px 10px; margin-top:35px; width: 200px;"><button style="border: none; padding: 5px; cursor: pointer; " class="sb-btn">搜吧</button>
+	
+	</div>
 	<div class='spotlightWrapper'>
 		<!-- start unordered list -->
-		<ul>
+		<ul class="sb-ul">
 			<div class='clear'></div>
 		</ul>
 		<!-- end unordered list -->
 	</div>
+
 	<!-- end spolightWrapper div -->
 	<script>
+
+	function cj(){
+
+		$.ajax({
+			type:"post",
+			url:"tiebaApplyAction_saveTiebaApply?tiebaName="+$(".sb-input").val(),
+			dataType:"json",
+			success:function(data){
+				toastr['success'](data.msg);
+				
+				}
+
+			})
+}
+	$(".sb-btn").click(function(){
+
+		$(".sb-ul").html("<div class='clear'></div>");
+		$.ajax({
+			type:"post",
+			url:"tiebaAction_findByTiebaName",
+			data:{
+				tiebaName:$(".sb-input").val(),
+				index:1,
+				size:999
+				},
+				dataType:"json",
+				success:function(data){
+					if (data.pager.totalRecord == 0)
+						{
+						toastr['error']("没有搜到贴吧！");
+						var sbStr="<li>“"+$(".sb-input").val()+"”吧尚未建立。欢迎创建此吧，与今后来到这里的朋友交流讨论。<button onclick='cj()' style='border: none; padding: 5px; cursor: pointer; '>我来创建</button></li>"
+						$(".sb-ul").append(sbStr);
+						}
+					
+					else if (data.pager.totalRecord > 0) {
+						for (i = 0; i < data.pager.totalRecord; i++) {
+							//	alert(data.pager.datas[i].tiebaName);
+							if(data.pager.datas[i].bgImg==null){data.pager.datas[i].bgImg="unknow.png"}
+
+				
+							$(".clear").before(
+						"<li><a href='/hehetieba/tie?tiebaId="+data.pager.datas[i].id+"'><img src='images/"+data.pager.datas[i].bgImg+"' /> <p><span>"+data.pager.datas[i].tiebaName+"吧</span><i class='icon-comment'>&nbsp;"+data.pager.datas[i].tieCount+"</i><i class='icon-user'>&nbsp;"+data.pager.datas[i].memberCount+"</i></p></a></li>");
+
+						}
+						var spotlight = {
+							opacity : 0.2,
+							imgWidth : $('.spotlightWrapper ul li').find(
+									'img').width(),
+							imgHeight : $('.spotlightWrapper ul li').find(
+									'img').height()
+
+						};
+
+						$('.spotlightWrapper ul li').css({
+							'width' : spotlight.imgWidth,
+							'height' : spotlight.imgHeight
+						});
+						$('.spotlightWrapper ul li').hover(function() {
+							$(this).find('img').addClass('active').css({
+								'opacity' : 1
+							});
+							$(this).find('p').css({
+								'opacity' : 1
+							});
+							$(this).siblings('li').find('img').css({
+								'opacity' : spotlight.opacity
+							});
+							$(this).siblings('li').find('p').css({
+								'opacity' : spotlight.opacity
+							});
+						}, function() {
+							$(this).find('img').removeClass('active');
+						});
+						$('.spotlightWrapper ul').bind('mouseleave',
+								function() {
+									$(this).find('img').css('opacity', 1);
+								});
+					}
+
+					}
+			
+		});
+
+
+
+		});
+
+
+	
 		$.ajax({
 					type : "post",
 					url : "hehetieba/tiebaAction_listInIndex",
@@ -106,7 +202,7 @@ background:#fff;
 					},
 					success : function(data) {
 						if (data.pager.totalRecord == 0)
-							alert("一个贴吧也没有！");
+							toastr['error']("一个贴吧也没有！");
 						else if (data.pager.totalRecord > 0) {
 							for (i = 0; i < data.pager.totalRecord; i++) {
 								//	alert(data.pager.datas[i].tiebaName);
@@ -151,7 +247,21 @@ background:#fff;
 						}
 					}
 
-				})
+				});
+		toastr.options = {
+				"closeButton" : true,
+				"debug" : false,
+				"positionClass" : "toast-top-full-width",
+				"onclick" : null,
+				"showDuration" : "30",
+				"hideDuration" : "5000",
+				"timeOut" : "5000",
+				"extendedTimeOut" : "1000",
+				"showEasing" : "swing",
+				"hideEasing" : "swing",
+				"showMethod" : "show",
+				"hideMethod" : "hide"
+			}
 	</script>
 </body>
 </html>

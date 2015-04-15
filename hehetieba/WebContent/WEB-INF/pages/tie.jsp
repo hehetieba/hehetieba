@@ -159,7 +159,7 @@
 							<section class="vbox">
 								<section style="padding: 0; overflow: auto;">
 									<div style="background-color: #00a2ea;">
-										<img src="images/bg.jpg" style="width: 100%;"><img
+										<img src="images/bg.jpg" style="width: 100%; max-height: 250px;" class="bgImg"><img
 											class="tieba-headImg" src="images/barhead.jpg"
 											style="width: 14%; margin-left: 3%; margin-top: -8%;">
 										<p
@@ -167,7 +167,9 @@
 											<span class="bar-title"></span> <span
 												class="blue-btn-wrapper"><button type="button"
 													class="btn btn-default" id="gz-btn">关注</button>
-												<button type="button" class="btn btn-primary" id="qxgz-btn">已关注</button></span>
+												<button type="button" class="btn btn-primary" id="qxgz-btn">已关注</button>
+												<button type="button" class="btn btn-primary sqbz-btn" style="margin-top: 10px;" >申请吧主</button>
+												</span>
 												
 										</p>
 										<span class="fallow-wrapper">关注：<span
@@ -175,7 +177,7 @@
 											class="post-wrapper">帖子：<span class="tieba-count"
 											style="color: #FF773C;"></span></span>
 
-											<a  class="btn btn-success" id="xgtb-btn" href="#modal-container-xgtb" role="button" data-toggle="modal" style="margin-top: -17px;display: none;margin-left: 10px;">修改吧信息</a>
+											<a  class="btn btn-success" id="xgtb-btn" href="#modal-container-xgtb" role="button" data-toggle="modal" style="margin-top: -17px;display:none;margin-left: 10px;">修改吧信息</a>
 										<p class="tieba-intruduction"
 											style="margin-left: 20%; margin-bottom: 0; padding-bottom: 10px; color: #fff;"></p>
 											
@@ -269,32 +271,59 @@
 								修改贴吧信息
 							</h4>
 						</div>
-					
+					<form action="tiebaAction_changeMessage" method="post" enctype="multipart/form-data">
 						<div class="modal-body">
-          			<form action="tiebaAction_changeMessage" method="post" enctype="multipart/form-data">
+          			
+          			<input value='<%=request.getParameter("tiebaId")%>' name="tiebaId"  style="display: none;">
           			<p>贴吧背景</p>
-          			<input value='<%=request.getParameter("tiebaId")%>' name="tiebaId" >
           			<input type="file" name="files">
           			<p>贴吧头像</p>
           			<input type="file"  name="files">
           			<p>贴吧简介</p>
           			<input type="text" class="form-control intro" name="introduction" >
-          		<input type="submit" value="ssss">
-          		</form>
+          		
+          		
                            
 						</div>
 						<div class="modal-footer">
-							 <a type="button" class="btn  btn-warning xgxx-btn" >修改</a> <button type="button" class="btn btn-primary" data-dismiss="modal">返回</button>
+							<input type="submit" value="修改" class="btn  btn-warning xgxx-btn"> 
+							
+							 <button type="button" class="btn btn-primary" data-dismiss="modal">返回</button>
 						</div>
-					
+					</form>
 					</div>
 					
 				</div>
 				
 			</div>
 	<script>
-		$("#qxgz-btn").click(function() {
+$(".sqbz-btn").click(function(){
 
+	$.ajax({
+		type:"post",
+		url:"tiebaOwnerApply_applyTiebaOwner",
+		data:{
+			userId:'${user.id}',
+			tiebaId:<%=request.getParameter("tiebaId")%>,
+			username:'${user.username}',
+			tiebaName:$(".bar-title").text().substring(0,$(".bar-title").text().length-1)
+		},
+		dataType:"json",
+		success:function(data){
+				
+			toastr['success'](data.message);
+			}
+			
+		})
+
+	
+});
+
+	
+
+
+	
+	$("#qxgz-btn").click(function() {
 			$.ajax({
 				type : "post",
 				url : "userTiebaAction_cancelFocus",
@@ -310,6 +339,8 @@
 			})
 
 		});
+
+		
 		$("#gz-btn").click(function() {
 
 			$.ajax({
@@ -357,11 +388,16 @@
 					dataType : "json",
 					success : function(data) {
 						$(".bar-title").html(data.tieba.tiebaName + "吧");
-						if (data.tieba.headImg == null) {
-							data.tieba.headImg = "unknow.png"
-						}
-						$(".tieba-headImg").attr("src",
-								"images/" + data.tieba.headImg);
+						if (data.tieba.headImg == ""||data.tieba.headImg == null) {
+							data.tieba.headImg = "images/unknow.png"
+						}else{data.tieba.headImg="upload/" + data.tieba.bgImg}
+
+							if (data.tieba.bgImg ==""||data.tieba.bgImg == null) {
+							data.tieba.bgImg = "images/defaultBgImg.jpg"
+						}else{data.tieba.bgImg="upload/" + data.tieba.bgImg}
+						
+						$(".tieba-headImg").attr("src", data.tieba.headImg);
+						$(".bgImg").attr("src",data.tieba.bgImg);
 						$(".tieba-intruduction").html(data.tieba.intruduction);
 						$(".tieba-member").html(data.tieba.memberCount);
 						$(".tieba-count").html(data.tieba.tieCount);
@@ -411,7 +447,7 @@
 				},
 			dataType:"json",
 			success:function(data){
-				if(data.flag=true){
+				if(data.flag==true){
 				$("#xgtb-btn").css("display","inline-block");
 				$("#qxgz-btn").css("display","none");
 					}
