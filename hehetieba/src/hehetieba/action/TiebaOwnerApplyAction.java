@@ -57,44 +57,6 @@ public class TiebaOwnerApplyAction extends ActionSupport implements ServletReque
 
 
 	public String applyTiebaOwner() throws IOException {
-//		Integer index = Integer.valueOf(request.getParameter("index"));
-//		Integer size = Integer.valueOf(request.getParameter("size"));
-//		Integer tieTitleId = Integer.valueOf(request.getParameter("tieTitleId"));
-//
-//		Pager<Tie> pager = iTieService.listInTiePage(tieTitleId, index, size);
-//		TieTitle tieTitle = iTieTitleService.getTieTitleById(tieTitleId);
-//		String title = tieTitle.getTitle();
-//		// tie.getTieTitle().setUser(null);
-//		// 输出
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("pager", pager);
-//		map.put("title", title);
-//		Gson gson = new GsonBuilder()
-//				.setExclusionStrategies(new ExclusionStrategy() {
-//					public boolean shouldSkipClass(Class<?> clazz) {
-//						if (clazz == TieTitle.class || clazz == Set.class)
-//							return true;
-//						return false;
-//					}
-//
-//					public boolean shouldSkipField(FieldAttributes f) {
-//						if (f.getName().equals("beSendUser"))
-//							return true;
-//						return false;
-//					}
-//
-//				})
-//				/**
-//				 * Use serializeNulls method if you want To serialize null
-//				 * values By default, Gson does not serialize null values
-//				 */
-//				.serializeNulls().setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
-//				.create();
-//		
-//		response.setContentType("text/html;charset=utf-8");
-//		PrintWriter out = response.getWriter();
-//		out.print(gson.toJson(map));
-//		System.out.println(gson.toJson(map));
 		
 		Integer userId = Integer.valueOf(request.getParameter("userId"));
 		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
