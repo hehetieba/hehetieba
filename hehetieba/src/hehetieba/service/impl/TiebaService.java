@@ -13,6 +13,8 @@ import hehetieba.util.UploadUtils;
 import java.io.File;
 import java.util.List;
 
+import sun.org.mozilla.javascript.internal.regexp.SubString;
+
 public class TiebaService implements ITiebaService {
 	private ITiebaDao iTiebaDao;
 	private ITiebaApplyDao iTiebaApplyDao;
@@ -136,5 +138,45 @@ public class TiebaService implements ITiebaService {
 		tieba.setEnabled((byte)0);
 	}
 
+	@Override
+	public void changeMessage(Integer tiebaId,String introduction, File[] files,
+			String[] filesFileName) {
+		// TODO Auto-generated method stub
+		Tieba tieba = iTiebaDao.get(tiebaId);
+		tieba.setIntruduction(introduction);;
+		for(int i=0;i<files.length;i++) {
+			String ext = filesFileName[i].substring(filesFileName[i].lastIndexOf('.'));
+			String path = UploadUtils.saveUploadFile(files[i], ext);
+			if(i==0) {
+				tieba.setHeadImg(path);
+			}
+			else {
+				tieba.setBgImg(path);
+			}
+		}
+	}
+
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

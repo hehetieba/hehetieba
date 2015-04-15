@@ -26,6 +26,7 @@ public class ErrorProcessor extends ActionSupport{
 //		return SUCCESS;
 		PrintWriter out = ServletActionContext.getResponse().getWriter();
 		out.write(this.exception.getMessage());
+		System.out.println(this.exception.getMessage());
 		return null;
 	}
 }

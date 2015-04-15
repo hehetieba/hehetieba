@@ -52,11 +52,46 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 
 	
 	// --------------------一些参数-------------------------------------
-	File headImg;
-	File bgImg;
+//	File headImg;
+//	File bgImg;
+//
+//	public File getHeadImg() {
+//		return headImg;
+//	}
+//
+//	public void setHeadImg(File headImg) {
+//		this.headImg = headImg;
+//	}
+//
+//	public File getBgImg() {
+//		return bgImg;
+//	}
+//
+//	public void setBgImg(File bgImg) {
+//		this.bgImg = bgImg;
+//	}
+	
+	private File[] files;
+	private String [] filesFileName;
+
+	public File[] getFiles() {
+		return files;
+	}
+
+	public void setFiles(File[] files) {
+		this.files = files;
+	}
+
+	public String[] getFilesFileName() {
+		return filesFileName;
+	}
+
+	public void setFilesFileName(String[] filesFileName) {
+		this.filesFileName = filesFileName;
+	}
+
 	
 	// --------------------华丽的分割线-------------------------------------
-
 
 	public String listInIndex() throws IOException {
 		Integer index = Integer.valueOf(request.getParameter("index"));
@@ -185,53 +220,68 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 	
-	public String changeIntroduction() throws IOException {
+	public String changeMessage() throws IOException {
 		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
 		String introduction = request.getParameter("introduction");
-		iTiebaService.changeIntroduction(tiebaId, introduction);
+		iTiebaService.changeMessage(tiebaId, introduction, files, filesFileName);
 		
 		Gson gson = new Gson();
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("msg", "修改完成");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));
 		System.out.println("修改完成");
 		return null;
 	}
 	
-	/**
-	 * 吧主上传贴吧头像
-	 */
-	public String uploadHeadImg() throws IOException {
-		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
-		String ext = request.getParameter("ext");
-		iTiebaService.uploadHeadImg(tiebaId, headImg, ext);
-		
-		Gson gson = new Gson();
-		Map<String, String> map = new HashMap<String,String>();
-		map.put("msg", "上传完毕");
-		PrintWriter out = response.getWriter();
-		out.print(gson.toJson(map));
-		System.out.println("修改完成");
-		return null;
-	}
+//	public String changeIntroduction() throws IOException {
+//		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+//		String introduction = request.getParameter("introduction");
+//		iTiebaService.changeIntroduction(tiebaId, introduction);
+//		
+//		Gson gson = new Gson();
+//		Map<String, String> map = new HashMap<String,String>();
+//		map.put("msg", "修改完成");
+//		PrintWriter out = response.getWriter();
+//		out.print(gson.toJson(map));
+//		System.out.println("修改完成");
+//		return null;
+//	}
 	
-	/**
-	 * 吧主上传贴吧头像
-	 */
-	public String uploadBgImg() throws IOException {
-		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
-		String ext = request.getParameter("ext");
-		iTiebaService.uploadBgImg(tiebaId, bgImg, ext);
-		
-		Gson gson = new Gson();
-		Map<String, String> map = new HashMap<String,String>();
-		map.put("msg", "修改完成");
-		PrintWriter out = response.getWriter();
-		out.print(gson.toJson(map));
-		System.out.println("上传完毕");
-		return null;
-	}
+//	/**
+//	 * 吧主上传贴吧头像
+//	 */
+//	public String uploadHeadImg() throws IOException {
+//		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+//		String ext = request.getParameter("ext");
+//		iTiebaService.uploadHeadImg(tiebaId, headImg, ext);
+//		
+//		Gson gson = new Gson();
+//		Map<String, String> map = new HashMap<String,String>();
+//		map.put("msg", "上传完毕");
+//		PrintWriter out = response.getWriter();
+//		out.print(gson.toJson(map));
+//		System.out.println("修改完成");
+//		return null;
+//	}
+//	
+//	/**
+//	 * 吧主上传贴吧头像
+//	 */
+//	public String uploadBgImg() throws IOException {
+//		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+//		String ext = request.getParameter("ext");
+//		iTiebaService.uploadBgImg(tiebaId, bgImg, ext);
+//		
+//		Gson gson = new Gson();
+//		Map<String, String> map = new HashMap<String,String>();
+//		map.put("msg", "修改完成");
+//		PrintWriter out = response.getWriter();
+//		out.print(gson.toJson(map));
+//		System.out.println("上传完毕");
+//		return null;
+//	}
 }
 
 

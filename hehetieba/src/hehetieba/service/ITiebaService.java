@@ -77,4 +77,11 @@ public interface ITiebaService {
 	 * @param tiebaId
 	 */
 	public void disableTieba(Integer tiebaId);
+	/**
+	 * 吧主修改贴吧信息
+	 * @param introduction
+	 * @param files
+	 * @param filesFileName
+	 */
+	public void changeMessage(Integer tiebaId,String intruduction,File[] files,String[] filesFileName);
 }

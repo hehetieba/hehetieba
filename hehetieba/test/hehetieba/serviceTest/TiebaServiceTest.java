@@ -265,6 +265,18 @@ public class TiebaServiceTest extends SpringInit {
 		System.out.println("已经禁用该贴吧");
 	}
 	
+	@Test
+	public void testChangeMessage() {
+		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
+		Integer tiebaId = 2;
+		String intruduction = "修改";
+		File[] files = new File[]{new File("C:\\Users\\Administrator\\Desktop\\asd.txt"),new File("C:\\Users\\Administrator\\Desktop\\qwe.txt")};
+		String[] filesFileName = new String[]{new String(".txt"),new String(".txt")};
+		iTiebaService.changeMessage(tiebaId, intruduction, files, filesFileName);
+		
+		System.out.println("已修改贴吧信息");
+	}
+	
 }
 
 
