@@ -82,7 +82,7 @@ img {
 							class="dropdown-toggle bg clear" data-toggle="dropdown"> <span
 								class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
 									<c:if test="${not empty user.headImg}">
-										<img class="'myhead'" src='${user.headImg}' alt='...'>
+									<img class="myhead" src="upload/${user.headImg}" alt='...'>
 									</c:if> <c:if test="${empty user.headImg}">
 										<img class="'myhead'" src='images/unknow.png' alt='...'>
 									</c:if>

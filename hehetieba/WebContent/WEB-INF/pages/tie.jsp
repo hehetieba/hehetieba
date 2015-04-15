@@ -71,9 +71,9 @@
 							class="dropdown-toggle bg clear" data-toggle="dropdown"> <span
 								class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
 									<c:if test="${not empty user.headImg}">
-										<img class="'myhead'" src='${user.headImg}' alt='...'>
+										<img class="myhead" src="upload/${user.headImg}" alt='...'>
 									</c:if> <c:if test="${empty user.headImg}">
-										<img class="'myhead'" src='images/unknow.png' alt='...'>
+										<img class="myhead" src='images/unknow.png' alt='...'>
 									</c:if>
 							</span> ${user.nickname}<b class="caret"></b>
 						</a>
@@ -168,13 +168,17 @@
 												class="blue-btn-wrapper"><button type="button"
 													class="btn btn-default" id="gz-btn">关注</button>
 												<button type="button" class="btn btn-primary" id="qxgz-btn">已关注</button></span>
+												
 										</p>
 										<span class="fallow-wrapper">关注：<span
 											class="tieba-member" style="color: #FF773C;"></span></span> <span
 											class="post-wrapper">帖子：<span class="tieba-count"
 											style="color: #FF773C;"></span></span>
+
+											<a  class="btn btn-success" id="xgtb-btn" href="#modal-container-xgtb" role="button" data-toggle="modal" style="margin-top: -17px;display: none;margin-left: 10px;">修改吧信息</a>
 										<p class="tieba-intruduction"
 											style="margin-left: 20%; margin-bottom: 0; padding-bottom: 10px; color: #fff;"></p>
+											
 									</div>
 
 									<div class="tie-main">
@@ -255,6 +259,39 @@
 
 	</div>
 
+
+		<div class="modal fade" id="modal-container-xgtb" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								修改贴吧信息
+							</h4>
+						</div>
+					
+						<div class="modal-body">
+          			<form action="tiebaAction_changeMessage" method="post" enctype="multipart/form-data">
+          			<p>贴吧背景</p>
+          			<input value='<%=request.getParameter("tiebaId")%>' name="tiebaId" >
+          			<input type="file" name="files">
+          			<p>贴吧头像</p>
+          			<input type="file"  name="files">
+          			<p>贴吧简介</p>
+          			<input type="text" class="form-control intro" name="introduction" >
+          		<input type="submit" value="ssss">
+          		</form>
+                           
+						</div>
+						<div class="modal-footer">
+							 <a type="button" class="btn  btn-warning xgxx-btn" >修改</a> <button type="button" class="btn btn-primary" data-dismiss="modal">返回</button>
+						</div>
+					
+					</div>
+					
+				</div>
+				
+			</div>
 	<script>
 		$("#qxgz-btn").click(function() {
 
@@ -366,6 +403,21 @@
 		+ "&tieTitleId=" + e
 		}
 
+		$.ajax({
+			type:"POST",
+			url:"userTiebaAction_checkBaZhu",
+			data:{userId:'${user.id}',
+				tiebaId:'<%=request.getParameter("tiebaId")%>'
+				},
+			dataType:"json",
+			success:function(data){
+				if(data.flag=true){
+				$("#xgtb-btn").css("display","inline-block");
+				$("#qxgz-btn").css("display","none");
+					}
+
+				}
+			});
 		$(document)
 				.ready(
 						function(e) {

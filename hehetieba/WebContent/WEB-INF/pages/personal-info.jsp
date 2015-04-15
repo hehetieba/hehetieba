@@ -56,7 +56,7 @@
 							class="dropdown-toggle bg clear" data-toggle="dropdown"> <span
 								class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
 									<c:if test="${not empty user.headImg}">
-										<img class="'myhead'" src='${user.headImg}' alt='...'>
+									<img class="myhead" src="upload/${user.headImg}" alt='...'>
 									</c:if> <c:if test="${empty user.headImg}">
 										<img class="'myhead'" src='images/unknow.png' alt='...'>
 									</c:if>
@@ -238,11 +238,23 @@
 					
 						<div class="modal-body">
           			<form action="userAction_uploadHeadImg" method="post" enctype="multipart/form-data">
-          			<input type="file" id="headImg" name="headImg">
-          			<input name="userId" value=1>
-          			<input name="ext" value=".jpg">
-          			<input type="submit" value="222">
+          			<input type="file" id="headImg" name="headImg" onchange="$('.ext').val('.'+$('#headImg').val().split('.').pop().toLowerCase())">
+          			<input name="userId" value=${user.id} type="hidden">         			
+          			<input name="ext" class="ext" type="hidden">
+          			<input type="submit" value="上传头像">
           			</form>
+          			<p>昵称</p>
+          			<input type="text" class="form-control nickname" >
+          			<p>个性签名</p>
+          			<input type="text" class="form-control intro" >
+          			<p>生日</p>
+          			<input type="text" class="form-control birthday">
+          			<p>性别</p>
+          			<select class="gender"><option value="0">女</opton>
+          			<c:if test='${user.gender==1}'><option value="1" selected></c:if>
+          			<c:if test='${user.gender==0}'><option value="1"></c:if>
+          			男</opton></select>
+          		
                            
 						</div>
 						<div class="modal-footer">
@@ -294,7 +306,7 @@ $.ajax({
 	success:function(data){
 $(".myname").html(data.user.nickname);
 if(data.user.headImg==""){}else{
-$(".myhead").attr("src",data.user.headImg);
+$(".myhead").attr("src","upload/"+data.user.headImg);
 }
 $(".gxqm").html(data.user.introduction);
 if(data.user.gender==1){var gender="男"}else{var gender="女"}
@@ -393,27 +405,48 @@ $.ajax({
 			}
 	})	
 			
-$("#xgtx-btn").click(function(){
-	var ext="."+$("#headImg").val().split('.').pop().toLowerCase();
-		$.ajaxFileUpload({
-			type:'POST',
-			url:"userAction_uploadHeadImg",
-			fileElementId:'headImg',
-			datatype:'json',
-			data:{
-				userId:'${user.id}',
-				ext:ext
-				},
-			success:function(data){
-			alert(2222);
-			},
-			error:function(xhr, textStatus, error){
-				toastr['error']("修改失败");
-			}
-		});		
-	});
+// $("#xgtx-btn").click(function(){
+// 	var ext="."+$("#headImg").val().split('.').pop().toLowerCase();
+// 		$.ajaxFileUpload({
+// 			type:'POST',
+// 			url:"userAction_uploadHeadImg",
+// 			fileElementId:'headImg',
+// 			datatype:'json',
+// 			data:{
+// 				userId:'${user.id}',
+// 				ext:ext
+// 				},
+// 			success:function(data){
+// 			alert(2222);
+// 			},
+// 			error:function(xhr, textStatus, error){
+// 				toastr['error']("修改失败");
+// 			}
+// 		});		
+// 	});
 	
    $(document).ready(function(e) {
+		$(".xgxx-btn").click(function(){
+$.ajax({
+		type:"post",
+		url:"userAction_changeMessage",
+		data:{
+			userId:'${user.id}',
+			nickname:$(".nickname").val(),
+			introduction:$(".intro").val(),
+			birthday:$(".birthday").val(),
+			gender:$(".gender").val()
+			},
+			success:function(data){
+				toastr['success']("修改成功");
+				setTimeout(function() {
+					window.top.location.reload()
+				}, 500);
+				}
+
+})
+});
+	   
 	   $('.demo2').Tabs({
 			event:'click'
 		});
