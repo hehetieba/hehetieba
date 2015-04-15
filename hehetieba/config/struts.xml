@@ -49,6 +49,7 @@
 	<include file="struts2/struts-userTieba.xml"></include>
 	<include file="struts2/struts-applyOwnerResult.xml"></include>
 	<include file="struts2/struts-tiebaOwnerApply.xml"></include>
+	<include file="struts2/struts-tiebaApply.xml"></include>
 
 
 </struts>
