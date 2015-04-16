@@ -86,29 +86,28 @@ background:#fff;
 .clear {
 	clear: both;
 } /* to clear the float after the last item */
+.search-input{padding:5px 10px; margin-top:35px; width: 200px;}
+.search-btn{border: none; padding: 5px; cursor: pointer; }
 </style>
 </head>
 <body>
 	<div style="height: 100px;width: 100%;">
-	<input  class="sb-input" type="text" style="  padding:5px 10px; margin-top:35px; width: 200px;"><button style="border: none; padding: 5px; cursor: pointer; " class="sb-btn">搜吧</button>
-	
+	<input  class="search-input" type="text">
+	<button class="search-btn">搜吧</button>
 	</div>
 	<div class='spotlightWrapper'>
-		<!-- start unordered list -->
-		<ul class="sb-ul">
+		<ul class="result-con">
 			<div class='clear'></div>
 		</ul>
-		<!-- end unordered list -->
 	</div>
 
-	<!-- end spolightWrapper div -->
 	<script>
 
 	function cj(){
 
 		$.ajax({
 			type:"post",
-			url:"tiebaApplyAction_saveTiebaApply?tiebaName="+$(".sb-input").val(),
+			url:"tiebaApplyAction_saveTiebaApply?tiebaName="+$(".search-input").val(),
 			dataType:"json",
 			success:function(data){
 				toastr['success'](data.msg);
@@ -117,14 +116,13 @@ background:#fff;
 
 			})
 }
-	$(".sb-btn").click(function(){
-
-		$(".sb-ul").html("<div class='clear'></div>");
+	$(".search-btn").click(function(){
+		$(".result-con").html("<div class='clear'></div>");
 		$.ajax({
 			type:"post",
 			url:"tiebaAction_findByTiebaName",
 			data:{
-				tiebaName:$(".sb-input").val(),
+				tiebaName:$(".search-input").val(),
 				index:1,
 				size:999
 				},
@@ -133,18 +131,20 @@ background:#fff;
 					if (data.pager.totalRecord == 0)
 						{
 						toastr['error']("没有搜到贴吧！");
-						var sbStr="<li>“"+$(".sb-input").val()+"”吧尚未建立。欢迎创建此吧，与今后来到这里的朋友交流讨论。<button onclick='cj()' style='border: none; padding: 5px; cursor: pointer; '>我来创建</button></li>"
-						$(".sb-ul").append(sbStr);
+						var sbStr="<li>“"+$(".search-input").val()+"”吧尚未建立。欢迎创建此吧，与今后来到这里的朋友交流讨论。<button onclick='cj()' style='border: none; padding: 5px; cursor: pointer; '>我来创建</button></li>"
+						$(".result-con").append(sbStr);
 						}
 					
 					else if (data.pager.totalRecord > 0) {
 						for (i = 0; i < data.pager.totalRecord; i++) {
 							//	alert(data.pager.datas[i].tiebaName);
-							if(data.pager.datas[i].bgImg==null){data.pager.datas[i].bgImg="unknow.png"}
+							if(data.pager.datas[i].headImg==null||data.pager.datas[i].headImg==""){
+								data.pager.datas[i].headImg="images/unknow.png"
+									}else{data.pager.datas[i].headImg="upload/"+data.pager.datas[i].headImg}
 
 				
 							$(".clear").before(
-						"<li><a href='/hehetieba/tie?tiebaId="+data.pager.datas[i].id+"'><img src='images/"+data.pager.datas[i].bgImg+"' /> <p><span>"+data.pager.datas[i].tiebaName+"吧</span><i class='icon-comment'>&nbsp;"+data.pager.datas[i].tieCount+"</i><i class='icon-user'>&nbsp;"+data.pager.datas[i].memberCount+"</i></p></a></li>");
+						"<li><a href='/hehetieba/tie?tiebaId="+data.pager.datas[i].id+"'><img src='"+data.pager.datas[i].headImg+"' /> <p><span>"+data.pager.datas[i].tiebaName+"吧</span><i class='icon-comment'>&nbsp;"+data.pager.datas[i].tieCount+"</i><i class='icon-user'>&nbsp;"+data.pager.datas[i].memberCount+"</i></p></a></li>");
 
 						}
 						var spotlight = {
@@ -206,9 +206,12 @@ background:#fff;
 						else if (data.pager.totalRecord > 0) {
 							for (i = 0; i < data.pager.totalRecord; i++) {
 								//	alert(data.pager.datas[i].tiebaName);
-								if(data.pager.datas[i].bgImg==null){data.pager.datas[i].bgImg="unknow.png"}
+								if(data.pager.datas[i].headImg==null||data.pager.datas[i].headImg==""){
+									data.pager.datas[i].headImg="images/unknow.png"
+										}else{data.pager.datas[i].headImg="upload/"+data.pager.datas[i].headImg}
+
 								$(".clear").before(
-							"<li><a href='/hehetieba/tie?tiebaId="+data.pager.datas[i].id+"'><img src='images/"+data.pager.datas[i].bgImg+"' /> <p><span>"+data.pager.datas[i].tiebaName+"吧</span><i class='icon-comment'>&nbsp;"+data.pager.datas[i].tieCount+"</i><i class='icon-user'>&nbsp;"+data.pager.datas[i].memberCount+"</i></p></a></li>");
+							"<li><a href='/hehetieba/tie?tiebaId="+data.pager.datas[i].id+"'><img src='"+data.pager.datas[i].headImg+"' /> <p><span>"+data.pager.datas[i].tiebaName+"吧</span><i class='icon-comment'>&nbsp;"+data.pager.datas[i].tieCount+"</i><i class='icon-user'>&nbsp;"+data.pager.datas[i].memberCount+"</i></p></a></li>");
 
 							}
 							var spotlight = {

@@ -344,7 +344,7 @@ toastr['error']("请先登录！");
 									+ "<i class='fa fa-user icon-muted'></i><a href='#' class='m-r-sm'>"
 									+ data.pager.datas[i][0].sendUser.nickname
 									+ "</a><i class='fa fa-clock-o icon-muted'></i>"
-									+ data.pager.datas[i][0].createdDate
+									+ data.pager.datas[i][0].createDate
 									+ "<button class='btn-success btn reply-btn' onClick='reply($(this));'>回复</button></div></div></div>"
 									  $(".blog-post").append(str);
 									  

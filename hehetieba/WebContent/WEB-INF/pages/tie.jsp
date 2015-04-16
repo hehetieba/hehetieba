@@ -161,14 +161,14 @@
 									<div style="background-color: #00a2ea;">
 										<img src="images/bg.jpg" style="width: 100%; max-height: 250px;" class="bgImg"><img
 											class="tieba-headImg" src="images/barhead.jpg"
-											style="width: 14%; margin-left: 3%; margin-top: -8%;">
+											style="width: 14%; margin-left: 3%; margin-top: -8.5%;">
 										<p
 											style="margin-left: 20%; margin-top: -6%; color: #000; position: relative;">
 											<span class="bar-title"></span> <span
 												class="blue-btn-wrapper"><button type="button"
 													class="btn btn-default" id="gz-btn">关注</button>
 												<button type="button" class="btn btn-primary" id="qxgz-btn">已关注</button>
-												<button type="button" class="btn btn-primary sqbz-btn" style="margin-top: 10px;" >申请吧主</button>
+												<button type="button" class="btn btn-primary sqbz-btn" style="margin-top: 10px;padding:0 5px !important;" >申请吧主</button>
 												</span>
 												
 										</p>
@@ -177,7 +177,7 @@
 											class="post-wrapper">帖子：<span class="tieba-count"
 											style="color: #FF773C;"></span></span>
 
-											<a  class="btn btn-success" id="xgtb-btn" href="#modal-container-xgtb" role="button" data-toggle="modal" style="margin-top: -17px;display:none;margin-left: 10px;">修改吧信息</a>
+											<a  class="btn btn-success" id="xgtb-btn" href="#modal-container-xgtb" role="button" data-toggle="modal" style="margin-top: -17px;display:none;margin-left: 10px;padding:0 5px !important;">修改吧信息</a>
 										<p class="tieba-intruduction"
 											style="margin-left: 20%; margin-bottom: 0; padding-bottom: 10px; color: #fff;"></p>
 											
@@ -390,7 +390,7 @@ $(".sqbz-btn").click(function(){
 						$(".bar-title").html(data.tieba.tiebaName + "吧");
 						if (data.tieba.headImg == ""||data.tieba.headImg == null) {
 							data.tieba.headImg = "images/unknow.png"
-						}else{data.tieba.headImg="upload/" + data.tieba.bgImg}
+						}else{data.tieba.headImg="upload/" + data.tieba.headImg}
 
 							if (data.tieba.bgImg ==""||data.tieba.bgImg == null) {
 							data.tieba.bgImg = "images/defaultBgImg.jpg"
@@ -450,6 +450,7 @@ $(".sqbz-btn").click(function(){
 				if(data.flag==true){
 				$("#xgtb-btn").css("display","inline-block");
 				$("#qxgz-btn").css("display","none");
+				$(".sqbz-btn").css("display","none");
 					}
 
 				}
