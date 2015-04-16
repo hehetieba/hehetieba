@@ -339,6 +339,34 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 	
+	public String enableTieba() throws IOException {
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		iTiebaService.enableTieba(tiebaId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("msg", "贴吧已恢复");
+		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
+	
+	public String disableTieba() throws IOException {
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		iTiebaService.disableTieba(tiebaId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("msg", "贴吧已禁用");
+		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
+	
 //	public String changeIntroduction() throws IOException {
 //		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
 //		String introduction = request.getParameter("introduction");
