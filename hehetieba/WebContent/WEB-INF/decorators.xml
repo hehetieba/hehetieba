@@ -3,5 +3,9 @@
 <decorators defaultdir="/decorators">
     <decorator name="main" page="basic.jsp">
  <pattern>/userhoutai</pattern>
+ <pattern>/tiezihoutai</pattern>
+    <pattern>/tiebahoutai</pattern>
+    <pattern>/tiebasqhoutai</pattern>
+    <pattern>/bazhusqhoutai</pattern>
     </decorator>
 </decorators>
