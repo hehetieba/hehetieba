@@ -32,7 +32,14 @@
 		</action>	
 			<action name="tiezihoutai"  class="hehetieba.ui.TieUI">
 			<result>WEB-INF/pages/tiezihoutai.jsp</result>
+		</action>		
+			<action name="tiebasqhoutai"  class="hehetieba.ui.TieUI">
+			<result>WEB-INF/pages/tiebasqhoutai.jsp</result>
 		</action>	
+			<action name="bazhusqhoutai"  class="hehetieba.ui.TieUI">
+			<result>WEB-INF/pages/bazhusqhoutai.jsp</result>
+		</action>		
+				
 				
 	</package>
 </struts>	
