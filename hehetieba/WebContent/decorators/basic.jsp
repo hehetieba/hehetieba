@@ -40,22 +40,18 @@ a{ cursor: pointer;}
     </div>
     <div class="nContainer">
       <ul class="navigation bordered">
-        <li class="active"><a href="#" class="blblue">用户管理</a></li>
-        <li> <a href="#" class="blyellow">UI Elements</a>
+        <li class="active"><a href="userhoutai" class="blblue">用户管理</a></li>
+        <li> <a href="tiebahoutai" class="blyellow">贴吧管理</a>
         </li>
-        <li> <a href="#" class="blgreen">Forms Stuff</a>
+        <li> <a href="tiezihoutai#" class="blgreen">帖子管理</a>
         </li>
-        <li><a href="#" class="blred">Statistic</a></li>
-        <li> <a href="#" class="bldblue">Tables</a>
-        </li>
-        <li> <a href="#" class="blpurple">Samples</a>
-        </li>
-        <li> <a href="#" class="blorange">Other</a>
+        <li><a href="tiebasqhoutai" class="blred">建吧审核</a></li>
+        <li> <a href="bazhusqhoutai" class="bldblue">吧主审核</a>
         </li>
       </ul>
       </div>
   </div>
-  <div class="body">
+  <div class="body" style="padding-top:100px;">
     <decorator:body></decorator:body>
     </div>
 </div>

@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-	<table id="dg" class="easyui-datagrid" title="用户管理" style="width:800px;height:500px"
+	<table id="dg" class="easyui-datagrid" title="贴吧管理" style="width:800px;height:500px"
 			data-options="rownumbers:true,pagination:true,singleSelect:true,url:'tiebaAction_listInHoutai',method:'get',toolbar:'#tb'">
 		<thead>
 			<tr>
