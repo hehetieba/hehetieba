@@ -245,5 +245,48 @@ public class TieTitleAction extends ActionSupport implements
 		
 		return null;
 	}
+	
+	public String searchByTitle() throws IOException {
+		String title = request.getParameter("title");
+		Integer page = Integer.valueOf(request.getParameter("page"));
+		Integer rows = Integer.valueOf(request.getParameter("rows"));
+		Pager<TieTitle> pager = iTieTitleService.searchByTitle(title, page, rows);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("rows", pager.getDatas());
+		map.put("page", pager.getIndex());
+		map.put("total", pager.getTotalRecord());
+		Gson gson = new GsonBuilder()
+		.serializeNulls()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+		.create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
+	
+	public String findAll() throws IOException {
+		Integer page = Integer.valueOf(request.getParameter("page"));
+		Integer rows = Integer.valueOf(request.getParameter("rows"));
+		Pager<TieTitle> pager = iTieTitleService.findAll(page, rows);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("rows", pager.getDatas());
+		map.put("page", pager.getIndex());
+		map.put("total", pager.getTotalRecord());
+		Gson gson = new GsonBuilder()
+		.serializeNulls()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+		.create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
 
 }

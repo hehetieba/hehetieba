@@ -130,6 +130,37 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 	
+	public String listInHoutai() throws IOException {
+		Integer page = Integer.valueOf(request.getParameter("page"));
+		Integer rows = Integer.valueOf(request.getParameter("rows"));
+		
+		Pager<Tieba> pager = iTiebaService.list(page, rows);
+//		System.out.println(pager);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("rows", pager.getDatas());
+		map.put("page", pager.getIndex());
+		map.put("total", pager.getTotalRecord());
+		Gson gson = new GsonBuilder()
+	    .setExclusionStrategies(new ExclusionStrategy() {
+
+	        public boolean shouldSkipClass(Class<?> clazz) {
+	            return (clazz == Set.class);
+	        }
+	        public boolean shouldSkipField(FieldAttributes f) {
+	            return false;
+	        }
+
+	     })
+	    .serializeNulls()
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		
+		return null;
+	}
+	
 	public String findByTiebaName() throws IOException {
 		Integer index = Integer.valueOf(request.getParameter("index"));
 		Integer size = Integer.valueOf(request.getParameter("size"));
@@ -182,7 +213,9 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		Pager<Tieba> pager = iTiebaService.findByTiebaName(page, rows, tiebaName);
 //		System.out.println(pager);
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pager", pager);
+		map.put("rows", pager.getDatas());
+		map.put("page", pager.getIndex());
+		map.put("total", pager.getTotalRecord());
 		Gson gson = new GsonBuilder()
 	    .setExclusionStrategies(new ExclusionStrategy() {
 

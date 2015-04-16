@@ -1,7 +1,6 @@
 package hehetieba.action;
 
 import hehetieba.basic.Pager;
-import hehetieba.dao.ITieTitleDao;
 import hehetieba.domain.Tie;
 import hehetieba.domain.TieTitle;
 import hehetieba.service.ITieService;

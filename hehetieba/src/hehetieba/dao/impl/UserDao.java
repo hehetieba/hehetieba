@@ -119,7 +119,7 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 		// TODO Auto-generated method stub
 		String hql = "select new map(u.username as username,u.nickname as nickname,u.headImg as headImg,"
 				+ "u.introduction as introduction,u.gender as gender,"
-				+ "u.birthday as birthday,u.createDate as createDate) "
+				+ "u.birthday as birthday,u.createDate as createDate,u.enabled as enabled) "
 				+ "from User u "
 				+ "where u.username like :name or u.nickname like :name";
 		Map<String, Object> alias = new HashMap<String, Object>();
@@ -132,7 +132,7 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 		// TODO Auto-generated method stub
 		String hql = "select new map(u.id as id,u.username as username,u.nickname as nickname,u.headImg as headImg,"
 				+ "u.introduction as introduction,u.gender as gender,"
-				+ "u.birthday as birthday,u.createDate as createDate) "
+				+ "u.birthday as birthday,u.createDate as createDate,u.enabled as enabled) "
 				+ "from User u";
 		return super.find(hql, index, size);
 	}

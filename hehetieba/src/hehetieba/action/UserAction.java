@@ -357,5 +357,33 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		
 		return null;
 	}
+	
+	public String enableUser() throws IOException {
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		iUserService.enableUser(userId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("msg", "已取消禁用该用户");
+		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
+	
+	public String disableUser() throws IOException {
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		iUserService.disableUser(userId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("msg", "已禁用该用户");
+		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
 
 }
