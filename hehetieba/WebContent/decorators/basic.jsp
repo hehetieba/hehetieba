@@ -3,65 +3,62 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" type="text/css" media="screen" />
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/simpla.jquery.configuration.js"></script>
-<decorator:head></decorator:head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!--[if gt IE 8]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />        
+    <![endif]-->
+    <style type="text/css">
+    html,body,.wrapper{ height: 100%;}
+    
+    </style>
 <title><decorator:title /></title>
-<link rel="icon" type="image/x-icon" href="<%=request.getContextPath()%>/img/favicon.ico">
-</head>
- <div id="sidebar" style="margin-left:-60px; ">
-        <div id="sidebar-wrapper">
-      <!-- Sidebar with logo and menu -->
-      <h1 id="sidebar-title"><a href="book.do?method=index">hehe</a></h1>
-      <!-- Logo (221px wide) -->
-      <a href="#"><img id="logo" src="<%=request.getContextPath()%>/images/logo.png" alt="Hehe bookstore" /></a>
-      <!-- Sidebar Profile links -->
-      <div id="profile-links"> Hello, <a href="#" title="${admin.nickname}"><c:if test="${not empty admin}">${admin.nickname}</c:if></a>,<br/>you have <a href="#messages" rel="modal" title="3 Messages">3 Messages</a><br />
-        <br />
- <a href="#" title="Sign Out">Sign Out</a> </div>
-      <ul id="main-nav">
-        <!-- Accordion Menu -->
-        <li> <a href="userlist.do?method=list"  class="nav-top-item no-submenu" id="user_list" >用户管理</a> </li>
-        <li> <a href="catelist.do?method=list" class="nav-top-item no-submenu" id="cate_list" > 图书类别管理</a></li>
-        <li> <a href="booklist.do?method=J_list" class="nav-top-item no-submenu" id="book_list"> 管理图书</a> </li>
-    <li> <a href="Orders.do?method=list" class="nav-top-item no-submenu" id="orders_list"> 订单管理</a>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="css/houtai.css" rel="stylesheet" type="text/css"/>
+<link href="themes/default/easyui.css" rel="stylesheet" type="text/css"/>
+<link href="themes/icon.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<style type="text/css">
+a{ cursor: pointer;}
 
-        </li>
-        <li> <a href="#" class="nav-top-item"> 查看销售情况 </a>
+</style>
+</head>
+<body>
+<div style="display: none;" id="loader"></div>
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="top"> <a href="#" class="logo"></a>
+      <div class="search">
+        <div class="input-prepend"> 
          
+        </div>
+      </div>
+    </div>
+    <div class="nContainer">
+      <ul class="navigation bordered">
+        <li class="active"><a href="#" class="blblue">用户管理</a></li>
+        <li> <a href="#" class="blyellow">UI Elements</a>
         </li>
-        <li> <a href="#" class="nav-top-item"> 留言管理 </a>
-          <ul>
-            <li><a href="#">用户注册</a></li>
-            <li><a href="#">删除留言</a></li>
-          </ul>
+        <li> <a href="#" class="blgreen">Forms Stuff</a>
+        </li>
+        <li><a href="#" class="blred">Statistic</a></li>
+        <li> <a href="#" class="bldblue">Tables</a>
+        </li>
+        <li> <a href="#" class="blpurple">Samples</a>
+        </li>
+        <li> <a href="#" class="blorange">Other</a>
         </li>
       </ul>
-      <!-- End #main-nav -->
-     
-  
+      </div>
+  </div>
+  <div class="body">
+    <decorator:body></decorator:body>
     </div>
-  </div>
-  
-  
-<div class="content" style="margin-left:230px; ">
- <div id="header">welcome</div> 
-  <div style="float:left;  width:100%; ">
-
-  <decorator:body></decorator:body>
-  
-  <div style="clear:both;"></div>
-    <div id="footer" align="center"> <small>
-  &#169; Copyright 2014 Dawn Group |11 Software|all members </small> </div>
-
-
-  </div>
 </div>
+
 </body>
 </html>

@@ -26,6 +26,13 @@
 		</action>
 		<action name="userhoutai"  class="hehetieba.ui.TieUI">
 			<result>WEB-INF/pages/userhoutai.jsp</result>
+		</action>
+			<action name="tiebahoutai"  class="hehetieba.ui.TieUI">
+			<result>WEB-INF/pages/tiebahoutai.jsp</result>
 		</action>	
+			<action name="tiezihoutai"  class="hehetieba.ui.TieUI">
+			<result>WEB-INF/pages/tiezihoutai.jsp</result>
+		</action>	
+				
 	</package>
 </struts>	

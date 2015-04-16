@@ -8,28 +8,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>用户管理</title>
+    <title>贴吧管理</title>
 
   </head>
   
   <body>
 	<table id="dg" class="easyui-datagrid" title="用户管理" style="width:800px;height:500px"
-			data-options="rownumbers:true,pagination:true,singleSelect:true,url:'userAction_findAll',method:'get',toolbar:'#tb'">
+			data-options="rownumbers:true,pagination:true,singleSelect:true,url:'tiebaAction_listInHoutai',method:'get',toolbar:'#tb'">
 		<thead>
 			<tr>
 		<th data-options="field:'id',width:20">ID</th>
-		<th data-options="field:'username',width:80">用户名</th>		
-		<th data-options="field:'headImg',width:'auto',align:'center',formatter:function(v){return '<img src=<%=request.getContextPath()%>/upload/'+v+' height=50;>'}">头像</th>	
-		<th data-options="field:'nickname',width:80">昵称</th>
-		<th data-options="field:'gender',formatter:function(v){
-				if(v==1) 
-				{return '男';}
-				else 
-				{return '女'};
-				},align:'center',width:32">性别</th>			
-		<th data-options="field:'birthday',width:80">生日</th>
-		<th data-options="field:'introduction',width:80">简介</th>			
-		<th data-options="field:'createDate',width:80">注册时间</th>
+		<th data-options="field:'tiebaName',width:80">吧名</th>		
+		<th data-options="field:'headImg',width:'auto',align:'center',formatter:function(v){return '<img src=<%=request.getContextPath()%>/upload/'+v+' height=50;>'}">吧头像</th>	
+		<th data-options="field:'intruduction',width:80">简介</th>			
+		<th data-options="field:'memberCount',width:80">成员数</th>
+		<th data-options="field:'tieCount',width:80">帖子数</th>
 		<th data-options="field:'enabled',formatter:function(s){if(s==1){return '<a onclick=\'jinyong($(this))\'>禁用</a>'} else{return '<a onclick=\'huifu($(this))\'>恢复</a>'}} ">操作</th>
 			</tr>
 		</thead>
@@ -44,21 +37,21 @@ $("#search").click(function() {
 	var searchStr = $("#searchStr").val();
 	if (searchStr != "" && searchStr != null) {
 		$('#dg').datagrid({
-			url : 'userAction_findAll?name=' + searchStr
+			url : 'tiebaAction_findByTiebaName_houtai?tiebaName=' + searchStr
 		});
 	} else {
 		$('#dg').datagrid({
-			url : 'userAction_findAll'
+			url : 'tiebaAction_listInHoutai'
 		});
 	}
 });
 function jinyong(e){
-var uid=e.parent().parent().parent().children().first().text();
+var bid=e.parent().parent().parent().children().first().text();
 $.ajax({
 		type:"post",
-		url:"userAction_disableUser",
+		url:"tiebaAction_disableTieba",
 		data:{
-			userId:uid
+			tiebaId:bid
 			}	,
 		dataType:"json",
 		success:function(data){
@@ -72,9 +65,9 @@ function huifu(e){
 	var uid=e.parent().parent().parent().children().first().text();
 	$.ajax({
 			type:"post",
-			url:"userAction_enableUser",
+			url:"tiebaAction_enableTieba",
 			data:{
-				userId:uid
+				tiebaId:uid
 				}	,
 			dataType:"json",
 			success:function(data){
