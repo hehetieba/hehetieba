@@ -2,6 +2,7 @@ package hehetieba.action;
 
 import hehetieba.basic.Pager;
 import hehetieba.domain.ApplyOwnerResult;
+import hehetieba.domain.TiebaApply;
 import hehetieba.service.IApplyOwnerResultService;
 import hehetieba.service.IReplyService;
 import hehetieba.service.ITiebaApplyService;
@@ -18,6 +19,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class TiebaApplyAction extends ActionSupport implements ServletRequestAware,
@@ -64,6 +66,26 @@ public class TiebaApplyAction extends ActionSupport implements ServletRequestAwa
 		else
 			map.put("msg", "抱歉，该贴吧不能被申请");
 		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+
+		return null;
+	}
+	
+	public String listAll() throws IOException {
+		
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Pager<TiebaApply> pager = iTiebaApplyService.listAll(index, size);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pager", pager);
+		Gson gson = new GsonBuilder()
+	    .serializeNulls()
+	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+	    .create();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));

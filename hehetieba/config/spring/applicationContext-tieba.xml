@@ -15,6 +15,9 @@
 		<property name="iTiebaDao">
 			<ref bean="tiebaDao"/>
 		</property>
+		<property name="iTiebaApplyDao">
+			<ref bean="tiebaApplyDao"/>
+		</property>
 	</bean>
 
 	<bean id="tiebaDao" class="hehetieba.dao.impl.TiebaDao">

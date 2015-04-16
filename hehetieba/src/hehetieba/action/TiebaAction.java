@@ -235,6 +235,36 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 	
+	public String saveTieba() throws IOException {
+		String tiebaName = request.getParameter("tiebaName");
+		Integer tiebaApplyId = Integer.valueOf(request.getParameter("tiebaApplyId"));
+		iTiebaService.saveTieba(tiebaName, tiebaApplyId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("msg", "贴吧已创建");
+		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
+	
+	public String notSaveTieba() throws IOException {
+		String tiebaName = request.getParameter("tiebaName");
+		Integer tiebaApplyId = Integer.valueOf(request.getParameter("tiebaApplyId"));
+		iTiebaService.notSaveTieba(tiebaName, tiebaApplyId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("msg", "已确认不创建该贴吧");
+		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+		return null;
+	}
+	
 //	public String changeIntroduction() throws IOException {
 //		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
 //		String introduction = request.getParameter("introduction");

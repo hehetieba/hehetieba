@@ -4,6 +4,7 @@ import hehetieba.basic.Pager;
 import hehetieba.dao.ITieTitleDao;
 import hehetieba.domain.Tie;
 import hehetieba.domain.TieTitle;
+import hehetieba.domain.TiebaOwnerApply;
 import hehetieba.service.ITieService;
 import hehetieba.service.ITieTitleService;
 import hehetieba.service.ITiebaOwnerApplyService;
@@ -72,6 +73,60 @@ public class TiebaOwnerApplyAction extends ActionSupport implements ServletReque
 			map.put("message", "你已经提交过申请了，请耐心等待管理员处理");
 		else
 			map.put("message", "已经成功提交申请，请耐心等待管理员处理");
+		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+
+		return null;
+	}
+	
+	public String listAll() throws IOException {
+		Integer index = Integer.valueOf(request.getParameter("index"));
+		Integer size = Integer.valueOf(request.getParameter("size"));
+		Pager<TiebaOwnerApply> pager = iTiebaOwnerApplyService.listAll(index, size);
+		
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("pager",pager);
+		Gson gson = new GsonBuilder()
+		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
+	    .create();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+
+		return null;
+	}
+	
+	public String agree() throws IOException {
+		Integer tiebaOwnerApplyId = Integer.valueOf(request.getParameter("tiebaOwnerApplyId"));
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		String tiebaName = request.getParameter("tiebaName");
+		iTiebaOwnerApplyService.agree(tiebaOwnerApplyId, userId, tiebaId, tiebaName);
+		
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("message","已经同意该用户为吧主");
+		Gson gson = new Gson();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(gson.toJson(map));
+		System.out.println(gson.toJson(map));
+
+		return null;
+	}
+	
+	public String disAgree() throws IOException {
+		Integer tiebaOwnerApplyId = Integer.valueOf(request.getParameter("tiebaOwnerApplyId"));
+		Integer userId = Integer.valueOf(request.getParameter("userId"));
+		Integer tiebaId = Integer.valueOf(request.getParameter("tiebaId"));
+		String tiebaName = request.getParameter("tiebaName");
+		iTiebaOwnerApplyService.disAgree(tiebaOwnerApplyId, userId, tiebaId, tiebaName);
+		
+		Map<String, Object> map = new HashMap<String,Object>();
+		map.put("message","已经拒绝该用户为吧主");
 		Gson gson = new Gson();
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();

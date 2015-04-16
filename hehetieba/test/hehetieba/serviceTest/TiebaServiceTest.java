@@ -277,6 +277,34 @@ public class TiebaServiceTest extends SpringInit {
 		System.out.println("已修改贴吧信息");
 	}
 	
+	@Test
+	public void testSaveTieba() {
+		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
+		String tiebaName = "007";
+		Integer tiebaApplyId = 1;
+		iTiebaService.saveTieba(tiebaName, tiebaApplyId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("msg", "贴吧已创建");
+		Gson gson = new Gson();
+		System.out.println(gson.toJson(map));
+		
+	}
+	
+	@Test
+	public void testNotSaveTieba() {
+		ITiebaService iTiebaService = (ITiebaService)context.getBean("tiebaService");
+		String tiebaName = "008";
+		Integer tiebaApplyId = 1;
+		iTiebaService.notSaveTieba(tiebaName, tiebaApplyId);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("msg", "已确认不创建该贴吧");
+		Gson gson = new Gson();
+		System.out.println(gson.toJson(map));
+		
+	}
+	
 }
 
 

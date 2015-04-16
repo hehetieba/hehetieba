@@ -312,12 +312,14 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 	 */
 	public String findByUsernameOrNickname() throws IOException {
 		String name = request.getParameter("name");
-		Integer index = Integer.valueOf(request.getParameter("index"));
-		Integer size = Integer.valueOf(request.getParameter("size"));
-		Pager<User> pager = iUserService.findByUsernameOrNickname(name, index, size);
+		Integer page = Integer.valueOf(request.getParameter("page"));
+		Integer rows = Integer.valueOf(request.getParameter("rows"));
+		Pager<User> pager = iUserService.findByUsernameOrNickname(name, page, rows);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pager", pager);
+		map.put("rows", pager.getDatas());
+		map.put("page", pager.getIndex());
+		map.put("total", pager.getTotalRecord());
 		Gson gson = new GsonBuilder()
 	    .serializeNulls()
 	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
@@ -336,12 +338,14 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 	 * @throws IOException
 	 */
 	public String findAll() throws IOException {
-		Integer index = Integer.valueOf(request.getParameter("index"));
-		Integer size = Integer.valueOf(request.getParameter("size"));
-		Pager<User> pager = iUserService.findAll(index, size);
+		Integer page = Integer.valueOf(request.getParameter("page"));
+		Integer rows = Integer.valueOf(request.getParameter("rows"));
+		Pager<User> pager = iUserService.findAll(page, rows);
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("pager", pager);
+		map.put("rows", pager.getDatas());
+		map.put("page", pager.getIndex());
+		map.put("total", pager.getTotalRecord());
 		Gson gson = new GsonBuilder()
 	    .serializeNulls()
 	    .setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
