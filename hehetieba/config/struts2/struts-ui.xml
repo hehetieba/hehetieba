@@ -39,7 +39,9 @@
 			<action name="bazhusqhoutai"  class="hehetieba.ui.TieUI">
 			<result>WEB-INF/pages/bazhusqhoutai.jsp</result>
 		</action>		
-				
+		<action name="houtai"  class="hehetieba.ui.TieUI">
+			<result>WEB-INF/pages/login.jsp</result>
+		</action>	
 				
 	</package>
 </struts>	
