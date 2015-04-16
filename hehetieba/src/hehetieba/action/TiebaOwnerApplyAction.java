@@ -83,12 +83,14 @@ public class TiebaOwnerApplyAction extends ActionSupport implements ServletReque
 	}
 	
 	public String listAll() throws IOException {
-		Integer index = Integer.valueOf(request.getParameter("index"));
-		Integer size = Integer.valueOf(request.getParameter("size"));
-		Pager<TiebaOwnerApply> pager = iTiebaOwnerApplyService.listAll(index, size);
+		Integer page = Integer.valueOf(request.getParameter("page"));
+		Integer rows = Integer.valueOf(request.getParameter("rows"));
+		Pager<TiebaOwnerApply> pager = iTiebaOwnerApplyService.listAll(page, rows);
 		
 		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("pager",pager);
+		map.put("rows", pager.getDatas());
+		map.put("page", pager.getIndex());
+		map.put("total", pager.getTotalRecord());
 		Gson gson = new GsonBuilder()
 		.setDateFormat("yyyy-MM-dd' 'HH:mm:ss")
 	    .create();
