@@ -8,12 +8,19 @@ import hehetieba.dto.TiebaDto;
 
 public interface ITiebaDao extends IBaseDao<Tieba> {
 	/**
-	 * 首页中，分页
+	 * 后台中，分页
 	 * @param index
 	 * @param size
 	 * @return
 	 */
 	public Pager<Tieba> list(Integer index,Integer size);
+	/**
+	 * 首页中，分页
+	 * @param index
+	 * @param size
+	 * @return
+	 */
+	public Pager<Tieba> list2(Integer index,Integer size);
 	/**
 	 * 根据userId查找关注的贴吧(返回tiebaId，tiebaName)
 	 * @param userId

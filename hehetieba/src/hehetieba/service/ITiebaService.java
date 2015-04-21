@@ -9,10 +9,15 @@ import hehetieba.dto.TiebaDto;
 
 public interface ITiebaService {
 	/**
-	 * 首页中分页且排序显示全部贴吧
+	 * 后台中分页且排序显示全部贴吧
 	 * @return
 	 */
 	public Pager<Tieba> list(Integer index,Integer size);
+	/**
+	 * 首页中分页且排序显示全部贴吧
+	 * @return
+	 */
+	public Pager<Tieba> list2(Integer index,Integer size);
 	/**
 	 * 首页中按贴吧名字分页查找贴吧
 	 * @param tiebaName

@@ -97,7 +97,7 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		Integer index = Integer.valueOf(request.getParameter("index"));
 		Integer size = Integer.valueOf(request.getParameter("size"));
 		
-		Pager<Tieba> pager = iTiebaService.list(index, size);
+		Pager<Tieba> pager = iTiebaService.list2(index, size);
 //		System.out.println(pager);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pager", pager);

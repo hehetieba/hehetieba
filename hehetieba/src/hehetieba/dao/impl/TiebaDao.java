@@ -17,6 +17,12 @@ public class TiebaDao extends BaseDao<Tieba> implements ITiebaDao  {
 		Pager<Tieba> pager=super.find(hql, index, size);
 		return pager;
 	}
+	
+	public Pager<Tieba> list2(Integer index, Integer size) {
+		String hql="from Tieba t where t.enabled=1 order by t.memberCount desc";
+		Pager<Tieba> pager=super.find(hql, index, size);
+		return pager;
+	}
 
 	@Override
 	public List<Tieba> listFavoriteTiebas(Integer userId) {

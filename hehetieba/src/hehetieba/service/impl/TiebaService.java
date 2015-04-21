@@ -42,6 +42,12 @@ public class TiebaService implements ITiebaService {
 		Pager<Tieba> pager = iTiebaDao.list(index, size);
 		return pager;
 	}
+	
+	@Override
+	public Pager<Tieba> list2(Integer index, Integer size) {
+		Pager<Tieba> pager = iTiebaDao.list2(index, size);
+		return pager;
+	}
 
 	@Override
 	public Pager<Tieba> findByTiebaName(Integer index, Integer size,String tiebaName) {
