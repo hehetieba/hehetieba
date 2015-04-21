@@ -75,6 +75,11 @@ public class ManagerAction extends ActionSupport implements ServletRequestAware,
 		return null;
 	}
 	
+	public String logout() throws IOException {
+		request.getSession().removeAttribute("manager");
+		return null;
+	}
+	
 	public String changePwd() throws IOException {
 		String oldPwd = request.getParameter("oldPwd");
 		String newPwd = request.getParameter("newPwd");
