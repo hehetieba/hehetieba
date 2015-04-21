@@ -275,9 +275,9 @@
 						<div class="modal-body">
           			
           			<input value='<%=request.getParameter("tiebaId")%>' name="tiebaId"  style="display: none;">
-          			<p>贴吧背景</p>
-          			<input type="file" name="files">
           			<p>贴吧头像</p>
+          			<input type="file" name="files">
+          			<p>贴吧背景</p>
           			<input type="file"  name="files">
           			<p>贴吧简介</p>
           			<input type="text" class="form-control intro" name="introduction" >
