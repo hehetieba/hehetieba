@@ -118,8 +118,10 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		// System.out.println("nickname:" + nickname);
 		// System.out.println("nickname:" + pwd);
 		boolean flag = iUserService.register(username, nickname, pwd);
-		if (flag == true)
+		if (flag == true) {
 			System.out.println("注册成功");
+			response.sendRedirect("/hehetieba/all-tieba");
+		}
 		else
 			System.out.println("注册失败");
 
