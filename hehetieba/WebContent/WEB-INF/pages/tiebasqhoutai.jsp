@@ -37,7 +37,7 @@ var tid=e.parent().parent().parent().children().first().text();
 var tname=e.parent().parent().parent().children().first().next().text();
 $.ajax({
 		type:"post",
-		url:"tiebaActioin_notSaveTieba",
+		url:"tiebaAction_notSaveTieba",
 		data:{
 			tiebaApplyId:tid,
 			tiebaName:tname
@@ -51,12 +51,14 @@ $.ajax({
 }
 
 function tongyi(e){
-	var uid=e.parent().parent().parent().children().first().text();
+	var tid=e.parent().parent().parent().children().first().text();
+	var tname=e.parent().parent().parent().children().first().next().text();
 	$.ajax({
 			type:"post",
-			url:"userAction_enableUser",
+			url:"tiebaAction_saveTieba",
 			data:{
-				userId:uid
+				tiebaApplyId:tid,
+				tiebaName:tname
 				}	,
 			dataType:"json",
 			success:function(data){
