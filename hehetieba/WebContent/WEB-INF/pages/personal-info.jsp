@@ -238,7 +238,8 @@
 					
 						<div class="modal-body">
           			<form action="userAction_uploadHeadImg" method="post" enctype="multipart/form-data">
-          			<input type="file" id="headImg" name="headImg" onchange="$('.ext').val('.'+$('#headImg').val().split('.').pop().toLowerCase())">
+          			<input type="file" id="headImg" name="headImg" onchange="$('.ext').val('.'+$('#headImg').val().split('.').pop().toLowerCase());setImagePreview();">
+          			<p><div id="localImag"><img id="preview" width=-1 height=-1 style="diplay:none" /></div></p>
           			<input name="userId" value=${user.id} type="hidden">         			
           			<input name="ext" class="ext" type="hidden">
           			<input type="submit" value="上传头像">
@@ -251,8 +252,7 @@
           			<input type="text" class="form-control birthday">
           			<p>性别</p>
           			<select class="gender"><option value="0">女</opton>
-          			<c:if test='${user.gender==1}'><option value="1" selected></c:if>
-          			<c:if test='${user.gender==0}'><option value="1"></c:if>
+          			<option value="1" selected>
           			男</opton></select>
           		
                            
@@ -481,6 +481,40 @@ $.ajax({
 		});
     
 });
+
+   function setImagePreview() {
+		var docObj=document.getElementById("headImg");
+		var imgObjPreview=document.getElementById("preview");
+		if(docObj.files && docObj.files[0]){
+			//火狐下，直接设img属性
+			imgObjPreview.style.display = 'block';
+			imgObjPreview.style.width = '150px';
+			imgObjPreview.style.height = '150px';                    
+			//imgObjPreview.src = docObj.files[0].getAsDataURL();
+			
+			//火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式  
+			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+		}else{
+			//IE下，使用滤镜
+			docObj.select();
+			var imgSrc = document.selection.createRange().text;
+			var localImagId = document.getElementById("localImag");
+			//必须设置初始大小
+			localImagId.style.width = "300px";
+			localImagId.style.height = "120px";
+			//图片异常的捕捉，防止用户修改后缀来伪造图片
+			try{
+				localImagId.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+				localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+			}catch(e){
+				alert("您上传的图片格式不正确，请重新选择!");
+				return false;
+			}
+			imgObjPreview.style.display = 'none';
+			document.selection.empty();
+		}
+		return true;
+	}
 	toastr.options = {
 			"closeButton" : true,
 			"debug" : false,

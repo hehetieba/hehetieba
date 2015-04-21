@@ -42,6 +42,7 @@
 img {
 	max-width: 100%;
 }
+.reply-list{ padding:0 30px; }
 </style>
 
 <body class="">
@@ -267,12 +268,13 @@ img {
 		e.addClass("on");
 			}		
 	}	
-	function replyInTie(e){
-	
+function replyInTie(e){
 		if('${user.id}'==""){
-toastr['error']("请先登录！");
-
-			}else{
+		toastr['error']("请先登录！");
+			}else if(e.prev().val()==""){
+				toastr['error']("请输入回复的内容");
+				}
+				else{
 		tieId=e.parent().parent().parent().attr("id")
 		body=e.prev().val();
  		$.ajax({
@@ -286,8 +288,9 @@ toastr['error']("请先登录！");
  					body:body
 					},
 				dataType:"json",
-				success:function(data){toastr['success']("回复成功！")}
-
+				success:function(data){
+					toastr['success']("回复成功！");
+					}
  			})
 		}
 	}

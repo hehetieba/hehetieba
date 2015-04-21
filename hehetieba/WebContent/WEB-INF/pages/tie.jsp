@@ -593,6 +593,9 @@ $(".sqbz-btn").click(function(){
 
 		$("#submit-btn").click(function() {
 			var main_html = UE.getEditor('editor').getContent();
+			if($("#tie-title").val()==""||main_html==""){
+				toastr['error']("请填入必要的标题和内容！");
+				}else{
 			$.ajax({
 				type : 'post',
 				url : 'hehetieba/tieTitleAction_faTie',
@@ -604,11 +607,10 @@ $(".sqbz-btn").click(function(){
 				},
 				success : function() {
 					toastr['success']("发帖成功");
-					setTimeout(function() {
-						window.top.location.reload()
-					}, 500);
+			
 				}
 			});
+			}
 		});
 		toastr.options = {
 				"closeButton" : true,

@@ -44,7 +44,7 @@ $("#search").click(function() {
 	var searchStr = $("#searchStr").val();
 	if (searchStr != "" && searchStr != null) {
 		$('#dg').datagrid({
-			url : 'userAction_findAll?name=' + searchStr
+			url : 'userAction_findByUsernameOrNickname?name=' + searchStr
 		});
 	} else {
 		$('#dg').datagrid({
