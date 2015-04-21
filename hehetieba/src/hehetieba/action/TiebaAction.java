@@ -306,6 +306,7 @@ public class TiebaAction extends ActionSupport implements ServletRequestAware,
 		PrintWriter out = response.getWriter();
 		out.print(gson.toJson(map));
 		System.out.println("修改完成");
+		response.sendRedirect("/hehetieba/tie?tiebaId="+tiebaId);
 		return null;
 	}
 	

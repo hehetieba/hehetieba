@@ -130,6 +130,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware,
 		Gson gson = new Gson();
 		out.print(gson.toJson(map));
 		System.out.println(gson.toJson(map));
+		response.sendRedirect("/hehetieba/all-tieba");
 		return null;
 	}
 
