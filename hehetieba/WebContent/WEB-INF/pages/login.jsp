@@ -13,12 +13,12 @@
 		<h1>
 			<a id="logo" href="book.do?method=index" title="">HeHe</a>
 		</h1>
-	<form action="bs.login?method=login" method="post" style="position: relative;">
+	<form action="managerAction_login" method="post" style="position: relative;">
 			用户名
-			<input class="input" type="text" name="username" />
+			<input class="input" type="text" name="managername" />
 			
 			用户密码：
-			<input class="input" type="password" name="password" />
+			<input class="input" type="password" name="pwd" />
 			<br/>
 			<input type="submit" value="管理员登录" class="reg_btn " style="position:absolute; bottom:20px;left:50%;margin-left: -50px;" />
 		
