@@ -19,8 +19,9 @@ public class UploadUtils {
 		 * =
 		 * C:\Program Files\Apache Software Foundation\Tomcat 6.0\webapps\itcastoa823\WEB-INF/upload/2012\02\16\aaaaadfasdf
 		 */
-//		String basePath = ServletActionContext.getServletContext().getRealPath("/WEB-INF/upload");
-		String basePath = "C:\\Users\\Administrator\\Desktop\\upload";
+		String basePath = ServletActionContext.getServletContext().getRealPath("upload");
+		System.out.println("basepath:"+basePath);
+//		String basePath = "C:\\Users\\Administrator\\Desktop\\upload";
 		//把日期类型格式化为"/yyyy/MM/dd/"这种形式的字符串
 		String subPath = sdf.format(new Date());
 		//如果文件夹不存在，就创建文件夹
@@ -35,6 +36,7 @@ public class UploadUtils {
 		File dest = new File(path);
 		//把文件移动到dest处
 		upload.renameTo(dest);
-		return subPath+randomPath+ext;
+		System.out.println("返回：:"+subPath+randomPath+ext);
+		return subPath.substring(1)+randomPath+ext;
 	}
 }

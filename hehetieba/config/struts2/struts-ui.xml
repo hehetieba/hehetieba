@@ -24,19 +24,19 @@
 		<action name="tiezi"  class="hehetieba.ui.TieUI">
 			<result>WEB-INF/pages/tiezi.jsp</result>
 		</action>
-		<action name="userhoutai"  class="hehetieba.ui.TieUI">
+		<action name="userhoutai"  class="hehetieba.ui.HouTai">
 			<result>WEB-INF/pages/userhoutai.jsp</result>
 		</action>
-			<action name="tiebahoutai"  class="hehetieba.ui.TieUI">
+			<action name="tiebahoutai"  class="hehetieba.ui.HouTai">
 			<result>WEB-INF/pages/tiebahoutai.jsp</result>
 		</action>	
-			<action name="tiezihoutai"  class="hehetieba.ui.TieUI">
+			<action name="tiezihoutai"  class="hehetieba.ui.HouTai">
 			<result>WEB-INF/pages/tiezihoutai.jsp</result>
 		</action>		
-			<action name="tiebasqhoutai"  class="hehetieba.ui.TieUI">
+			<action name="tiebasqhoutai"  class="hehetieba.ui.HouTai">
 			<result>WEB-INF/pages/tiebasqhoutai.jsp</result>
 		</action>	
-			<action name="bazhusqhoutai"  class="hehetieba.ui.TieUI">
+			<action name="bazhusqhoutai"  class="hehetieba.ui.HouTai">
 			<result>WEB-INF/pages/bazhusqhoutai.jsp</result>
 		</action>		
 		<action name="houtai"  class="hehetieba.ui.TieUI">

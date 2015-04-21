@@ -1,17 +1,11 @@
 package hehetieba.action;
 
-import hehetieba.basic.Pager;
-import hehetieba.domain.Reply;
-import hehetieba.domain.Tie;
-import hehetieba.domain.TieTitle;
 import hehetieba.service.IManagerService;
-import hehetieba.service.IReplyService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,10 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ManagerAction extends ActionSupport implements ServletRequestAware,
@@ -63,6 +54,7 @@ public class ManagerAction extends ActionSupport implements ServletRequestAware,
 		Map<String, Object> map = new HashMap<String,Object>();
 		if(flag==true) {
 			request.getSession().setAttribute("manager", iManagerService.getById(1));
+			response.sendRedirect("userhoutai");
 			map.put("msg", "登陆成功");
 		}
 		else
