@@ -159,8 +159,8 @@
 							<section class="vbox">
 								<section style="padding: 0; overflow: auto;">
 									<div style="background-color: #00a2ea;">
-										<img src="images/bg.jpg" style="width: 100%; max-height: 250px;" class="bgImg"><img
-											class="tieba-headImg" src="images/barhead.jpg"
+										<img style="width: 100%; max-height: 250px;" class="bgImg"><img
+											class="tieba-headImg" 
 											style="width: 14%; margin-left: 3%; margin-top: -8.5%;">
 										<p
 											style="margin-left: 20%; margin-top: -6%; color: #000; position: relative;">
@@ -168,7 +168,7 @@
 												class="blue-btn-wrapper"><button type="button"
 													class="btn btn-default" id="gz-btn">关注</button>
 												<button type="button" class="btn btn-primary" id="qxgz-btn">已关注</button>
-												<button type="button" class="btn btn-primary sqbz-btn" style="margin-top: 10px;padding:0 5px !important;" >申请吧主</button>
+												<button type="button" class="btn btn-primary sqbz-btn" style="margin-left:20px;margin-top: 10px;padding:0 5px !important;" >申请吧主</button>
 												</span>
 												
 										</p>
@@ -204,12 +204,12 @@
 										</div>
 									</div>
 									<aside class="hidden-xs "
-										style="float: right; margin-top: -110px; padding: 20px; width: 30%; background: #fff; height: 110px;">
+										style="float: right; margin-top: -110px; padding: 20px; width: 30%;  height: 110px;">
 										<c:if test="${empty user}">
-											<p>登录后关注该吧吧！</p>
+											<p style="color: #fff;">登录后关注该吧吧！</p>
 										</c:if>
 										<c:if test="${not empty user}">
-											<p>我关注的吧：</p>
+											<p style="color: #fff;">我关注的吧：</p>
 										</c:if>
 
 										<div class="myfavourite"></div>
@@ -395,7 +395,10 @@ $(".sqbz-btn").click(function(){
 							if (data.tieba.bgImg ==""||data.tieba.bgImg == null) {
 							data.tieba.bgImg = "images/defaultBgImg.jpg"
 						}else{data.tieba.bgImg="upload/" + data.tieba.bgImg}
-						
+							if (data.tieba.intruduction==""||data.tieba.intruduction==null) {
+								data.tieba.intruduction= "此吧暂无简介！"
+							}else{}
+							
 						$(".tieba-headImg").attr("src", data.tieba.headImg);
 						$(".bgImg").attr("src",data.tieba.bgImg);
 						$(".tieba-intruduction").html(data.tieba.intruduction);
@@ -607,7 +610,9 @@ $(".sqbz-btn").click(function(){
 				},
 				success : function() {
 					toastr['success']("发帖成功");
-			
+					setTimeout(function() {
+						window.top.location.reload()
+					}, 500);
 				}
 			});
 			}

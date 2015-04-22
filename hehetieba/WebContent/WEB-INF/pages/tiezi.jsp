@@ -289,10 +289,14 @@ function replyInTie(e){
 					},
 				dataType:"json",
 				success:function(data){
-					toastr['success']("回复成功！");
+				
 					}
  			})
 		}
+		toastr['success']("回复成功！");
+		setTimeout(function() {
+			window.top.location.reload()
+		}, 800);
 	}
 
 
