@@ -57,6 +57,7 @@ public class TiebaApplyAction extends ActionSupport implements ServletRequestAwa
 	public String saveTiebaApply() throws IOException {
 		
 		String tiebaName = request.getParameter("tiebaName");
+		tiebaName = new String (tiebaName.getBytes("ISO-8859-1"),"UTF-8");
 		boolean flag = iTiebaApplyService.saveTiebaApply(tiebaName);
 		
 		System.out.println(flag);
